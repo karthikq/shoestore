@@ -74,8 +74,9 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
+  padding-top: 1.8rem;
   ul {
-    padding-left: 1rem;
+    padding-left: 0rem;
 
     font-family: "Montserrat", sans-serif;
     li {
@@ -83,7 +84,7 @@
       font-size: 1.4rem;
       letter-spacing: 0.6px;
       font-weight: 500;
-      margin: 1rem 0;
+      margin: 0.8rem 0;
 
       color: rgb(255, 255, 255);
       padding: 0.7rem 1.5rem;
@@ -124,11 +125,13 @@
   height: 50px;
 
   position: absolute;
-  left: 0rem;
-  top: 6rem;
+  left: 1.5rem;
+  top: 7rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+  gap: 0 1.5rem;
+  font-family: "Montserrat", sans-serif;
   img {
     width: 50px;
     height: 50px;
@@ -137,5 +140,7 @@
   }
   span {
     font-size: 1.25rem;
+    letter-spacing: 0.8px;
+    font-weight: 300;
   }
 }

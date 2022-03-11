@@ -1,11 +1,20 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.styles.scss";
 
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
-  console.log(navState);
+
+  setTimeout(() => {
+    const home = document.querySelector(".home-container");
+    if (navState) {
+      home.style.marginLeft = "18rem";
+    } else {
+      home.style.marginLeft = "0rem";
+    }
+  }, 10);
+
   return (
     <div className="nav-container">
       <div

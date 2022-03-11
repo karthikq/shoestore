@@ -8,7 +8,9 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="home-bg-video">
-        <video autoPlay></video>
+        <video autoPlay>
+          <source src="../videos/3.mp4" />
+        </video>
       </div>
       <div className="home-contents">
         <h1>
