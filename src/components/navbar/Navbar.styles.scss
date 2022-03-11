@@ -5,12 +5,13 @@
   height: auto;
 }
 .nav-contents {
-  width: 15rem;
+  width: 18rem;
   background-color: black;
   height: 100vh;
   position: absolute;
   left: -20rem;
   top: 0;
+  z-index: 50;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -21,8 +22,8 @@
   width: 25px;
 
   position: fixed;
-  left: 1.8rem;
-  top: 2rem;
+  left: 1rem;
+  top: 1.5rem;
   z-index: 80;
   display: flex;
   flex-direction: column;
@@ -63,5 +64,78 @@
     transform-origin: bottom;
     width: 50%;
     transform: translate(11px, -8px) rotatez(45deg);
+  }
+}
+.nav-items {
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  ul {
+    padding-left: 1rem;
+
+    font-family: "Montserrat", sans-serif;
+    li {
+      list-style-type: none;
+      font-size: 1.4rem;
+      letter-spacing: 0.6px;
+      font-weight: 500;
+      margin: 1rem 0;
+
+      color: rgb(255, 255, 255);
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      position: relative;
+      &::before {
+        position: absolute;
+        width: 80%;
+
+        height: 0.15rem;
+        background-color: white;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        z-index: -1;
+        content: "";
+        clip-path: polygon(0% 0, 0% 0, 0% 100%, 0% 100%);
+        transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      &:hover::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+      &:hover {
+        color: rgb(255, 255, 255);
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+      &:active::before {
+        height: 100%;
+      }
+    }
+  }
+}
+.nav-profile {
+  width: 80%;
+  height: 50px;
+
+  position: absolute;
+  left: 0rem;
+  top: 6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: aliceblue;
+  }
+  span {
+    font-size: 1.25rem;
   }
 }
