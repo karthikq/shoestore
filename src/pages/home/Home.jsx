@@ -3,10 +3,18 @@
 import React from "react";
 import "./home.styles.scss";
 import { BiRightArrowAlt } from "react-icons/bi";
+import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
-    <div className="home-container">
+    <motion.div
+      initial={{ x: "100vw" }}
+      animate={{ x: 0 }}
+      exit={{ x: "-100vw" }}
+      transition={{ duration: 0.5 }}
+      className="home-container">
       <div className="home-bg-video">
         <video autoPlay>
           <source src="../videos/3.mp4" />
@@ -17,10 +25,13 @@ const Home = () => {
           EXPLORE <span>LATEST SHOES</span>
         </h1>
         <div className="explore-btn">
-          <BiRightArrowAlt className="explore-icon" />
+          <BiRightArrowAlt
+            className="explore-icon"
+            onClick={() => navigate("/categ/options")}
+          />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

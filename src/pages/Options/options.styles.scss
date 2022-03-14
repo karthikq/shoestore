@@ -1,0 +1,35 @@
+/** @format */
+
+.options-container {
+  width: 100%;
+  height: auto;
+}
+.options-contents {
+  width: 100%;
+  padding: 18% 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.options-list {
+  #categ {
+    width: 0;
+    height: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+  }
+  label {
+    font-size: 1.2rem;
+    padding: 1rem;
+    padding-bottom: 0.6rem;
+    padding-top: 0.4rem;
+    padding-left: 0.8rem;
+    border: 2px solid black;
+    border-radius: 20px;
+  }
+  input[type="checkbox"]:checked ~ label {
+    color: blue;
+  }
+}
