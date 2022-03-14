@@ -13,7 +13,7 @@ const Home = () => {
       initial={{ x: "100vw" }}
       animate={{ x: 0 }}
       exit={{ x: "-100vw" }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.8 }}
       className="home-container">
       <div className="home-bg-video">
         <video autoPlay>
