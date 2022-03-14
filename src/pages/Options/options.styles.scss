@@ -6,30 +6,48 @@
 }
 .options-contents {
   width: 100%;
-  padding: 18% 0;
+  padding: 12% 0 15%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  h2 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+  }
 }
 .options-list {
-  #categ {
-    width: 0;
-    height: 0;
+  margin-top: 1rem;
+  width: 100%;
+  form {
+    width: 30rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 0.75rem 1.8rem;
+    margin: 0.8rem;
     border: 0;
     outline: 0;
-    background: transparent;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.2px;
+    border: 2px solid rebeccapurple;
+    font-weight: 500;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: pointer;
+    &:active {
+      transform: scale(0.8);
+    }
   }
-  label {
-    font-size: 1.2rem;
-    padding: 1rem;
-    padding-bottom: 0.6rem;
-    padding-top: 0.4rem;
-    padding-left: 0.8rem;
-    border: 2px solid black;
-    border-radius: 20px;
+  .label-active {
+    background-color: rebeccapurple;
+    color: white;
   }
-  input[type="checkbox"]:checked ~ label {
-    color: blue;
-  }
+  //   input[type="checkbox"]:checked ~ label {
+  //     background-color: rebeccapurple;
+  //     color: white;
+  //   }
 }
