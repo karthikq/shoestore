@@ -20,7 +20,7 @@
   margin-top: 1rem;
   width: 100%;
   form {
-    width: 30rem;
+    width: 40rem;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -28,7 +28,7 @@
   }
   button {
     padding: 0.75rem 1.8rem;
-    margin: 0.8rem;
+    margin: 0.7rem 0.6rem;
     border: 0;
     outline: 0;
     font-family: "Montserrat", sans-serif;
@@ -38,6 +38,7 @@
     font-weight: 500;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;
+    border-radius: 25px;
     &:active {
       transform: scale(0.8);
     }

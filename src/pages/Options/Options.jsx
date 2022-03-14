@@ -38,12 +38,27 @@ const Options = () => {
               checkExists={checkExists}
               selOptions={selOptions}
               value="Casual"
-            />{" "}
+            />
             <OptionItem
               checkExists={checkExists}
               selOptions={selOptions}
               value="Running"
-            />{" "}
+            />
+            <OptionItem
+              checkExists={checkExists}
+              selOptions={selOptions}
+              value="Sports"
+            />
+            <OptionItem
+              checkExists={checkExists}
+              selOptions={selOptions}
+              value="Sports"
+            />
+            <OptionItem
+              checkExists={checkExists}
+              selOptions={selOptions}
+              value="Sports"
+            />
             <OptionItem
               checkExists={checkExists}
               selOptions={selOptions}
