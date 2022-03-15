@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "./options.styles.scss";
 import { motion } from "framer-motion";
@@ -11,6 +11,7 @@ import OptionItem from "./OptionItem";
 
 const Options = () => {
   const [selOptions, setSelOptions] = useState([]);
+  const [btnState, setBtnState] = useState(false);
   const checkExists = (value) => {
     const val = selOptions?.find((item) => item === value);
     if (val) {
@@ -24,6 +25,7 @@ const Options = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    setBtnState(true);
     toast.dismiss();
     if (selOptions.length === 0) {
       return toast.error("Select at least one item");
@@ -97,13 +99,16 @@ const Options = () => {
               transition={{ duration: 0.8, delay: 1.4 }}
               className="options-btn"
               type="submit">
-              <BiRightArrowAlt className="options-arrow-icon" />
-              <div class="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+              {btnState ? (
+                <div class="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              ) : (
+                <BiRightArrowAlt className="options-arrow-icon" />
+              )}
             </motion.button>
           </form>
         </div>
