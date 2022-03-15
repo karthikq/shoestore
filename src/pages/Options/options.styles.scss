@@ -40,8 +40,6 @@
   }
   .options-btndiv {
     margin: 0.9rem 0.6rem;
-    display: grid;
-    place-content: center;
   }
   .optionsitem-btn {
     font-family: "Montserrat", sans-serif;
@@ -109,11 +107,17 @@
     font-size: 1.35rem;
   }
 }
+.options-btn-active {
+  background: transparent;
+  border: 2px solid black;
+}
 .lds-ring {
   display: inline-block;
   position: relative;
   width: 70px;
   height: 70px;
+  left: 0.3rem;
+  top: 0.35rem;
 }
 .lds-ring div {
   box-sizing: border-box;
@@ -122,11 +126,11 @@
   width: 44px;
   height: 44px;
   margin: 8px;
-  border: 8px solid rgb(94, 0, 245);
+  border: 6px solid rgb(49, 199, 129);
 
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: rgb(94, 0, 245) transparent transparent transparent;
+  border-color: rgb(3, 133, 52) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;

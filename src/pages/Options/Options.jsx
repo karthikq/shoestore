@@ -8,10 +8,13 @@ import { motion } from "framer-motion";
 import { BiRightArrowAlt } from "react-icons/bi";
 
 import OptionItem from "./OptionItem";
+import { useNavigate } from "react-router-dom";
 
 const Options = () => {
   const [selOptions, setSelOptions] = useState([]);
   const [btnState, setBtnState] = useState(false);
+  const navigate = useNavigate();
+
   const checkExists = (value) => {
     const val = selOptions?.find((item) => item === value);
     if (val) {
@@ -25,10 +28,17 @@ const Options = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    setBtnState(true);
+
     toast.dismiss();
     if (selOptions.length === 0) {
       return toast.error("Select at least one item");
+    } else {
+      setBtnState(true);
+      toast.loading("Finding best products");
+      setTimeout(() => {
+        navigate("/products");
+        toast.dismiss();
+      }, 1500);
     }
   };
   return (
@@ -97,7 +107,9 @@ const Options = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ y: 50 }}
               transition={{ duration: 0.8, delay: 1.4 }}
-              className="options-btn"
+              className={
+                btnState ? "options-btn-active options-btn" : "options-btn"
+              }
               type="submit">
               {btnState ? (
                 <div class="lds-ring">
