@@ -1,17 +1,25 @@
 /** @format */
 
 import React from "react";
-
-const OptionItem = ({ checkExists, selOptions, value }) => {
+import { motion } from "framer-motion";
+const OptionItem = ({ checkExists, selOptions, value, id }) => {
   return (
-    <React.Fragment>
+    <motion.div
+      className="options-btndiv"
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: id / 5 }}
+      onClick={() => checkExists(value)}>
       <button
         type="button"
-        className={selOptions.includes(value) ? "label-active" : ""}
-        onClick={() => checkExists(value)}>
+        className={
+          selOptions.includes(value)
+            ? "label-active optionsitem-btn"
+            : "optionsitem-btn"
+        }>
         {value}
       </button>
-    </React.Fragment>
+    </motion.div>
   );
 };
 

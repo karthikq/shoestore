@@ -1,9 +1,14 @@
 /** @format */
 
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import "./options.styles.scss";
 import { motion } from "framer-motion";
+
+import { BiRightArrowAlt } from "react-icons/bi";
+
 import OptionItem from "./OptionItem";
+
 const Options = () => {
   const [selOptions, setSelOptions] = useState([]);
   const checkExists = (value) => {
@@ -17,7 +22,13 @@ const Options = () => {
       return setSelOptions([...selOptions, value]);
     }
   };
-  console.log(selOptions);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    toast.dismiss();
+    if (selOptions.length === 0) {
+      return toast.error("Select at least one item");
+    }
+  };
   return (
     <motion.div
       initial={{ x: "100vw" }}
@@ -26,47 +37,78 @@ const Options = () => {
       transition={{ duration: 0.8, easings: "easeInOut" }}
       className="options-container">
       <div className="options-contents">
-        <h2>Select a category</h2>
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}>
+          Select a Category
+        </motion.h2>
         <div className="options-list">
-          <form>
-            <OptionItem
-              checkExists={checkExists}
-              selOptions={selOptions}
-              value="Trending"
-            />
-            <OptionItem
-              checkExists={checkExists}
-              selOptions={selOptions}
-              value="Casual"
-            />
-            <OptionItem
-              checkExists={checkExists}
-              selOptions={selOptions}
-              value="Running"
-            />
-            <OptionItem
-              checkExists={checkExists}
-              selOptions={selOptions}
-              value="Sports"
-            />
-            <OptionItem
-              checkExists={checkExists}
-              selOptions={selOptions}
-              value="Sports"
-            />
-            <OptionItem
-              checkExists={checkExists}
-              selOptions={selOptions}
-              value="Sports"
-            />
-            <OptionItem
-              checkExists={checkExists}
-              selOptions={selOptions}
-              value="Sports"
-            />
+          <form onSubmit={onSubmit}>
+            <div className="options-btn-list">
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Trending"
+                id={1}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Casual"
+                id={2}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Running"
+                id={3}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Sports"
+                id={4}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Sports"
+                id={5}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Sports"
+                id={6}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Sports"
+                id={7}
+              />
+            </div>
+
+            <motion.button
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ y: 50 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
+              className="options-btn"
+              type="submit">
+              <BiRightArrowAlt className="options-arrow-icon" />
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </motion.button>
           </form>
         </div>
       </div>
+      <Toaster />
     </motion.div>
   );
 };
