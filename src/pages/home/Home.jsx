@@ -31,8 +31,7 @@ const Home = ({ products, fetchProducts }) => {
           <BiRightArrowAlt
             className="explore-icon"
             onClick={() => {
-              fetchProducts();
-              // navigate("/categ/options");
+              navigate("/categ/options");
             }}
           />
         </div>

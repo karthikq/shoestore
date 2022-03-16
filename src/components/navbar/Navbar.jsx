@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
+import { BiHome } from "react-icons/bi";
 import "./Navbar.styles.scss";
 
 const Navbar = () => {
@@ -37,6 +38,10 @@ const Navbar = () => {
             <span>Username</span>
           </div>
           <ul>
+            <li>
+              <BiHome />
+              Home
+            </li>
             <li>Account</li>
             <li>Favourites</li>
             <li>Settings</li>
