@@ -4,16 +4,19 @@ import React from "react";
 import "./home.styles.scss";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchProducts } from "../../components/actions";
 
-const Home = () => {
+const Home = ({ products, fetchProducts }) => {
   const navigate = useNavigate();
+  console.log(products);
   return (
     <motion.div
-      initial={{ x: "100vw" }}
-      animate={{ x: 0 }}
+      initial={{ x: "0", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
       exit={{ x: "-100vw" }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.6, ease: "linear" }}
       className="home-container">
       <div className="home-bg-video">
         <video autoPlay>
@@ -27,12 +30,17 @@ const Home = () => {
         <div className="explore-btn">
           <BiRightArrowAlt
             className="explore-icon"
-            onClick={() => navigate("/categ/options")}
+            onClick={() => {
+              fetchProducts();
+              // navigate("/categ/options");
+            }}
           />
         </div>
       </div>
     </motion.div>
   );
 };
-
-export default Home;
+const mapStatetoProps = (state) => {
+  return { products: state.Products };
+};
+export default connect(mapStatetoProps, { fetchProducts })(Home);

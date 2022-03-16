@@ -3,29 +3,40 @@
 .options-container {
   width: 100%;
   height: auto;
-  background-color: #141414;
+  background-color: #16171a;
   font-family: "Montserrat", sans-serif;
 }
 .options-contents {
   width: 100%;
-  padding: 9% 0 18%;
+  padding: 10% 0 9%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   h2 {
-    font-size: 2.6rem;
+    font-size: 2.65rem;
+    margin-top: 0.5rem;
     margin-bottom: 1.4rem;
     color: white;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    .option-cat-icon {
+      margin-right: 0.4rem;
+    }
+    span {
+      margin-left: 0.5rem;
+      font-weight: 700;
+      color: #ff2e63;
+    }
   }
 }
 .options-list {
   margin-top: 2rem;
   width: 100%;
   form {
-    width: 40rem;
+    max-width: 45rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -50,7 +61,7 @@
 
     font-size: 1rem;
     letter-spacing: 0.2px;
-    border: 2px solid rebeccapurple;
+    border: 2px solid #ff2e63;
     font-weight: 500;
     cursor: pointer;
     border-radius: 25px;
@@ -68,8 +79,8 @@
     }
   }
   .label-active {
-    background-color: rgb(108, 7, 190);
-    color: white;
+    background-color: #eaeaea;
+    color: #000000;
   }
   //   input[type="checkbox"]:checked ~ label {
   //     background-color: rebeccapurple;
@@ -99,7 +110,7 @@
     transform: scale(0.8);
   }
   &:hover {
-    border: 2px solid rgba(255, 255, 255, 0.623);
+    border: 2px solid rgba(219, 219, 219, 0.623);
     background-color: #141414;
     color: white;
   }
@@ -109,7 +120,7 @@
 }
 .options-btn-active {
   background: transparent;
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0);
 }
 .lds-ring {
   display: inline-block;
@@ -126,11 +137,11 @@
   width: 44px;
   height: 44px;
   margin: 8px;
-  border: 6px solid rgb(49, 199, 129);
+  border: 5px solid rgb(49, 199, 129);
 
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: rgb(3, 133, 52) transparent transparent transparent;
+  border-color: #ff2e63 transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;

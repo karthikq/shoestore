@@ -1,11 +1,11 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "./options.styles.scss";
 import { motion } from "framer-motion";
 
-import { BiRightArrowAlt } from "react-icons/bi";
+import { BiCategoryAlt, BiRightArrowAlt } from "react-icons/bi";
 
 import OptionItem from "./OptionItem";
 import { useNavigate } from "react-router-dom";
@@ -46,14 +46,15 @@ const Options = () => {
       initial={{ x: "100vw" }}
       animate={{ x: 0 }}
       exit={{ x: "100vw" }}
-      transition={{ duration: 0.8, easings: "easeInOut" }}
+      transition={{ duration: 0.7, ease: "linear" }}
       className="options-container">
       <div className="options-contents">
         <motion.h2
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}>
-          Select a Category
+          <BiCategoryAlt className="option-cat-icon" /> Select a
+          <span>Category</span>
         </motion.h2>
         <div className="options-list">
           <form onSubmit={onSubmit}>
@@ -61,7 +62,7 @@ const Options = () => {
               <OptionItem
                 checkExists={checkExists}
                 selOptions={selOptions}
-                value="Trending"
+                value="Sneakers"
                 id={1}
               />
               <OptionItem
@@ -85,20 +86,38 @@ const Options = () => {
               <OptionItem
                 checkExists={checkExists}
                 selOptions={selOptions}
-                value="Sports"
+                value="Boat shoes"
                 id={5}
               />
               <OptionItem
                 checkExists={checkExists}
                 selOptions={selOptions}
-                value="Sports"
+                value="Flip flops"
                 id={6}
               />
               <OptionItem
                 checkExists={checkExists}
                 selOptions={selOptions}
-                value="Sports"
+                value="Loafers"
                 id={7}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Boots"
+                id={8}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Formal Shoes"
+                id={9}
+              />
+              <OptionItem
+                checkExists={checkExists}
+                selOptions={selOptions}
+                value="Sandals & Floaters"
+                id={10}
               />
             </div>
 

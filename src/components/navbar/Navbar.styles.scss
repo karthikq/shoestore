@@ -6,7 +6,7 @@
 }
 .nav-contents {
   width: 18rem;
-  background-color: black;
+  background: linear-gradient(90deg, rgb(8, 8, 8), rgb(15, 15, 15));
   height: 100vh;
   position: absolute;
   left: -20rem;
@@ -97,7 +97,7 @@
         width: 0.8rem;
 
         height: 100%;
-        background-color: rgb(0, 101, 196);
+        background-color: #ff2e63;
         left: 0%;
         transform: translateX(-50%);
         bottom: 0;
