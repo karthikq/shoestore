@@ -13,7 +13,7 @@ function App() {
     <div>
       <Navbar />
       <AnimatePresence exitBeforeEnter>
-        <Routes location={location} key={location.key}>
+        <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/categ/options" element={<Options />} />
         </Routes>

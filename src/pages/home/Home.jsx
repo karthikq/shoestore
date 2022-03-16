@@ -27,13 +27,12 @@ const Home = ({ products, fetchProducts }) => {
         <h1>
           EXPLORE <span>LATEST SHOES</span>
         </h1>
-        <div className="explore-btn">
-          <BiRightArrowAlt
-            className="explore-icon"
-            onClick={() => {
-              navigate("/categ/options");
-            }}
-          />
+        <div
+          className="explore-btn"
+          onClick={() => {
+            navigate("/categ/options");
+          }}>
+          <BiRightArrowAlt className="explore-icon" />
         </div>
       </div>
     </motion.div>
