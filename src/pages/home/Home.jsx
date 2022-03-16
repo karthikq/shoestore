@@ -6,13 +6,15 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchProducts } from "../../components/actions";
+import { fetchProducts, singleProduct } from "../../components/actions";
 
-const Home = ({ products, fetchProducts }) => {
+const Home = ({ products, fetchProducts, singleProduct }) => {
   const navigate = useNavigate();
   useEffect(() => {
     fetchProducts();
+    singleProduct(5);
   }, []);
+
   return (
     <motion.div
       initial={{ x: "0", opacity: 0 }}
@@ -43,4 +45,5 @@ const Home = ({ products, fetchProducts }) => {
 const mapStatetoProps = (state) => {
   return { products: state.Products };
 };
-export default connect(mapStatetoProps, { fetchProducts })(Home);
+
+export default connect(mapStatetoProps, { fetchProducts, singleProduct })(Home);
