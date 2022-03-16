@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./home.styles.scss";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { motion } from "framer-motion";
@@ -10,7 +10,9 @@ import { fetchProducts } from "../../components/actions";
 
 const Home = ({ products, fetchProducts }) => {
   const navigate = useNavigate();
-  console.log(products);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   return (
     <motion.div
       initial={{ x: "0", opacity: 0 }}
