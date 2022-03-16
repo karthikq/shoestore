@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios.get("http://localhost:5000/products/all");
+    const { data } = await axios.get("http://localhost:5000/product/all");
     console.log(data);
     dispatch({
       type: "FETCH_PRODUCTS",
