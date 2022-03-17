@@ -14,7 +14,7 @@
   h4 {
     font-family: "Newsreader", serif;
 
-    font-size: 2.8rem;
+    font-size: 2.9rem;
     font-weight: 700;
 
     margin: 0;
@@ -25,7 +25,7 @@
   width: 100%;
   min-height: 25rem;
   padding-left: 0.5rem;
-  padding-top: 3rem;
+  padding-top: 2.8rem;
   display: flex;
 
   gap: 0 2.9rem;
@@ -54,8 +54,8 @@
 }
 .product-box {
   flex-shrink: 0;
-  width: 300px;
-  height: 210px;
+  width: 320px;
+  height: 220px;
   color: rgb(29, 22, 22);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.062);
   position: relative;
@@ -71,6 +71,7 @@
       transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       &:hover {
         color: rgb(58, 58, 58);
+        transform: scale(1.1);
       }
       &:active {
         transform: scale(0.8);
@@ -86,10 +87,10 @@
     padding: 0.4rem;
 
     width: 8rem;
-    border: 2px solid rgb(51, 92, 153);
+    border: 2px solid #252a34;
     outline: 0;
     margin-top: 0.8rem;
-    background-color: rgb(67, 114, 184);
+    background-color: #272d38;
     color: white;
     display: flex;
     justify-content: space-around;
