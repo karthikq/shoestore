@@ -12,7 +12,7 @@ const Productbox = () => {
         alt="shoe img"
       />
       <div className="product-details">
-        <h3>Name</h3>
+        <h3>Nike air</h3>
         <span>Price : Rs1000</span>
       </div>
       <div className="product-fav">

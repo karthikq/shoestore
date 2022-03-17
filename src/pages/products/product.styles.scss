@@ -23,7 +23,7 @@
 
 .product-trending {
   width: 100%;
-  min-height: 25rem;
+  min-height: 26rem;
   padding-left: 0.5rem;
   padding-top: 2.8rem;
   display: flex;
@@ -99,7 +99,8 @@
     gap: 0 0rem;
     border-radius: 3px;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    margin-top: 1rem;
     &:active {
       transform: scale(0.9);
     }
@@ -119,9 +120,10 @@
     h3 {
       font-weight: 600;
       font-size: 1.9rem;
-      margin-top: 0.7rem;
+      margin-top: 0.9rem;
+      text-transform: capitalize;
 
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
     }
     span {
       font-weight: 400;
