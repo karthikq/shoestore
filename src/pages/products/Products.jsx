@@ -10,11 +10,13 @@ const Products = () => {
       <div className="product-contents">
         <h4>Most Popular</h4>
         <div className="product-trending">
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
+          <Productbox /> <Productbox /> <Productbox /> <Productbox />
+        </div>
+      </div>{" "}
+      <div className="product-contents">
+        <h4>Latest</h4>
+        <div className="product-trending">
+          <Productbox /> <Productbox /> <Productbox /> <Productbox />{" "}
           <Productbox />
         </div>
       </div>
