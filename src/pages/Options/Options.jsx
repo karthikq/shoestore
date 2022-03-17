@@ -36,7 +36,7 @@ const Options = () => {
       setBtnState(true);
       toast.loading("Finding best products");
       setTimeout(() => {
-        navigate("/products");
+        navigate("/product/list");
         toast.dismiss();
       }, 1500);
     }
