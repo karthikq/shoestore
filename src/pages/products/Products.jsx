@@ -20,23 +20,23 @@ const Products = () => {
         <div className="product-header">
           <h4>Most Popular</h4>
           <div className="product-arrow_icons">
-            <span className="product-arrow_icon">
-              <FiArrowLeft
-                onClick={() =>
-                  (document.querySelectorAll(
-                    ".product-trending"
-                  )[0].scrollLeft = 100)
-                }
-              />
+            <span
+              className="product-arrow_icon"
+              onClick={() =>
+                (document.querySelectorAll(
+                  ".product-trending"
+                )[0].scrollLeft -= 500)
+              }>
+              <FiArrowLeft />
             </span>
-            <span className="product-arrow_icon">
-              <FiArrowRight
-                onClick={() =>
-                  (document.querySelectorAll(
-                    ".product-trending"
-                  )[0].scrollLeft = 100)
-                }
-              />
+            <span
+              className="product-arrow_icon"
+              onClick={() =>
+                (document.querySelectorAll(
+                  ".product-trending"
+                )[0].scrollLeft += 500)
+              }>
+              <FiArrowRight />
             </span>
           </div>
         </div>
