@@ -9,10 +9,12 @@ import StarRatings from "react-star-ratings";
 const Productbox = () => {
   return (
     <div className="product-box">
-      <img
-        src="https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        alt="shoe img"
-      />
+      <div className="product-img">
+        <img
+          src="https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          alt="shoe img"
+        />
+      </div>
       <div className="product-details">
         <h3>Nike air</h3>
         <span>Price : Rs1000</span>
