@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "./options.styles.scss";
 import { motion } from "framer-motion";
@@ -10,7 +10,7 @@ import { BiCategoryAlt, BiRightArrowAlt } from "react-icons/bi";
 import OptionItem from "./OptionItem";
 import { useNavigate } from "react-router-dom";
 
-const Options = () => {
+const Options = ({ setNavigateState, navigationState }) => {
   const [selOptions, setSelOptions] = useState([]);
   const [btnState, setBtnState] = useState(false);
   const navigate = useNavigate();
@@ -41,12 +41,15 @@ const Options = () => {
       }, 1500);
     }
   };
+  useEffect(() => {
+    setNavigateState(true);
+  }, []);
   return (
     <motion.div
-      initial={{ x: "100vw" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100vw" }}
-      transition={{ duration: 0.7, ease: "linear" }}
+      // initial={{}}
+      // animate={{}}
+      // exit={{}}
+      // transition={{ duration: 0.5, ease: "linear" }}
       className="options-container">
       <div className="options-contents">
         <motion.h2

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./home.styles.scss";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { motion } from "framer-motion";
@@ -10,6 +10,7 @@ import { fetchProducts, singleProduct } from "../../components/actions";
 
 const Home = ({ products, fetchProducts, singleProduct }) => {
   const navigate = useNavigate();
+
   useEffect(() => {
     fetchProducts();
     singleProduct(5);
@@ -19,8 +20,8 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
     <motion.div
       initial={{ x: "0", opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={{ x: "-100vw" }}
-      transition={{ duration: 0.6, ease: "linear" }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: "linear" }}
       className="home-container">
       <div className="home-bg-video">
         <video autoPlay>
@@ -34,6 +35,7 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
         <div
           className="explore-btn"
           onClick={() => {
+            document.querySelector(".animate-bar").style.left = `${-100}%`;
             navigate("/categ/options");
           }}>
           <BiRightArrowAlt className="explore-icon" />
