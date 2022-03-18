@@ -22,8 +22,8 @@
   width: 25px;
 
   position: fixed;
-  left: 1rem;
-  top: 1.5rem;
+  left: 1.4rem;
+  top: 1.8rem;
   z-index: 80;
   display: flex;
   flex-direction: column;
@@ -48,6 +48,9 @@
   }
 }
 .nav-icon-active {
+  .navspan {
+    background-color: white !important;
+  }
   .navspan:nth-child(1) {
     transform-origin: bottom;
     transform: rotatez(45deg) translate(4px, 2px);

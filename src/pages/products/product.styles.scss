@@ -7,14 +7,14 @@
   background-color: #ffffff;
 }
 .product-contents {
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
   color: rgb(29, 22, 22);
-  padding: 3rem 0 1rem;
+  padding: 6% 0 4%;
   h4 {
     font-family: "Newsreader", serif;
 
-    font-size: 2.9rem;
+    font-size: 2.758rem;
     font-weight: 700;
 
     margin: 0;
@@ -25,12 +25,12 @@
   width: 100%;
   min-height: 26rem;
   padding-left: 0.5rem;
-  padding-top: 3.5rem;
+  padding-top: 3rem;
   display: flex;
 
   gap: 0 2.9rem;
 
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   &::-webkit-scrollbar {
     width: 10px;
@@ -54,7 +54,7 @@
 }
 .product-box {
   flex-shrink: 0;
-  width: 310px;
+  width: 300px;
   height: 220px;
   color: rgb(29, 22, 22);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.034);
@@ -62,7 +62,7 @@
   .product-fav {
     position: absolute;
     top: 0.5rem;
-    right: 0.5rem;
+    right: 0.6rem;
 
     .product-fav_icon {
       font-size: 1.4rem;
@@ -84,7 +84,7 @@
   button {
     position: absolute;
 
-    right: 0.3rem;
+    right: 0.1rem;
     bottom: 0.5rem;
     font-family: "Newsreader", serif;
     font-size: 1rem;
@@ -94,20 +94,21 @@
     outline: 0;
     margin-top: 0.8rem;
     background-color: #ff2e6200;
-    color: rgb(41, 41, 41);
+    color: rgb(134, 19, 19);
 
     font-weight: 400;
     gap: 0 0rem;
     border-radius: 50%;
 
     cursor: pointer;
-
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    &:active {
+      transform: scale(0.8);
+    }
     margin-top: 1rem;
     .product-bag_icon {
       transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-      &:active {
-        transform: scale(0.8);
-      }
+
       &:hover {
         background: transparent;
         color: black;
@@ -119,7 +120,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 7px;
+    border-radius: 5px;
   }
   .product-details {
     font-family: "Newsreader", serif;

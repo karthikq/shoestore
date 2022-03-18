@@ -27,6 +27,9 @@ function App() {
     if (path === "/categ/options") {
       document.querySelector(".animate-bar").style.left = `${-100}%`;
     }
+    if (path === "/product/list") {
+      document.querySelector(".animate-bar").style.left = `${100}%`;
+    }
   }, [location.pathname]);
   return (
     <div>

@@ -3,10 +3,16 @@
 import React from "react";
 import "./product.styles.scss";
 import Productbox from "./Productbox";
+import { motion } from "framer-motion";
 
 const Products = () => {
   return (
-    <div className="product-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.8, ease: "linear" }}
+      className="product-container">
       <div className="product-contents">
         <h4>Most Popular</h4>
         <div className="product-trending">
@@ -20,7 +26,7 @@ const Products = () => {
           <Productbox />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Products;

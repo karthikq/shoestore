@@ -1,16 +1,18 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiHome, BiLogIn } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import { AiOutlineHeart, AiOutlineSetting } from "react-icons/ai";
 
 import "./Navbar.styles.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const navRef = useRef();
   // setTimeout(() => {
   //   const home = document.querySelector(".home-container");
   //   if (navState) {
@@ -26,8 +28,28 @@ const Navbar = () => {
     //   document.querySelector(".animate-bar").style.left = `${100}%`;
     // }, 2000);
   };
+
+  useEffect(() => {
+    if (location.pathname === "/product/list") {
+      document
+        .querySelectorAll(".navspan")
+        .forEach((item) => (item.style.backgroundColor = "black"));
+    } else {
+      document
+        .querySelectorAll(".navspan")
+        .forEach((item) => (item.style.backgroundColor = "white"));
+    }
+  }, [location.pathname]);
+
+  document.addEventListener("click", (e) => {
+    if (!e.target) return;
+    if (!navRef.current.contains(e.target)) {
+      setNavState(false);
+    }
+  });
+
   return (
-    <div className="nav-container">
+    <div ref={navRef} className="nav-container">
       <div
         className={
           navState ? "nav-contents nav-contents-active" : "nav-contents"
