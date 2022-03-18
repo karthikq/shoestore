@@ -1,8 +1,10 @@
 /** @format */
 
 import React from "react";
+import { AiFillStar } from "react-icons/ai";
 import { BiHeart } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
+import StarRatings from "react-star-ratings";
 
 const Productbox = () => {
   return (
@@ -21,6 +23,16 @@ const Productbox = () => {
       <button>
         <BsBag className="product-bag_icon" />
       </button>
+      <div className="star-rating">
+        <StarRatings
+          rating={4}
+          starRatedColor="#FFDD44"
+          numberOfStars={5}
+          name="rating"
+          starDimension="20px"
+          starSpacing="1px"
+        />
+      </div>
     </div>
   );
 };

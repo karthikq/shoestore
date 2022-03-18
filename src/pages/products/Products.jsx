@@ -5,7 +5,10 @@ import "./product.styles.scss";
 import Productbox from "./Productbox";
 import { motion } from "framer-motion";
 
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+
 const Products = () => {
+  const productref = React.useRef();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,11 +17,34 @@ const Products = () => {
       transition={{ duration: 0.8, ease: "linear" }}
       className="product-container">
       <div className="product-contents">
-        <h4>Most Popular</h4>
-        <div className="product-trending">
-          <Productbox /> <Productbox /> <Productbox /> <Productbox />
+        <div className="product-header">
+          <h4>Most Popular</h4>
+          <div className="product-arrow_icons">
+            <span className="product-arrow_icon">
+              <FiArrowLeft
+                onClick={() =>
+                  (document.querySelectorAll(
+                    ".product-trending"
+                  )[0].scrollLeft = 100)
+                }
+              />
+            </span>
+            <span className="product-arrow_icon">
+              <FiArrowRight
+                onClick={() =>
+                  (document.querySelectorAll(
+                    ".product-trending"
+                  )[0].scrollLeft = 100)
+                }
+              />
+            </span>
+          </div>
         </div>
-      </div>{" "}
+        <div productRef={productref} className="product-trending">
+          <Productbox /> <Productbox /> <Productbox /> <Productbox />
+          <Productbox />
+        </div>
+      </div>
       <div className="product-contents">
         <h4>Latest</h4>
         <div className="product-trending">
