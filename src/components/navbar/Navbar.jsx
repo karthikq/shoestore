@@ -22,6 +22,9 @@ const Navbar = () => {
   const handleNavigation = (path) => {
     navigate(path);
     setNavState(!navState);
+    // setTimeout(() => {
+    //   document.querySelector(".animate-bar").style.left = `${100}%`;
+    // }, 2000);
   };
   return (
     <div className="nav-container">

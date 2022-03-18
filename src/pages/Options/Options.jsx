@@ -41,9 +41,7 @@ const Options = ({ setNavigateState, navigationState }) => {
       }, 1500);
     }
   };
-  useEffect(() => {
-    setNavigateState(true);
-  }, []);
+
   return (
     <motion.div
       // initial={{}}
@@ -127,8 +125,7 @@ const Options = ({ setNavigateState, navigationState }) => {
             <motion.button
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ y: 50 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
+              transition={{ duration: 0.8 }}
               className={
                 btnState ? "options-btn-active options-btn" : "options-btn"
               }

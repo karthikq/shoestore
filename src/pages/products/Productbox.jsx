@@ -19,7 +19,7 @@ const Productbox = () => {
         <BiHeart className="product-fav_icon" />
       </div>
       <button>
-        <span> Add to Bag</span> <BsBag />
+        <BsBag className="product-bag_icon" />
       </button>
     </div>
   );

@@ -18,10 +18,10 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
 
   return (
     <motion.div
-      initial={{ x: "0", opacity: 0 }}
+      initial={{ opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3, ease: "linear" }}
+      transition={{ duration: 0.4, ease: "linear" }}
       className="home-container">
       <div className="home-bg-video">
         <video autoPlay>
@@ -35,7 +35,7 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
         <div
           className="explore-btn"
           onClick={() => {
-            document.querySelector(".animate-bar").style.left = `${-100}%`;
+            // document.querySelector(".animate-bar").style.left = `${-100}%`;
             navigate("/categ/options");
           }}>
           <BiRightArrowAlt className="explore-icon" />

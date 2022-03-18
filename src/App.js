@@ -14,14 +14,20 @@ function App() {
   const [navigateState, setNavigateState] = useState(false);
   const navigate = useNavigate();
   const ref = useRef();
-  window.addEventListener("popstate", (e) => {
-    setTimeout(() => {
-      document.querySelector(".animate-bar").style.left = `${100}%`;
-    }, 1600);
-  });
+  // window.addEventListener("popstate", (e) => {
+  //   setTimeout(() => {
+  //     document.querySelector(".animate-bar").style.left = `${100}%`;
+  //   }, 1800);
+  // });
   useEffect(() => {
-    document.querySelector(".animate-bar").style.left = `${200}%`;
-  }, []);
+    const path = location.pathname;
+    if (path === "/") {
+      document.querySelector(".animate-bar").style.left = `${100}%`;
+    }
+    if (path === "/categ/options") {
+      document.querySelector(".animate-bar").style.left = `${-100}%`;
+    }
+  }, [location.pathname]);
   return (
     <div>
       <Navbar />
