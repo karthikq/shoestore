@@ -2,7 +2,8 @@
 
 import { combineReducers } from "redux";
 import { AuthReducer } from "./AuthReducer";
+import { productsReducer } from "./productsReducer";
 
 export const Reducers = combineReducers({
-  Products: AuthReducer,
+  Products: productsReducer,
 });

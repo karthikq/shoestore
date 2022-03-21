@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { AiFillStar } from "react-icons/ai";
+
 import { BiHeart } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
 import StarRatings from "react-star-ratings";

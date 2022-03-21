@@ -13,7 +13,7 @@ const OptionItem = ({ checkExists, selOptions, value, id }) => {
       <button
         type="button"
         className={
-          selOptions.includes(value)
+          selOptions.includes(value.toLowerCase().replace(/\s/g, ""))
             ? "label-active optionsitem-btn"
             : "optionsitem-btn"
         }>

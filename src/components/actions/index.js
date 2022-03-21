@@ -1,5 +1,6 @@
 /** @format */
 import axios from "axios";
+import { productsArray } from "../Products";
 
 export const fetchProducts = () => async (dispatch) => {
   try {
@@ -28,4 +29,15 @@ export const singleProduct = (p_id) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+export const fetchselProduct = (products) => async (dispatch) => {
+  // return {
+  //   type: "FETCH_SEL_PRODUCT",
+  //   payload: products,
+  // };
+
+  const res = productsArray.filter((item) => {
+    return products.find((i) => item.keywords.includes(i)) ? item : "";
+  });
+  console.log(res);
 };

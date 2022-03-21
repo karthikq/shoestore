@@ -4,28 +4,30 @@ import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "./options.styles.scss";
 import { motion } from "framer-motion";
+import { connect } from "react-redux";
 
 import { BiCategoryAlt, BiRightArrowAlt } from "react-icons/bi";
 
 import OptionItem from "./OptionItem";
 import { useNavigate } from "react-router-dom";
+import { fetchselProduct } from "../../components/actions";
 
-const Options = ({ setNavigateState, navigationState }) => {
+const Options = ({ fetchselProduct, navigationState }) => {
   const [selOptions, setSelOptions] = useState([]);
   const [btnState, setBtnState] = useState(false);
   const navigate = useNavigate();
 
-  const checkExists = (value) => {
+  const checkExists = (userChoice) => {
+    const value = userChoice.toLowerCase().replace(/\s/g, "");
     const val = selOptions?.find((item) => item === value);
     if (val) {
-      const data = selOptions?.filter((item) => {
-        return item !== value;
-      });
+      const data = selOptions?.filter((item) => item !== val);
       setSelOptions(data);
     } else {
       return setSelOptions([...selOptions, value]);
     }
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -35,10 +37,13 @@ const Options = ({ setNavigateState, navigationState }) => {
     } else {
       setBtnState(true);
       toast.loading("Finding best products");
-      setTimeout(() => {
-        navigate("/product/list");
-        toast.dismiss();
-      }, 1500);
+      console.log(selOptions);
+      fetchselProduct(selOptions);
+
+      // setTimeout(() => {
+      //   navigate("/product/list");
+      //   toast.dismiss();
+      // }, 1500);
     }
   };
 
@@ -149,4 +154,4 @@ const Options = ({ setNavigateState, navigationState }) => {
   );
 };
 
-export default Options;
+export default connect(null, { fetchselProduct })(Options);
