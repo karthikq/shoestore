@@ -31,13 +31,8 @@ export const singleProduct = (p_id) => async (dispatch) => {
   }
 };
 export const fetchselProduct = (products) => async (dispatch) => {
-  // return {
-  //   type: "FETCH_SEL_PRODUCT",
-  //   payload: products,
-  // };
-
-  const res = productsArray.filter((item) => {
-    return products.find((i) => item.keywords.includes(i)) ? item : "";
+  dispatch({
+    type: "FETCH_SEL_PRODUCT",
+    payload: products,
   });
-  console.log(res);
 };

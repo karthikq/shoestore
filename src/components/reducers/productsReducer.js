@@ -10,9 +10,11 @@ export const productsReducer = (state = productsArray, action) => {
     case "SEL_PRODUCTS":
       return;
     case "FETCH_SEL_PRODUCT":
-      return state.map((item, index) =>
-        item.keywords.includes(action.payload) ? item : ""
-      );
+      return state.filter((item) => {
+        return action.payload.find((i) => item.keywords.includes(i))
+          ? item
+          : "";
+      });
     default:
       return state;
   }
