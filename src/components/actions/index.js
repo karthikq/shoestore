@@ -31,11 +31,15 @@ export const singleProduct = (p_id) => async (dispatch) => {
   }
 };
 export const fetchselProduct = (products) => async (dispatch) => {
-  console.log(products);
-  dispatch({
-    type: "FETCH_SEL_PRODUCT",
-    payload: products,
+  const data = productsArray.filter((item) => {
+    return products.find((i) => (item.keywords.includes(i) ? item : ""));
   });
+  console.log(data);
+
+  // dispatch({
+  //   type: "FETCH_SEL_PRODUCT",
+  //   payload: products,
+  // });
 };
 
 export const updateViewCount = (product) => async (dispatch) => {
