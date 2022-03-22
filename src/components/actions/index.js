@@ -31,8 +31,16 @@ export const singleProduct = (p_id) => async (dispatch) => {
   }
 };
 export const fetchselProduct = (products) => async (dispatch) => {
+  console.log(products);
   dispatch({
     type: "FETCH_SEL_PRODUCT",
     payload: products,
+  });
+};
+
+export const updateViewCount = (product) => async (dispatch) => {
+  dispatch({
+    type: "UPDATE_VIEW_COUNT",
+    payload: product,
   });
 };

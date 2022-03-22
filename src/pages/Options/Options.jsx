@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { BiCategoryAlt, BiRightArrowAlt } from "react-icons/bi";
 
 import OptionItem from "./OptionItem";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchselProduct } from "../../components/actions";
 
 const Options = ({ fetchselProduct, navigationState }) => {
@@ -27,8 +27,12 @@ const Options = ({ fetchselProduct, navigationState }) => {
       return setSelOptions([...selOptions, value]);
     }
   };
+  useEffect(() => {
+    const data = localStorage.getItem("data");
+    if (data) setSelOptions(data.split(","));
+  }, []);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     toast.dismiss();
@@ -38,12 +42,14 @@ const Options = ({ fetchselProduct, navigationState }) => {
       setBtnState(true);
       toast.loading("Finding best products");
       console.log(selOptions);
-      fetchselProduct(selOptions);
-
-      // setTimeout(() => {
-      //   navigate("/product/list");
-      //   toast.dismiss();
-      // }, 1500);
+      await fetchselProduct(selOptions);
+      localStorage.setItem("data", selOptions);
+      setTimeout(() => {
+        navigate("/product/list", {
+          state: selOptions,
+        });
+        toast.dismiss();
+      }, 1500);
     }
   };
 

@@ -1,4 +1,8 @@
 /** @format */
+const initialState = {
+  auth: true,
+  userDetails: {},
+};
 
 export const AuthReducer = (state = [], action) => {
   switch (action.type) {

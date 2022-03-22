@@ -1,14 +1,25 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./product.styles.scss";
 import Productbox from "./Productbox";
 import { motion } from "framer-motion";
 
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchselProduct } from "../../components/actions";
 
-const Products = () => {
+const Products = ({ fetchselProduct, products }) => {
   const productref = React.useRef();
+  const location = useLocation();
+  console.log(location.state);
+  const data = localStorage.getItem("data");
+  console.log(data);
+  useEffect(() => {
+    fetchselProduct(data.split(","));
+  }, [data, fetchselProduct]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -40,19 +51,23 @@ const Products = () => {
             </span>
           </div>
         </div>
-        <div productRef={productref} className="product-trending">
-          <Productbox /> <Productbox /> <Productbox /> <Productbox />
-          <Productbox />
+        <div ref={productref} className="product-trending">
+          {products.map(
+            (item) =>
+              item.rating >= 4 && <Productbox item={item} key={item.p_id} />
+          )}
         </div>
       </div>
       <div className="product-contents">
         <h4>Latest</h4>
-        <div className="product-trending">
-          <Productbox /> <Productbox /> <Productbox /> <Productbox />{" "}
-          <Productbox />
-        </div>
+        <div className="product-trending"></div>
       </div>
     </motion.div>
   );
 };
-export default Products;
+const mapStatetoProps = (state) => {
+  return {
+    products: state.Products,
+  };
+};
+export default connect(mapStatetoProps, { fetchselProduct })(Products);
