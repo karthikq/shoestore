@@ -12,13 +12,10 @@ import { fetchselProduct } from "../../components/actions";
 
 const Products = ({ fetchselProduct, products }) => {
   const productref = React.useRef();
-  const location = useLocation();
-  console.log(location.state);
-  const data = localStorage.getItem("data");
-  console.log(data);
+
   useEffect(() => {
-    fetchselProduct(data.split(","));
-  }, [data, fetchselProduct]);
+    fetchselProduct();
+  }, [fetchselProduct]);
 
   return (
     <motion.div

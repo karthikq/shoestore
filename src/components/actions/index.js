@@ -30,11 +30,11 @@ export const singleProduct = (p_id) => async (dispatch) => {
     console.log(error);
   }
 };
-export const fetchselProduct = (products) => async (dispatch) => {
+export const fetchselProduct = () => async (dispatch) => {
+  const products = localStorage.getItem("data").split(",");
   const data = productsArray.filter((item) => {
     return products.find((i) => (item.keywords.includes(i) ? item : ""));
   });
-  console.log(data);
 
   dispatch({
     type: "FETCH_SEL_PRODUCT",

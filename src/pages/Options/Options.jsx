@@ -39,11 +39,11 @@ const Options = ({ fetchselProduct, navigationState }) => {
     if (selOptions.length === 0) {
       return toast.error("Select at least one item");
     } else {
-      // setBtnState(true);
+      setBtnState(true);
       toast.loading("Finding best products");
-      console.log(selOptions);
-      await fetchselProduct(selOptions);
       localStorage.setItem("data", selOptions);
+      await fetchselProduct();
+
       setTimeout(() => {
         navigate("/product/list", {
           state: selOptions,
