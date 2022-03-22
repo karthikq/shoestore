@@ -44,12 +44,12 @@ const Options = ({ fetchselProduct, navigationState }) => {
       console.log(selOptions);
       await fetchselProduct(selOptions);
       localStorage.setItem("data", selOptions);
-      // setTimeout(() => {
-      //   navigate("/product/list", {
-      //     state: selOptions,
-      //   });
-      //   toast.dismiss();
-      // }, 1500);
+      setTimeout(() => {
+        navigate("/product/list", {
+          state: selOptions,
+        });
+        toast.dismiss();
+      }, 1500);
     }
   };
 

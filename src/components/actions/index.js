@@ -36,10 +36,10 @@ export const fetchselProduct = (products) => async (dispatch) => {
   });
   console.log(data);
 
-  // dispatch({
-  //   type: "FETCH_SEL_PRODUCT",
-  //   payload: products,
-  // });
+  dispatch({
+    type: "FETCH_SEL_PRODUCT",
+    payload: data,
+  });
 };
 
 export const updateViewCount = (product) => async (dispatch) => {
