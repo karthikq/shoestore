@@ -36,14 +36,18 @@
   }
   .create-p_uploaded-img {
     width: 100%;
-    height: 250px;
+    height: 280px;
     margin-bottom: 0.9rem;
     border: 3px solid #fa3a3a34;
     overflow: hidden;
+    height: 0;
+  }
+  .create-p_uploaded-img-active {
+    height: 280px;
   }
   .uploaded-img {
     width: 100%;
-    height: 250px;
+    height: 280px;
     object-fit: cover;
 
     border-radius: 7px;

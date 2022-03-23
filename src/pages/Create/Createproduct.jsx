@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import toast, { Toaster } from "react-hot-toast";
 import "./createp.styles.scss";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import { motion } from "framer-motion";
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
   const [userData, setUserData] = useState({
@@ -13,27 +15,45 @@ const Createproduct = () => {
     p_desp: "",
   });
 
-  // const [uploadedState, setUploadedState] = useState(false);
+  const [uploadedState, setUploadedState] = useState(false);
 
   const handleUploadedImg = (e) => {
-    const file = e.target.files[0];
-    console.log(e.target.files);
+    setUploadedImg("");
+
+    const file = e.target.files;
+    for (let index = 0; index < file.length; index++) {
+      const url = URL.createObjectURL(file[index]);
+      setUploadedImg((preValue) => [...preValue, url]);
+    }
+    // const data = [];
+    // data.push(...file);
+    // console.log(data);
+    // if (file.length > 3) {
+    //   return toast.error("You can select only Three images");
+    // } else {
+    //   const newUrl = data.map((i, index) => {
+    //     return URL.createObjectURL(file);
+    //   });
+    //   console.log(newUrl);
+    // }
+
     // const url = URL.createObjectURL(file);
     // setUploadedImg(url);
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!uploadedImg) {
       return toast.error("Image is required");
     }
   };
-
+  console.log(uploadedImg);
   return (
-    <div className="create-p_container">
+    <motion.div className="create-p_container">
       <div className="create-p_contents">
         <h3>Upload Product</h3>
-        <form className="create-p_form">
-          <div className="create-p_form-contents">
+        <motion.form className="create-p_form">
+          <motion.div className="create-p_form-contents">
             <input
               type="text"
               placeholder="Name"
@@ -50,10 +70,25 @@ const Createproduct = () => {
               id="upload_img"
               className="upload_img"
               onChange={handleUploadedImg}
-            />
+            />{" "}
             {uploadedImg && (
               <div className="create-p_uploaded-img">
-                <img src={uploadedImg} alt="error" className="uploaded-img" />
+                <Carousel>
+                  {uploadedImg.length >= 2 &&
+                    uploadedImg.map((item) => (
+                      <div>
+                        <img src={item} alt="error" className="uploaded-img" />
+                      </div>
+                    ))}
+                </Carousel>{" "}
+                <Carousel>
+                  {uploadedImg.length <= 1 &&
+                    uploadedImg.map((item) => (
+                      <div>
+                        <img src={item} alt="error" className="uploaded-img" />
+                      </div>
+                    ))}
+                </Carousel>
               </div>
             )}
             <textarea
@@ -64,14 +99,14 @@ const Createproduct = () => {
                 setUserData({ ...userData, p_desp: e.target.value })
               }
               placeholder="description(optional)"></textarea>
-          </div>
+          </motion.div>
           <button className="create-p_btn" onClick={onSubmit}>
             <BiRightArrowAlt className="create-p_icon" />
           </button>
-        </form>
+        </motion.form>
       </div>
       <Toaster />
-    </div>
+    </motion.div>
   );
 };
 
