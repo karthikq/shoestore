@@ -52,7 +52,7 @@ const Createproduct = () => {
     <motion.div className="create-p_container">
       <div className="create-p_contents">
         <h3>Upload Product</h3>
-        <motion.form className="create-p_form">
+        <motion.form layout className="create-p_form">
           <motion.div className="create-p_form-contents">
             <input
               type="text"
@@ -72,7 +72,12 @@ const Createproduct = () => {
               onChange={handleUploadedImg}
             />{" "}
             {uploadedImg && (
-              <div className="create-p_uploaded-img">
+              <div
+                className={
+                  uploadedImg
+                    ? "create-p_uploaded-img create-p_uploaded-img-active"
+                    : "create-p_uploaded-img"
+                }>
                 <Carousel>
                   {uploadedImg.length >= 2 &&
                     uploadedImg.map((item) => (

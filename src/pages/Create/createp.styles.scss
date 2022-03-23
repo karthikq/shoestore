@@ -41,6 +41,7 @@
     border: 3px solid #fa3a3a34;
     overflow: hidden;
     height: 0;
+    transition: all 0.5s ease-in-out;
   }
   .create-p_uploaded-img-active {
     height: 280px;
