@@ -8,6 +8,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Products from "./pages/products/Products";
 import { useEffect, useRef, useState } from "react";
+import Createproduct from "./pages/Create/Createproduct";
 
 function App() {
   const location = useLocation();
@@ -48,6 +49,7 @@ function App() {
             }
           />
           <Route path="/product/list" element={<Products />} />
+          <Route path="/create/product" element={<Createproduct />} />
         </Routes>
       </AnimatePresence>
     </div>
