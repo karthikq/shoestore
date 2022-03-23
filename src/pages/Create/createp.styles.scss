@@ -3,6 +3,7 @@
 .create-p_container {
   width: 100%;
   height: auto;
+  background-color: rgb(32, 29, 29);
 }
 .create-p_contents {
   width: 100%;
@@ -12,9 +13,9 @@
   align-items: center;
   h3 {
     color: white;
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-family: "Newsreader", serif;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.7px;
   }
 }
@@ -77,7 +78,7 @@
 
     width: 100%;
     padding: 0.7rem 0.8rem;
-    border: 3px solid #fa3a3a;
+    border: 3px solid #ff2e63;
     background: transparent;
     margin: 0.7rem 0;
     font-size: 1.05rem;
@@ -100,7 +101,7 @@
     color: white;
     padding: 0.2rem 1rem 0.4rem;
     border-radius: 10px;
-    border: 3px solid #fa3a3a;
+    border: 3px solid #ff2e63;
     align-self: flex-start;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;
@@ -110,16 +111,20 @@
     }
   }
   .create-p_btn {
-    padding: 0.7rem 0.8rem 0.65rem;
+    padding: 0.7rem 0.8rem 0.64rem;
     margin-top: 0.8rem;
-    background-color: #fa3a3a;
+    background-color: #ff2e63;
     color: white;
-    border: 3px solid #fa3a3a;
+    border: 3px solid #ff2e63;
     outline: 0;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     &:hover {
       background: transparent;
+    }
+    &:active {
+      transform: scale(0.9);
     }
     .create-p_icon {
       font-size: 1.1rem;

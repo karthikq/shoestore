@@ -21,21 +21,18 @@ const Createproduct = () => {
     setUploadedImg("");
 
     const file = e.target.files;
-    for (let index = 0; index < file.length; index++) {
-      const url = URL.createObjectURL(file[index]);
-      setUploadedImg((preValue) => [...preValue, url]);
-    }
+
     // const data = [];
     // data.push(...file);
     // console.log(data);
-    // if (file.length > 3) {
-    //   return toast.error("You can select only Three images");
-    // } else {
-    //   const newUrl = data.map((i, index) => {
-    //     return URL.createObjectURL(file);
-    //   });
-    //   console.log(newUrl);
-    // }
+    if (file.length > 3) {
+      return toast.error("You can select only Three images");
+    } else {
+      for (let index = 0; index < file.length; index++) {
+        const url = URL.createObjectURL(file[index]);
+        setUploadedImg((preValue) => [...preValue, url]);
+      }
+    }
 
     // const url = URL.createObjectURL(file);
     // setUploadedImg(url);
@@ -44,7 +41,7 @@ const Createproduct = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (!uploadedImg) {
-      return toast.error("Image is required");
+      return toast.error("Imagefile is required");
     }
   };
   console.log(uploadedImg);
