@@ -34,9 +34,20 @@ const Createproduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!uploadedImg) {
-      return toast.error("Imagefile is required");
-    }
+    const sliderdiv = document.querySelector(".animate-bar");
+    sliderdiv.style.left = `${0}%`;
+    const innerDiv = `<div class="innerdiv-loader">
+    <p>Uploading image and product please wait...</p>
+    <div class="loader">Loading...</div>
+    </div>`;
+    sliderdiv.innerHTML = innerDiv;
+    // setTimeout(() => {
+    //   sliderdiv.style.left = `${-100}%`;
+    // }, 5000);
+
+    // if (!uploadedImg) {
+    //   return toast.error("Imagefile is required");
+    // }
   };
 
   return (
