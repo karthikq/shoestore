@@ -4,15 +4,10 @@ import React, { useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import toast, { Toaster } from "react-hot-toast";
 import "./createp.styles.scss";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+
 import { motion } from "framer-motion";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectCards } from "swiper";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
+import ImageSlider from "../../components/ImageSlider";
 
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
@@ -71,26 +66,10 @@ const Createproduct = () => {
                     ? "create-p_uploaded-img create-p_uploaded-img-active"
                     : "create-p_uploaded-img"
                 }>
-                <Swiper
-                  effect={"cards"}
-                  navigation={true}
-                  modules={[Navigation, EffectCards]}
-                  className="mySwiper">
-                  {uploadedImg.length >= 2 &&
-                    uploadedImg.map((item) => (
-                      <SwiperSlide>
-                        <img src={item} alt="error" className="uploaded-img" />
-                      </SwiperSlide>
-                    ))}
-                </Swiper>{" "}
-                <Swiper className="mySwiper">
-                  {uploadedImg.length <= 1 &&
-                    uploadedImg.map((item) => (
-                      <SwiperSlide>
-                        <img src={item} alt="error" className="uploaded-img" />
-                      </SwiperSlide>
-                    ))}
-                </Swiper>
+                <ImageSlider
+                  imagesArray={uploadedImg}
+                  imgClass="uploaded-img"
+                />
               </div>
             )}
             <input

@@ -113,7 +113,7 @@
 
     width: 100%;
     padding: 0.6rem 0.75rem;
-    border: 3px solid #ff2e6286;
+    border: 3px solid #ff2e6277;
     background: transparent;
     margin: 0.8rem 0;
     font-size: 1rem;
@@ -122,7 +122,6 @@
     transition: all 0.2s ease-in-out;
     outline: 0;
     &:focus {
-      width: 100%;
       border: 3px solid #ff2e62fd;
     }
     &::placeholder {
@@ -136,7 +135,7 @@
     color: rgba(233, 233, 233, 0.973);
     padding: 0.2rem 1rem 0.4rem;
     border-radius: 10px;
-    border: 3px solid #ff2e6298;
+    border: 3px solid #ff2e6277;
     align-self: flex-start;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;
@@ -146,7 +145,7 @@
     }
   }
   .create-p_btn {
-    padding: 0.7rem 0.8rem 0.64rem;
+    padding: 0.7rem 0.8rem 0.6rem;
     margin-top: 0.8rem;
     background-color: #ff2e63;
     color: white;
