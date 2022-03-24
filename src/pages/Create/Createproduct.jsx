@@ -7,6 +7,13 @@ import "./createp.styles.scss";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { motion } from "framer-motion";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, EffectCards } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
   const [userData, setUserData] = useState({
@@ -15,16 +22,11 @@ const Createproduct = () => {
     p_desp: "",
   });
 
-  const [uploadedState, setUploadedState] = useState(false);
-
   const handleUploadedImg = (e) => {
     setUploadedImg("");
 
     const file = e.target.files;
 
-    // const data = [];
-    // data.push(...file);
-    // console.log(data);
     if (file.length > 3) {
       return toast.error("You can select only Three images");
     } else {
@@ -33,9 +35,6 @@ const Createproduct = () => {
         setUploadedImg((preValue) => [...preValue, url]);
       }
     }
-
-    // const url = URL.createObjectURL(file);
-    // setUploadedImg(url);
   };
 
   const onSubmit = (e) => {
@@ -44,22 +43,19 @@ const Createproduct = () => {
       return toast.error("Imagefile is required");
     }
   };
-  console.log(uploadedImg);
+
   return (
     <motion.div className="create-p_container">
       <div className="create-p_contents">
-        <h3>Upload Product</h3>
+        <h3>Upload your product</h3>
         <motion.form layout className="create-p_form">
           <motion.div className="create-p_form-contents">
-            <input
-              type="text"
-              placeholder="Name"
-              required
-              onChange={(e) =>
-                setUserData({ ...userData, p_name: e.target.value })
-              }
-            />
             <label htmlFor="upload_img">Select Image</label>
+            {!uploadedImg && (
+              <span className="create-p_span">
+                You can select upto 3 images
+              </span>
+            )}
             <input
               type="file"
               multiple
@@ -67,7 +63,7 @@ const Createproduct = () => {
               id="upload_img"
               className="upload_img"
               onChange={handleUploadedImg}
-            />{" "}
+            />
             {uploadedImg && (
               <div
                 className={
@@ -75,28 +71,40 @@ const Createproduct = () => {
                     ? "create-p_uploaded-img create-p_uploaded-img-active"
                     : "create-p_uploaded-img"
                 }>
-                <Carousel>
+                <Swiper
+                  effect={"cards"}
+                  navigation={true}
+                  modules={[Navigation, EffectCards]}
+                  className="mySwiper">
                   {uploadedImg.length >= 2 &&
                     uploadedImg.map((item) => (
-                      <div>
+                      <SwiperSlide>
                         <img src={item} alt="error" className="uploaded-img" />
-                      </div>
+                      </SwiperSlide>
                     ))}
-                </Carousel>{" "}
-                <Carousel>
+                </Swiper>{" "}
+                <Swiper className="mySwiper">
                   {uploadedImg.length <= 1 &&
                     uploadedImg.map((item) => (
-                      <div>
+                      <SwiperSlide>
                         <img src={item} alt="error" className="uploaded-img" />
-                      </div>
+                      </SwiperSlide>
                     ))}
-                </Carousel>
+                </Swiper>
               </div>
             )}
+            <input
+              type="text"
+              placeholder="Product name"
+              required
+              onChange={(e) =>
+                setUserData({ ...userData, p_name: e.target.value })
+              }
+            />
             <textarea
               name="p_desp"
               cols="30"
-              rows="8"
+              rows="5"
               onChange={(e) =>
                 setUserData({ ...userData, p_desp: e.target.value })
               }

@@ -1,32 +1,66 @@
 /** @format */
-
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap");
 .create-p_container {
   width: 100%;
   height: auto;
   background-color: rgb(32, 29, 29);
+  background-color: #000000;
+  opacity: 0.8;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #030303 600px
+    ),
+    repeating-linear-gradient(#1f1e1e55, #202020);
 }
 .create-p_contents {
   width: 100%;
-  padding: 2.5% 0 10%;
+  padding: 2% 0 12%;
   display: flex;
   flex-direction: column;
   align-items: center;
   h3 {
     color: white;
     font-size: 2.8rem;
-    font-family: "Newsreader", serif;
+    font-family: "Playfair Display", serif;
     font-weight: 600;
+
     letter-spacing: 0.7px;
+    margin-top: 1rem;
+    margin-bottom: 1.6rem;
+    position: relative;
+    &::before {
+      position: absolute;
+      bottom: -1rem;
+      content: "";
+      width: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 0.15rem;
+      border-radius: 10px;
+      background-color: rgb(170, 170, 170);
+
+      z-index: 50;
+    }
   }
 }
 .create-p_form {
   width: 35rem;
-  margin: 2rem auto 0;
+  margin: 3.8rem auto 0;
   height: auto;
   padding: 0 0.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  .create-p_span {
+    color: rgb(219, 219, 219);
+    display: block;
+    align-self: flex-start;
+    position: relative;
+    right: 0.5rem;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+  }
   .create-p_form-contents {
     width: 100%;
     height: 100%;
@@ -38,11 +72,12 @@
   .create-p_uploaded-img {
     width: 100%;
     height: 280px;
-    margin-bottom: 0.9rem;
-    border: 3px solid #fa3a3a34;
+    margin-bottom: 1.1rem;
+    border: 3px solid #ff2e6209;
     overflow: hidden;
     height: 0;
     transition: all 0.5s ease-in-out;
+    border-radius: 7px;
   }
   .create-p_uploaded-img-active {
     height: 280px;
@@ -74,40 +109,40 @@
   input,
   textarea {
     font-family: "Montserrat", sans-serif;
-    color: rgba(255, 255, 255, 0.952);
+    color: rgba(233, 233, 233, 0.973);
 
     width: 100%;
-    padding: 0.7rem 0.8rem;
-    border: 3px solid #ff2e63;
+    padding: 0.6rem 0.75rem;
+    border: 3px solid #ff2e6286;
     background: transparent;
-    margin: 0.7rem 0;
-    font-size: 1.05rem;
+    margin: 0.8rem 0;
+    font-size: 1rem;
     border-radius: 7px;
     width: 98%;
     transition: all 0.2s ease-in-out;
     outline: 0;
     &:focus {
       width: 100%;
-      border: 3px solid white;
+      border: 3px solid #ff2e62fd;
     }
     &::placeholder {
-      color: rgba(255, 255, 255, 0.973);
+      color: rgba(233, 233, 233, 0.973);
     }
   }
   label {
     position: relative;
     right: 0.55rem;
     margin-top: 0.8rem;
-    color: white;
+    color: rgba(233, 233, 233, 0.973);
     padding: 0.2rem 1rem 0.4rem;
     border-radius: 10px;
-    border: 3px solid #ff2e63;
+    border: 3px solid #ff2e6298;
     align-self: flex-start;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;
     transform-origin: center;
     &:hover {
-      letter-spacing: 0.5px;
+      border: 3px solid #ff2e62fd;
     }
   }
   .create-p_btn {
@@ -143,4 +178,15 @@
       color: rgba(255, 255, 255, 0);
     }
   }
+}
+:root {
+  --swiper-navigation-size: 28px !important;
+  --swiper-theme-color: #ff2e63 !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(238, 238, 238, 0.993);
+  padding: 0.35rem 0.65rem;
+
+  border-radius: 50%;
 }
