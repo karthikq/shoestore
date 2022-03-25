@@ -17,14 +17,14 @@ const ImageSlider = ({ imagesArray, imgClass }) => {
           modules={[Navigation, EffectCards]}
           className="mySwiper">
           {imagesArray?.map((item) => (
-            <SwiperSlide>
+            <SwiperSlide key={item}>
               <img src={item} alt="error" className={imgClass} />
             </SwiperSlide>
           ))}
         </Swiper>
       ) : (
         imagesArray?.map((item) => (
-          <img src={item} alt="error" className={imgClass} />
+          <img src={item} key={item} alt="error" className={imgClass} />
         ))
       )}
     </React.Fragment>

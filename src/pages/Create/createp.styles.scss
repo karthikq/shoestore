@@ -197,12 +197,17 @@
   align-items: center;
   flex-direction: column;
 
+  font-family: "Montserrat", sans-serif;
   p {
-    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 1.55rem;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 1.2rem;
+  }
+  .percentage-up {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: rgb(126, 126, 126);
   }
 }
 .loader,
@@ -221,7 +226,7 @@
   box-shadow: inset 0 0 0 1em;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
-  transform: translateZ(0) scale(0.7);
+  transform: translateZ(0) scale(0.6);
 }
 .loader:before,
 .loader:after {
@@ -231,7 +236,7 @@
 .loader:before {
   width: 5.2em;
   height: 10.2em;
-  background: #242323;
+  background: #c4c4c4;
   border-radius: 10.2em 0 0 10.2em;
   top: -0.1em;
   left: -0.1em;
@@ -260,7 +265,7 @@
 .loader:after {
   width: 5.2em;
   height: 10.2em;
-  background: #dfdfdf;
+  background: #ebebeb;
   border-radius: 0 10.2em 10.2em 0;
   top: -0.1em;
   left: 4.9em;

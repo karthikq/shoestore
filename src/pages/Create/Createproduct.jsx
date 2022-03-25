@@ -13,6 +13,7 @@ import Imageupload from "../../hooks/Imageupload";
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
   const [uploads, setUploads] = useState("");
+  const [uploadedUrl, setUploadedUrl] = useState("");
 
   const [userData, setUserData] = useState({
     p_name: "",
@@ -36,24 +37,42 @@ const Createproduct = () => {
     }
   };
 
+  const cb = (url) => {
+    setUploadedUrl((preValue) => [...preValue, url]);
+    console.log(uploadedUrl);
+    if (uploads.length === uploadedUrl.length) {
+      document.querySelector(".animate-bar").style.left = `${-100}%`;
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     const sliderdiv = document.querySelector(".animate-bar");
+
+    if (!uploadedImg) {
+      return toast.error("Imagefile is required");
+    }
+
     sliderdiv.style.left = `${0}%`;
+
     const innerDiv = `<div class="innerdiv-loader">
-    <p>Uploading image and product please wait...</p>
+    <p>Uploading all Images please wait...</p>
+    <span class="percentage-up"></span>
     <div class="loader">Loading...</div>
     </div>`;
     sliderdiv.innerHTML = innerDiv;
-    console.log(uploads[0]);
-    Imageupload(uploads[0]);
-    // setTimeout(() => {
+
+    const perValue = document.querySelector(".percentage-up");
+
+    for (let index = 0; index < uploads.length; index++) {
+      try {
+        Imageupload(uploads[index], perValue, cb);
+      } catch (error) {
+        toast.error("please refresh page");
+      }
+    } // setTimeout(() => {
     //   sliderdiv.style.left = `${-100}%`;
     // }, 5000);
-
-    // if (!uploadedImg) {
-    //   return toast.error("Imagefile is required");
-    // }
   };
 
   return (

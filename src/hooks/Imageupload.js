@@ -9,26 +9,20 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-function Imageupload(file) {
-  const storage = getStorage();
+function Imageupload(file, perValue, cb) {
+  const storage = getStorage(app);
   const storageRef = ref(storage, file.name);
   const uploadTask = uploadBytesResumable(storageRef, file);
 
   uploadTask.on(
     "state_changed",
     (snapshot) => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log("Upload is " + progress + "% done");
-      switch (snapshot.state) {
-        case "paused":
-          console.log("Upload is paused");
-          break;
-        case "running":
-          console.log("Upload is running");
-          break;
-        default:
-          break;
-      }
+      const progress = (
+        (snapshot.bytesTransferred / snapshot.totalBytes) *
+        100
+      ).toFixed(2);
+
+      perValue.innerHTML = progress + "%";
     },
     (error) => {
       // Handle unsuccessful uploads
@@ -36,9 +30,13 @@ function Imageupload(file) {
     () => {
       // Handle successful uploads on complete
       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        console.log("File available at", downloadURL);
-      });
+      getDownloadURL(uploadTask.snapshot.ref)
+        .then((downloadURL) => {
+          cb(downloadURL);
+        })
+        .catch((err) => {
+          throw err;
+        });
     }
   );
 }
