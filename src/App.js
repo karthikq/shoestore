@@ -20,6 +20,21 @@ function App() {
   //     document.querySelector(".animate-bar").style.left = `${100}%`;
   //   }, 1800);
   // });
+  function postitionofBar(bar) {
+    const position = document
+      .querySelector(".animate-bar")
+      .style.left.split("%")[0];
+    console.log(bar.style.left);
+    if (position === "-100") {
+      bar.style.left = `${100}%`;
+    }
+    if (position === "100") {
+      bar.style.left = `${-100}%`;
+    }
+    if (position === "0") {
+      bar.style.left = `${-100}%`;
+    }
+  }
   useEffect(() => {
     const path = location.pathname;
     const bar = document.querySelector(".animate-bar");
@@ -36,16 +51,6 @@ function App() {
       postitionofBar(bar);
     }
   }, [location.pathname]);
-
-  function postitionofBar(bar) {
-    const position = bar.style.left.split("%")[0];
-    if (position === "-100") {
-      bar.style.left = `${100}%`;
-    }
-    if (position === "100") {
-      bar.style.left = `${-100}%`;
-    }
-  }
 
   return (
     <div>
