@@ -14,10 +14,10 @@ const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
   const [uploads, setUploads] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState("");
-
+  const images = [];
   const [userData, setUserData] = useState({
     p_name: "",
-    p_img: "",
+    p_img: [],
     p_desp: "",
   });
 
@@ -38,10 +38,15 @@ const Createproduct = () => {
   };
 
   const cb = (url) => {
-    setUploadedUrl((preValue) => [...preValue, url]);
-    console.log(uploadedUrl);
-    if (uploads.length === uploadedUrl.length) {
-      document.querySelector(".animate-bar").style.left = `${-100}%`;
+    images.push(url);
+
+    if (uploads.length === images.length) {
+      toast.dismiss();
+      toast.success("Data saved");
+      const element = document.querySelector(".animate-bar").style;
+      element.left = `${-100}%`;
+
+      console.log(userData);
     }
   };
 
@@ -52,6 +57,7 @@ const Createproduct = () => {
     if (!uploadedImg) {
       return toast.error("Imagefile is required");
     }
+    toast.loading("Saving data");
 
     sliderdiv.style.left = `${0}%`;
 
@@ -68,6 +74,7 @@ const Createproduct = () => {
       try {
         Imageupload(uploads[index], perValue, cb);
       } catch (error) {
+        toast.dismiss();
         toast.error("please refresh page");
       }
     } // setTimeout(() => {
@@ -79,7 +86,14 @@ const Createproduct = () => {
     <motion.div className="create-p_container">
       <div className="create-p_contents">
         <h3>Upload your product</h3>
-        <motion.form layout className="create-p_form">
+        <motion.form
+          layout
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.5, ease: "linear" }}
+          onSubmit={onSubmit}
+          className="create-p_form">
           <motion.div className="create-p_form-contents">
             <label htmlFor="upload_img">Select Image</label>
             {!uploadedImg && (
@@ -110,8 +124,11 @@ const Createproduct = () => {
             )}
             <input
               type="text"
-              placeholder="Product name"
               required
+              minLength={5}
+              name="p_name"
+              placeholder="product name"
+              value={userData.p_name}
               onChange={(e) =>
                 setUserData({ ...userData, p_name: e.target.value })
               }
@@ -125,7 +142,7 @@ const Createproduct = () => {
               }
               placeholder="description(optional)"></textarea>
           </motion.div>
-          <button className="create-p_btn" onClick={onSubmit}>
+          <button type="submit" className="create-p_btn">
             <BiRightArrowAlt className="create-p_icon" />
           </button>
         </motion.form>

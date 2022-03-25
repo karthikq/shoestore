@@ -78,8 +78,8 @@ const Navbar = () => {
               <AiOutlineHeart className="navbar-icon" />
               Favourites
             </li>
-            <li onClick={() => handleNavigation("/")}>
-              <AiOutlineSetting className="navbar-icon" /> Settings
+            <li onClick={() => handleNavigation("/create/product")}>
+              <AiOutlineSetting className="navbar-icon" /> Create
             </li>
             <li onClick={() => handleNavigation("/")}>
               <BiLogIn className="navbar-icon" />

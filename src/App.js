@@ -31,6 +31,9 @@ function App() {
     if (path === "/product/list") {
       document.querySelector(".animate-bar").style.left = `${100}%`;
     }
+    if (path === "/create/product") {
+      document.querySelector(".animate-bar").style.left = `${100}%`;
+    }
   }, [location.pathname]);
   return (
     <div>

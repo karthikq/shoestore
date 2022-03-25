@@ -31,7 +31,7 @@ export const singleProduct = (p_id) => async (dispatch) => {
   }
 };
 export const fetchselProduct = () => async (dispatch) => {
-  const products = localStorage.getItem("data").split(",");
+  const products = sessionStorage.getItem("data").split(",");
   const data = productsArray.filter((item) => {
     return products.find((i) => (item.keywords.includes(i) ? item : ""));
   });
