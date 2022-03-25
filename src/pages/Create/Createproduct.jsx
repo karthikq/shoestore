@@ -8,9 +8,12 @@ import "./createp.styles.scss";
 import { motion } from "framer-motion";
 
 import ImageSlider from "../../components/ImageSlider";
+import Imageupload from "../../hooks/Imageupload";
 
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
+  const [uploads, setUploads] = useState("");
+
   const [userData, setUserData] = useState({
     p_name: "",
     p_img: "",
@@ -29,6 +32,7 @@ const Createproduct = () => {
         const url = URL.createObjectURL(file[index]);
         setUploadedImg((preValue) => [...preValue, url]);
       }
+      setUploads(file);
     }
   };
 
@@ -41,6 +45,8 @@ const Createproduct = () => {
     <div class="loader">Loading...</div>
     </div>`;
     sliderdiv.innerHTML = innerDiv;
+    console.log(uploads[0]);
+    Imageupload(uploads[0]);
     // setTimeout(() => {
     //   sliderdiv.style.left = `${-100}%`;
     // }, 5000);
