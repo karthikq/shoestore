@@ -43,9 +43,9 @@ const Createproduct = () => {
     if (uploads.length === images.length) {
       toast.dismiss();
       toast.success("Data saved");
-      const element = document.querySelector(".animate-bar").style;
-      element.left = `${-100}%`;
-
+      const element = document.querySelector(".animate-bar");
+      element.style.left = `${-100}%`;
+      element.innerHTML = "";
       console.log(userData);
     }
   };

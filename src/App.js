@@ -22,19 +22,31 @@ function App() {
   // });
   useEffect(() => {
     const path = location.pathname;
+    const bar = document.querySelector(".animate-bar");
     if (path === "/") {
-      document.querySelector(".animate-bar").style.left = `${100}%`;
+      postitionofBar(bar);
     }
     if (path === "/categ/options") {
-      document.querySelector(".animate-bar").style.left = `${-100}%`;
+      postitionofBar(bar);
     }
     if (path === "/product/list") {
-      document.querySelector(".animate-bar").style.left = `${100}%`;
+      postitionofBar(bar);
     }
     if (path === "/create/product") {
-      document.querySelector(".animate-bar").style.left = `${100}%`;
+      postitionofBar(bar);
     }
   }, [location.pathname]);
+
+  function postitionofBar(bar) {
+    const position = bar.style.left.split("%")[0];
+    if (position === "-100") {
+      bar.style.left = `${100}%`;
+    }
+    if (position === "100") {
+      bar.style.left = `${-100}%`;
+    }
+  }
+
   return (
     <div>
       <Navbar />
