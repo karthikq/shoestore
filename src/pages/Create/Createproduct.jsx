@@ -58,14 +58,7 @@ const Createproduct = () => {
     e.preventDefault();
     setUploadedImgState(true);
     // const sliderdiv = document.querySelector(".animate-bar");
-    // for (let index = 0; index < uploads.length; index++) {
-    //   try {
-    //     Imageupload(uploads[index], perValue, cb);
-    //   } catch (error) {
-    //     toast.dismiss();
-    //     toast.error("please refresh page");
-    //   }
-    // }
+
     // if (!uploadedImg) {
     //   return toast.error("Imagefile is required");
     // }
@@ -87,14 +80,14 @@ const Createproduct = () => {
     // }, 5000);
   };
   console.log(uploads);
-  function loop() {
-    // return uploads.forEach((item) => {
-    //   return <UploadImg file={item} />;
-    // });
-    for (let index = 0; index < uploads.length; index++) {
-      return <UploadImg file={uploads[index]} />;
-    }
-  }
+  // function loop() {
+  //   // return uploads.forEach((item) => {
+  //   //   return <UploadImg file={item} />;
+  //   // });
+  //   for (let index = 0; index < uploads.length; index++) {
+  //     return <UploadImg file={uploads[index]} />;
+  //   }
+  // }
   return (
     <motion.div className="create-p_container">
       <div className="create-p_contents">

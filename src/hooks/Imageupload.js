@@ -15,6 +15,7 @@ function Imageupload(file) {
   const [upprogress, setupprogress] = useState("");
 
   const storage = getStorage(app);
+  let urls = [];
 
   file.map((img, index) => {
     const storageRef = ref(storage, img.name);
@@ -33,20 +34,19 @@ function Imageupload(file) {
       (error) => {
         // Handle unsuccessful uploads
       },
-      async () => {
+      () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref)
           .then((downloadURL) => {
-            setUrl((preValue) => [...preValue, downloadURL]);
+            urls.push(downloadURL);
           })
           .catch((err) => {
-            throw err;
+            console.log(err);
           });
       }
     );
+    return [urls];
   });
-  console.log(url);
-  return url;
 }
 export default Imageupload;

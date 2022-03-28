@@ -4,8 +4,8 @@ import React from "react";
 import Imageupload from "../../hooks/Imageupload";
 
 const UploadImg = async ({ file }) => {
-  Imageupload(file);
-
+  const [urls] = await Imageupload(file);
+  console.log(urls);
   return <div></div>;
 };
 
