@@ -9,12 +9,13 @@ import { motion } from "framer-motion";
 
 import ImageSlider from "../../components/ImageSlider";
 import Imageupload from "../../hooks/Imageupload";
+import UploadImg from "./UploadImg";
 
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
   const [uploadedImgState, setUploadedImgState] = useState(false);
 
-  const [uploads, setUploads] = useState("");
+  const [uploads, setUploads] = useState([]);
   const [uploadedUrl, setUploadedUrl] = useState("");
 
   const images = [];
@@ -36,7 +37,7 @@ const Createproduct = () => {
         const url = URL.createObjectURL(file[index]);
         setUploadedImg((preValue) => [...preValue, url]);
       }
-      setUploads(file);
+      setUploads((preValue) => [...file]);
     }
   };
 
@@ -55,35 +56,52 @@ const Createproduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const sliderdiv = document.querySelector(".animate-bar");
+    setUploadedImgState(true);
+    // const sliderdiv = document.querySelector(".animate-bar");
+    // for (let index = 0; index < uploads.length; index++) {
+    //   try {
+    //     Imageupload(uploads[index], perValue, cb);
+    //   } catch (error) {
+    //     toast.dismiss();
+    //     toast.error("please refresh page");
+    //   }
+    // }
+    // if (!uploadedImg) {
+    //   return toast.error("Imagefile is required");
+    // }
+    // toast.loading("Saving data");
 
-    if (!uploadedImg) {
-      return toast.error("Imagefile is required");
-    }
-    toast.loading("Saving data");
+    // sliderdiv.style.left = `${0}%`;
 
-    sliderdiv.style.left = `${0}%`;
+    // const innerDiv = `<div class="innerdiv-loader">
+    // <p>Uploading all Images please wait...</p>
+    // <span class="percentage-up"></span>
+    // <div class="loader">Loading...</div>
+    // </div>`;
+    // sliderdiv.innerHTML = innerDiv;
 
-    const innerDiv = `<div class="innerdiv-loader">
-    <p>Uploading all Images please wait...</p>
-    <span class="percentage-up"></span>
-    <div class="loader">Loading...</div>
-    </div>`;
-    sliderdiv.innerHTML = innerDiv;
-
-    const perValue = document.querySelector(".percentage-up");
+    // const perValue = document.querySelector(".percentage-up");
 
     // setTimeout(() => {
     //   sliderdiv.style.left = `${-100}%`;
     // }, 5000);
   };
-
+  console.log(uploads);
+  function loop() {
+    // return uploads.forEach((item) => {
+    //   return <UploadImg file={item} />;
+    // });
+    for (let index = 0; index < uploads.length; index++) {
+      return <UploadImg file={uploads[index]} />;
+    }
+  }
   return (
     <motion.div className="create-p_container">
       <div className="create-p_contents">
         <h3>Upload your product</h3>
-        {uploadedImgState && <div></div>}
+        {uploadedImgState && <UploadImg file={uploads} />}
         <motion.form
+          noValidate
           layout
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
