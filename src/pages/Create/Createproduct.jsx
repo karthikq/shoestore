@@ -54,7 +54,7 @@ const Createproduct = () => {
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setUploadedImgState(true);
     // const sliderdiv = document.querySelector(".animate-bar");
@@ -92,72 +92,75 @@ const Createproduct = () => {
     <motion.div className="create-p_container">
       <div className="create-p_contents">
         <h3>Upload your product</h3>
-        {uploadedImgState && <UploadImg file={uploads} />}
-        <motion.form
-          noValidate
-          layout
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{
-            duration: 0.5,
-            ease: "linear",
-            layout: { ease: "anticipate" },
-          }}
-          onSubmit={onSubmit}
-          className="create-p_form">
-          <motion.div layout className="create-p_form-contents">
-            <label htmlFor="upload_img">Select Image</label>
-            {!uploadedImg && (
-              <span className="create-p_span">
-                You can select upto 3 images
-              </span>
-            )}
-            <input
-              type="file"
-              multiple
-              accept=".jpeg, .png, .jpg"
-              id="upload_img"
-              className="upload_img"
-              onChange={handleUploadedImg}
-            />
-            {uploadedImg && (
-              <div
-                className={
-                  uploadedImg
-                    ? "create-p_uploaded-img create-p_uploaded-img-active"
-                    : "create-p_uploaded-img"
-                }>
-                <ImageSlider
-                  imagesArray={uploadedImg}
-                  imgClass="uploaded-img"
-                />
-              </div>
-            )}
-            <input
-              type="text"
-              required
-              minLength={5}
-              name="p_name"
-              placeholder="product name"
-              value={userData.p_name}
-              onChange={(e) =>
-                setUserData({ ...userData, p_name: e.target.value })
-              }
-            />
-            <textarea
-              name="p_desp"
-              cols="30"
-              rows="5"
-              onChange={(e) =>
-                setUserData({ ...userData, p_desp: e.target.value })
-              }
-              placeholder="description(optional)"></textarea>
-          </motion.div>
-          <button type="submit" className="create-p_btn">
-            <BiRightArrowAlt className="create-p_icon" />
-          </button>
-        </motion.form>
+        {uploadedImgState ? (
+          <UploadImg file={uploads} />
+        ) : (
+          <motion.form
+            noValidate
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{
+              duration: 0.5,
+              ease: "linear",
+              layout: { ease: "anticipate" },
+            }}
+            onSubmit={onSubmit}
+            className="create-p_form">
+            <motion.div layout className="create-p_form-contents">
+              <label htmlFor="upload_img">Select Image</label>
+              {!uploadedImg && (
+                <span className="create-p_span">
+                  You can select upto 3 images
+                </span>
+              )}
+              <input
+                type="file"
+                multiple
+                accept=".jpeg, .png, .jpg"
+                id="upload_img"
+                className="upload_img"
+                onChange={handleUploadedImg}
+              />
+              {uploadedImg && (
+                <div
+                  className={
+                    uploadedImg
+                      ? "create-p_uploaded-img create-p_uploaded-img-active"
+                      : "create-p_uploaded-img"
+                  }>
+                  <ImageSlider
+                    imagesArray={uploadedImg}
+                    imgClass="uploaded-img"
+                  />
+                </div>
+              )}
+              <input
+                type="text"
+                required
+                minLength={5}
+                name="p_name"
+                placeholder="product name"
+                value={userData.p_name}
+                onChange={(e) =>
+                  setUserData({ ...userData, p_name: e.target.value })
+                }
+              />
+              <textarea
+                name="p_desp"
+                cols="30"
+                rows="5"
+                onChange={(e) =>
+                  setUserData({ ...userData, p_desp: e.target.value })
+                }
+                placeholder="description(optional)"></textarea>
+            </motion.div>
+            <button type="submit" className="create-p_btn">
+              <BiRightArrowAlt className="create-p_icon" />
+            </button>
+          </motion.form>
+        )}
       </div>
       <Toaster />
     </motion.div>

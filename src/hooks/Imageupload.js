@@ -10,18 +10,13 @@ import {
 } from "firebase/storage";
 import { useState } from "react";
 
-function Imageupload(file) {
-  const [url, setUrl] = useState("");
-  const [upprogress, setupprogress] = useState("");
+function Imageupload(file, setUrl) {
+  file.map((item, index) => {
+    const storage = getStorage(app);
 
-  const storage = getStorage(app);
-  let urls = [];
-
-  file.map((img, index) => {
-    const storageRef = ref(storage, img.name);
-    const uploadTask = uploadBytesResumable(storageRef, img);
-
-    uploadTask.on(
+    const storageRef = ref(storage, item.name);
+    const uploadTask = uploadBytesResumable(storageRef, item);
+    return uploadTask.on(
       "state_changed",
       (snapshot) => {
         let progress = (
@@ -29,24 +24,21 @@ function Imageupload(file) {
           100
         ).toFixed(2);
         console.log(progress);
+
         // perValue.innerHTML = progress + "%";
       },
       (error) => {
         // Handle unsuccessful uploads
       },
-      () => {
+      async () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        getDownloadURL(uploadTask.snapshot.ref)
-          .then((downloadURL) => {
-            urls.push(downloadURL);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        if (downloadURL) {
+          setUrl((preValue) => [...preValue, downloadURL]);
+        }
       }
     );
-    return [urls];
   });
 }
 export default Imageupload;
