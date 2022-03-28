@@ -24,7 +24,7 @@ function App() {
     const position = document
       .querySelector(".animate-bar")
       .style.left.split("%")[0];
-    console.log(bar.style.left);
+
     if (position === "-100") {
       bar.style.left = `${100}%`;
     }
@@ -34,10 +34,15 @@ function App() {
     if (position === "0") {
       bar.style.left = `${-100}%`;
     }
+    if (!position) {
+      bar.style.left = `${-100}%`;
+    }
   }
   useEffect(() => {
     const path = location.pathname;
-    const bar = document.querySelector(".animate-bar");
+
+    let bar = document.querySelector(".animate-bar");
+
     if (path === "/") {
       postitionofBar(bar);
     }

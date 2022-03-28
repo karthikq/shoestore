@@ -12,8 +12,11 @@ import Imageupload from "../../hooks/Imageupload";
 
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
+  const [uploadedImgState, setUploadedImgState] = useState(false);
+
   const [uploads, setUploads] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState("");
+
   const images = [];
   const [userData, setUserData] = useState({
     p_name: "",
@@ -70,14 +73,7 @@ const Createproduct = () => {
 
     const perValue = document.querySelector(".percentage-up");
 
-    for (let index = 0; index < uploads.length; index++) {
-      try {
-        Imageupload(uploads[index], perValue, cb);
-      } catch (error) {
-        toast.dismiss();
-        toast.error("please refresh page");
-      }
-    } // setTimeout(() => {
+    // setTimeout(() => {
     //   sliderdiv.style.left = `${-100}%`;
     // }, 5000);
   };
@@ -86,15 +82,20 @@ const Createproduct = () => {
     <motion.div className="create-p_container">
       <div className="create-p_contents">
         <h3>Upload your product</h3>
+        {uploadedImgState && <div></div>}
         <motion.form
           layout
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.5, ease: "linear" }}
+          transition={{
+            duration: 0.5,
+            ease: "linear",
+            layout: { ease: "anticipate" },
+          }}
           onSubmit={onSubmit}
           className="create-p_form">
-          <motion.div className="create-p_form-contents">
+          <motion.div layout className="create-p_form-contents">
             <label htmlFor="upload_img">Select Image</label>
             {!uploadedImg && (
               <span className="create-p_span">
