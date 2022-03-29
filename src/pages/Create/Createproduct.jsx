@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import toast, { Toaster } from "react-hot-toast";
 import "./createp.styles.scss";
@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import ImageSlider from "../../components/ImageSlider";
 import Imageupload from "../../hooks/Imageupload";
 import UploadImg from "./UploadImg";
+import createProduct from "../../components/actions";
 
 const Createproduct = () => {
   const [uploadedImg, setUploadedImg] = useState("");
@@ -17,8 +18,10 @@ const Createproduct = () => {
 
   const [uploads, setUploads] = useState([]);
   const [uploadedUrl, setUploadedUrl] = useState("");
+  const [urlarray, setUrlarray] = useState("");
 
   const images = [];
+
   const [userData, setUserData] = useState({
     p_name: "",
     p_img: [],
@@ -59,10 +62,10 @@ const Createproduct = () => {
     setUploadedImgState(true);
     // const sliderdiv = document.querySelector(".animate-bar");
 
-    // if (!uploadedImg) {
-    //   return toast.error("Imagefile is required");
-    // }
-    // toast.loading("Saving data");
+    if (!uploadedImg) {
+      return toast.error("Imagefile is required");
+    }
+    toast.loading("Saving data");
 
     // sliderdiv.style.left = `${0}%`;
 
@@ -80,6 +83,14 @@ const Createproduct = () => {
     // }, 5000);
   };
   console.log(uploads);
+
+  useEffect(() => {
+    if (urlarray.length > 0 && urlarray.length === uploads.length) {
+      setUserData({ ...userData, p_img: urlarray });
+      console.log(userData);
+    }
+  }, []);
+
   // function loop() {
   //   // return uploads.forEach((item) => {
   //   //   return <UploadImg file={item} />;
@@ -91,12 +102,25 @@ const Createproduct = () => {
   return (
     <motion.div className="create-p_container">
       <div className="create-p_contents">
-        <h3>Upload your product</h3>
+        <h3>
+          {uploadedImgState ? "Uploading please wait" : "Upload your product"}
+        </h3>
         {uploadedImgState ? (
-          <UploadImg file={uploads} />
+          <div style={{ marginTop: "2rem" }}>
+            {uploads.map((item) => (
+              <>
+                <UploadImg
+                  file={item}
+                  setUrlarray={setUrlarray}
+                  urlarray={urlarray}
+                  uploadsLength={uploads.length}
+                  setUploadedImgState={setUploadedImgState}
+                />
+              </>
+            ))}
+          </div>
         ) : (
           <motion.form
-            noValidate
             layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -48,3 +48,9 @@ export const updateViewCount = (product) => async (dispatch) => {
     payload: product,
   });
 };
+export const createProduct = (productDetails) => async (dispatch) => {
+  dispatch({
+    type: "CREATE_PRODUCT",
+    payload: productDetails,
+  });
+};

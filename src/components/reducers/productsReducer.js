@@ -1,8 +1,18 @@
 /** @format */
 
 import { productsArray } from "../Products";
-
-export const productsReducer = (state = productsArray, action) => {
+const intialState = [
+  {
+    p_id: 1,
+    p_name: "Colorful sneaker",
+    p_img: [],
+    p_desp: "",
+    rating: 4,
+    viewCount: 1,
+    keywords: ["all", "sneakers"],
+  },
+];
+export const productsReducer = (state = intialState, action) => {
   switch (action.type) {
     case "FETCH_PRODUCTS":
       return state;
@@ -18,7 +28,8 @@ export const productsReducer = (state = productsArray, action) => {
           ? { ...item, viewCount: item.viewCount + 1 }
           : item
       );
-
+    case "CREATE_PRODUCT":
+      return [...state, action.payload];
     default:
       return state;
   }
