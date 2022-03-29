@@ -83,8 +83,8 @@ const Createproduct = ({ createProduct }) => {
     if (userData.p_price <= 0) {
       return toast.error("Price cannot be less than zero", style);
     }
-
-    toast.loading("Saving data", { style });
+    setUploadedImgState(true);
+    toast.loading("Saving data", style);
 
     // sliderdiv.style.left = `${0}%`;
 
@@ -108,9 +108,8 @@ const Createproduct = ({ createProduct }) => {
       toast.dismiss();
 
       setUserData({ ...userData, p_img: urlarray });
-
-      createProduct(userData, urlarray, navigate);
       toast.success("data saved");
+      createProduct(userData, urlarray, navigate);
     }
   }, [urlarray]);
 
@@ -235,7 +234,7 @@ const Createproduct = ({ createProduct }) => {
           </motion.form>
         )}
       </div>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="bottom-right" reverseOrder={false} />
     </motion.div>
   );
 };

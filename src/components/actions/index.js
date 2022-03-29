@@ -56,5 +56,5 @@ export const createProduct =
       type: "CREATE_PRODUCT",
       payload: productDetails,
     });
-    navigate.to("/")
+    navigate("/");
   };
