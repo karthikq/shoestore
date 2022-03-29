@@ -122,15 +122,16 @@
     font-size: 1rem;
     border-radius: 0px;
     width: 98%;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.3px;
     transition: all 0.2s ease-in-out;
     outline: 0;
+    font-weight: 300;
     &:focus {
       width: 99%;
       border-bottom: 3px solid #ff2e62fd;
     }
     &::placeholder {
-      color: rgba(255, 255, 255, 0.918);
+      color: rgba(255, 255, 255, 0.986);
     }
   }
   select {

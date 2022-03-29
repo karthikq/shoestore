@@ -12,17 +12,7 @@ import ImageSlider from "../../components/ImageSlider";
 import validator from "validator";
 import UploadImg from "./UploadImg";
 import { createProduct } from "../../components/actions";
-const style = {
-  style: {
-    border: "1px solid #713200",
-    padding: "16px",
-    color: "#713200",
-  },
-  iconTheme: {
-    primary: "#713200",
-    secondary: "#FFFAEE",
-  },
-};
+
 const Createproduct = ({ createProduct }) => {
   const navigate = useNavigate();
 
@@ -78,13 +68,13 @@ const Createproduct = ({ createProduct }) => {
     // const sliderdiv = document.querySelector(".animate-bar");
 
     if (!uploadedImg) {
-      return toast.error("Imagefile is required", style);
+      return toast.error("Imagefile is required");
     }
     if (userData.p_price <= 0) {
-      return toast.error("Price cannot be less than zero", style);
+      return toast.error("Price cannot be less than zero");
     }
     setUploadedImgState(true);
-    toast.loading("Saving data", style);
+    toast.loading("Saving data");
 
     // sliderdiv.style.left = `${0}%`;
 
@@ -234,7 +224,22 @@ const Createproduct = ({ createProduct }) => {
           </motion.form>
         )}
       </div>
-      <Toaster position="bottom-right" reverseOrder={false} />
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+        toastOptions={{
+          className: "",
+          style: {
+            border: "1px solid #713200",
+            padding: "16px",
+            color: "#713200",
+          },
+          iconTheme: {
+            primary: "#713200",
+            secondary: "#FFFAEE",
+          },
+        }}
+      />
     </motion.div>
   );
 };
