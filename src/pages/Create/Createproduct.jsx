@@ -12,7 +12,17 @@ import ImageSlider from "../../components/ImageSlider";
 import validator from "validator";
 import UploadImg from "./UploadImg";
 import { createProduct } from "../../components/actions";
-
+const style = {
+  style: {
+    border: "1px solid #713200",
+    padding: "16px",
+    color: "#713200",
+  },
+  iconTheme: {
+    primary: "#713200",
+    secondary: "#FFFAEE",
+  },
+};
 const Createproduct = ({ createProduct }) => {
   const navigate = useNavigate();
 
@@ -64,14 +74,17 @@ const Createproduct = ({ createProduct }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setUploadedImgState(true);
+    // setUploadedImgState(true);
     // const sliderdiv = document.querySelector(".animate-bar");
 
     if (!uploadedImg) {
-      return toast.error("Imagefile is required");
+      return toast.error("Imagefile is required", style);
+    }
+    if (userData.p_price <= 0) {
+      return toast.error("Price cannot be less than zero", style);
     }
 
-    toast.loading("Saving data");
+    toast.loading("Saving data", { style });
 
     // sliderdiv.style.left = `${0}%`;
 
@@ -191,22 +204,21 @@ const Createproduct = ({ createProduct }) => {
                   setUserData({ ...userData, p_price: e.target.value })
                 }
               />
-              <input
-                type="text"
-                required
-                name="p_category"
-                placeholder="category"
-                value={userData.p_category}
+              <select
+                name="category"
                 onChange={(e) =>
                   setUserData({ ...userData, p_category: e.target.value })
-                }
-              />
-              <select name="" id="">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                }>
+                <option value="sneakers">sneakers</option>
+                <option value="casual">casual</option>
+                <option value="rnning">Running</option>
+                <option value="sports">Sports</option>
+                <option value="boatshoes">Boat shoes</option>
+                <option value="flipflop">Flip flop</option>
+                <option value="loafers">Loafers</option>
+                <option value="boots">Boots</option>
+                <option value="formalshoes">Formal shoes</option>
+                <option value="sandals">Sandals</option>
               </select>
               <textarea
                 name="p_desp"
@@ -223,7 +235,7 @@ const Createproduct = ({ createProduct }) => {
           </motion.form>
         )}
       </div>
-      <Toaster />
+      <Toaster position="top-right" reverseOrder={false} />
     </motion.div>
   );
 };

@@ -108,7 +108,8 @@
     }
   }
   input,
-  textarea {
+  textarea,
+  select {
     font-family: "Montserrat", sans-serif;
     color: rgba(233, 233, 233, 0.973);
 
@@ -130,6 +131,16 @@
     }
     &::placeholder {
       color: rgba(233, 233, 233, 0.575);
+    }
+  }
+  select {
+    width: 102%;
+    option {
+      color: black;
+    }
+    &:focus {
+      width: 104%;
+      border-bottom: 3px solid #ff2e62fd;
     }
   }
   label {
