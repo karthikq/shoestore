@@ -46,7 +46,7 @@
   }
 }
 .create-p_form {
-  width: 35rem;
+  width: 38rem;
   margin: 4rem auto 0;
   height: auto;
   padding: 0 0.8rem;
@@ -113,20 +113,23 @@
     color: rgba(233, 233, 233, 0.973);
 
     width: 100%;
-    padding: 0.6rem 0.75rem;
-    border: 3px solid #ff2e62a2;
+    padding: 0.55rem 0.7rem 1rem;
+    border: 2px solid #3b3b3b65;
+    border-bottom: 3px solid #ff2e6265;
     background: transparent;
     margin: 0.8rem 0;
     font-size: 1rem;
-    border-radius: 7px;
+    border-radius: 0px;
     width: 98%;
+    letter-spacing: 0.4px;
     transition: all 0.2s ease-in-out;
     outline: 0;
     &:focus {
-      border: 3px solid #ff2e62fd;
+      width: 99%;
+      border-bottom: 3px solid #ff2e62fd;
     }
     &::placeholder {
-      color: rgba(233, 233, 233, 0.973);
+      color: rgba(233, 233, 233, 0.575);
     }
   }
   label {
@@ -136,7 +139,7 @@
     color: rgba(233, 233, 233, 0.973);
     padding: 0.2rem 1rem 0.4rem;
     border-radius: 10px;
-    border: 3px solid #ff2e62a2;
+    border: 3px solid #ff2e6283;
     align-self: flex-start;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;

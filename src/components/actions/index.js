@@ -48,9 +48,13 @@ export const updateViewCount = (product) => async (dispatch) => {
     payload: product,
   });
 };
-export const createProduct = (productDetails) => async (dispatch) => {
-  dispatch({
-    type: "CREATE_PRODUCT",
-    payload: productDetails,
-  });
-};
+export const createProduct =
+  (productDetails, urlarray, navigate) => async (dispatch) => {
+    productDetails.p_img = urlarray;
+    console.log(productDetails);
+    await dispatch({
+      type: "CREATE_PRODUCT",
+      payload: productDetails,
+    });
+    navigate.to("/")
+  };

@@ -3,16 +3,19 @@
 import React, { useEffect, useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import toast, { Toaster } from "react-hot-toast";
+import { connect } from "react-redux";
 import "./createp.styles.scss";
 
 import { motion } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
-import Imageupload from "../../hooks/Imageupload";
+import validator from "validator";
 import UploadImg from "./UploadImg";
-import createProduct from "../../components/actions";
+import { createProduct } from "../../components/actions";
 
-const Createproduct = () => {
+const Createproduct = ({ createProduct }) => {
+  const navigate = useNavigate();
+
   const [uploadedImg, setUploadedImg] = useState("");
   const [uploadedImgState, setUploadedImgState] = useState(false);
 
@@ -26,6 +29,8 @@ const Createproduct = () => {
     p_name: "",
     p_img: [],
     p_desp: "",
+    p_price: "",
+    p_category: "",
   });
 
   const handleUploadedImg = (e) => {
@@ -65,6 +70,7 @@ const Createproduct = () => {
     if (!uploadedImg) {
       return toast.error("Imagefile is required");
     }
+
     toast.loading("Saving data");
 
     // sliderdiv.style.left = `${0}%`;
@@ -86,10 +92,14 @@ const Createproduct = () => {
 
   useEffect(() => {
     if (urlarray.length > 0 && urlarray.length === uploads.length) {
+      toast.dismiss();
+
       setUserData({ ...userData, p_img: urlarray });
-      console.log(userData);
+
+      createProduct(userData, urlarray, navigate);
+      toast.success("data saved");
     }
-  }, []);
+  }, [urlarray]);
 
   // function loop() {
   //   // return uploads.forEach((item) => {
@@ -170,7 +180,34 @@ const Createproduct = () => {
                 onChange={(e) =>
                   setUserData({ ...userData, p_name: e.target.value })
                 }
+              />{" "}
+              <input
+                type="number"
+                required
+                name="p_price"
+                placeholder="price(Rs)"
+                value={userData.p_price}
+                onChange={(e) =>
+                  setUserData({ ...userData, p_price: e.target.value })
+                }
               />
+              <input
+                type="text"
+                required
+                name="p_category"
+                placeholder="category"
+                value={userData.p_category}
+                onChange={(e) =>
+                  setUserData({ ...userData, p_category: e.target.value })
+                }
+              />
+              <select name="" id="">
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
               <textarea
                 name="p_desp"
                 cols="30"
@@ -191,4 +228,4 @@ const Createproduct = () => {
   );
 };
 
-export default Createproduct;
+export default connect(null, { createProduct })(Createproduct);
