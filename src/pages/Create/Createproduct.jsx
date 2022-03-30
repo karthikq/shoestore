@@ -11,9 +11,9 @@ import { useNavigate } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
 import validator from "validator";
 import UploadImg from "./UploadImg";
-import { createProduct } from "../../components/actions";
+import { createProduct, getcsrfToken } from "../../components/actions";
 
-const Createproduct = ({ createProduct }) => {
+const Createproduct = ({ createProduct, getcsrfToken }) => {
   const navigate = useNavigate();
 
   const [uploadedImg, setUploadedImg] = useState("");
@@ -89,7 +89,9 @@ const Createproduct = ({ createProduct }) => {
       createProduct(userData, urlarray, navigate);
     }
   }, [urlarray]);
-
+  useEffect(() => {
+    getcsrfToken();
+  }, []);
   // function loop() {
   //   // return uploads.forEach((item) => {
   //   //   return <UploadImg file={item} />;
@@ -235,4 +237,4 @@ const Createproduct = ({ createProduct }) => {
   );
 };
 
-export default connect(null, { createProduct })(Createproduct);
+export default connect(null, { createProduct, getcsrfToken })(Createproduct);

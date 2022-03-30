@@ -1,5 +1,6 @@
 /** @format */
 import axios from "axios";
+import { backendApi } from "../api/api";
 import { productsArray } from "../Products";
 
 export const fetchProducts = () => async (dispatch) => {
@@ -48,13 +49,24 @@ export const updateViewCount = (product) => async (dispatch) => {
     payload: product,
   });
 };
+export const getcsrfToken = () => async (dispatch) => {
+  const { data } = await backendApi.get("/getcsrftoken");
+  console.log(data);
+  backendApi.defaults.headers.post["x-csrf-token"] = data.CSRFToken;
+};
+
 export const createProduct =
   (productDetails, urlarray, navigate) => async (dispatch) => {
     productDetails.p_img = urlarray;
-    console.log(productDetails);
-    await dispatch({
-      type: "CREATE_PRODUCT",
-      payload: productDetails,
-    });
-    navigate("/");
+
+    try {
+      const resp = await backendApi.post("/product/create", productDetails);
+    } catch (error) {
+      console.log(error);
+    }
+    // await dispatch({
+    //   type: "CREATE_PRODUCT",
+    //   payload: productDetails,
+    // });
+    // navigate("/");
   };
