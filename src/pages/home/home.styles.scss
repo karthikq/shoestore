@@ -11,7 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: -1;
 
     video {
@@ -63,7 +63,7 @@
 .home-contents {
   width: 90%;
   margin: 0 auto;
-  height: 60rem;
+  min-height: 100vh;
   color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -105,6 +105,5 @@
 }
 @media screen and (max-width: 1550px) {
   .home-contents {
-    height: 45rem;
   }
 }

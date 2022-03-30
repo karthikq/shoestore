@@ -9,9 +9,9 @@
   background-image: repeating-radial-gradient(
       circle at 0 0,
       transparent 0,
-      #030303 600px
+      #0a0a0a 600px
     ),
-    repeating-linear-gradient(#1f1e1e55, #202020);
+    repeating-linear-gradient(#1f1e1e55, #131212);
 }
 .create-p_contents {
   width: 100%;
@@ -78,7 +78,7 @@
     overflow: hidden;
     height: 0;
     transition: all 0.5s ease-in-out;
-    border-radius: 7px;
+    border-radius: 3px;
   }
   .create-p_uploaded-img-active {
     height: 280px;
@@ -111,7 +111,7 @@
   textarea,
   select {
     font-family: "Montserrat", sans-serif;
-    color: rgba(233, 233, 233, 0.973);
+    color: rgba(248, 248, 248, 0.973);
 
     width: 100%;
     padding: 0.55rem 0.7rem 1rem;
@@ -125,7 +125,8 @@
     letter-spacing: 0.3px;
     transition: all 0.2s ease-in-out;
     outline: 0;
-    font-weight: 300;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.829);
     &:focus {
       width: 99%;
       border-bottom: 3px solid #ff2e62fd;
@@ -144,7 +145,15 @@
       border-bottom: 3px solid #ff2e62fd;
     }
   }
-  label {
+  .other-label {
+    color: rgba(255, 255, 255, 0.562);
+    align-self: flex-start;
+    font-weight: lighter;
+    letter-spacing: 0.7px;
+    font-size: 1.08rem;
+    margin: 1.2rem 0 0.1rem;
+  }
+  .file-label {
     position: relative;
     right: 0.55rem;
     margin-top: 0.8rem;
@@ -162,7 +171,7 @@
   }
   .create-p_btn {
     padding: 0.7rem 0.8rem 0.6rem;
-    margin-top: 0.8rem;
+    margin-top: 1.5rem;
     background-color: #ff2e63;
     color: white;
     border: 3px solid #ff2e63;

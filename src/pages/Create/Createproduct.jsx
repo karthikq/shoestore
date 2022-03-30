@@ -49,19 +49,6 @@ const Createproduct = ({ createProduct }) => {
     }
   };
 
-  const cb = (url) => {
-    images.push(url);
-
-    if (uploads.length === images.length) {
-      toast.dismiss();
-      toast.success("Data saved");
-      const element = document.querySelector(".animate-bar");
-      element.style.left = `${-100}%`;
-      element.innerHTML = "";
-      console.log(userData);
-    }
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     // setUploadedImgState(true);
@@ -145,8 +132,10 @@ const Createproduct = ({ createProduct }) => {
             onSubmit={onSubmit}
             className="create-p_form">
             <motion.div layout className="create-p_form-contents">
-              <label htmlFor="upload_img">Select Image</label>
-              {!uploadedImg && (
+              <label htmlFor="upload_img" className="file-label">
+                Select Image
+              </label>
+              {uploads.length === 2 && (
                 <span className="create-p_span">
                   You can select upto 3 images
                 </span>
@@ -172,27 +161,28 @@ const Createproduct = ({ createProduct }) => {
                   />
                 </div>
               )}
+              <label className="other-label">product name</label>
               <input
                 type="text"
                 required
                 minLength={5}
                 name="p_name"
-                placeholder="product name"
                 value={userData.p_name}
                 onChange={(e) =>
                   setUserData({ ...userData, p_name: e.target.value })
                 }
               />{" "}
+              <label className="other-label">price</label>
               <input
                 type="number"
                 required
                 name="p_price"
-                placeholder="price(Rs)"
                 value={userData.p_price}
                 onChange={(e) =>
                   setUserData({ ...userData, p_price: e.target.value })
                 }
-              />
+              />{" "}
+              <label className="other-label">Choose a category</label>
               <select
                 name="category"
                 onChange={(e) =>
@@ -208,15 +198,17 @@ const Createproduct = ({ createProduct }) => {
                 <option value="boots">Boots</option>
                 <option value="formalshoes">Formal shoes</option>
                 <option value="sandals">Sandals</option>
-              </select>
+              </select>{" "}
+              <label className="other-label">
+                product despscription (optional)
+              </label>
               <textarea
                 name="p_desp"
                 cols="30"
                 rows="5"
                 onChange={(e) =>
                   setUserData({ ...userData, p_desp: e.target.value })
-                }
-                placeholder="description(optional)"></textarea>
+                }></textarea>
             </motion.div>
             <button type="submit" className="create-p_btn">
               <BiRightArrowAlt className="create-p_icon" />
@@ -225,7 +217,6 @@ const Createproduct = ({ createProduct }) => {
         )}
       </div>
       <Toaster
-        position="bottom-right"
         reverseOrder={false}
         toastOptions={{
           className: "",
