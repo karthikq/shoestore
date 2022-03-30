@@ -171,7 +171,7 @@ const Createproduct = ({ createProduct }) => {
                 onChange={(e) =>
                   setUserData({ ...userData, p_name: e.target.value })
                 }
-              />{" "}
+              />
               <label className="other-label">price</label>
               <input
                 type="number"
@@ -181,8 +181,8 @@ const Createproduct = ({ createProduct }) => {
                 onChange={(e) =>
                   setUserData({ ...userData, p_price: e.target.value })
                 }
-              />{" "}
-              <label className="other-label">Choose a category</label>
+              />
+              <label className="other-label">choose a category</label>
               <select
                 name="category"
                 onChange={(e) =>
@@ -198,7 +198,7 @@ const Createproduct = ({ createProduct }) => {
                 <option value="boots">Boots</option>
                 <option value="formalshoes">Formal shoes</option>
                 <option value="sandals">Sandals</option>
-              </select>{" "}
+              </select>
               <label className="other-label">
                 product despscription (optional)
               </label>

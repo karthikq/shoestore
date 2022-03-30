@@ -5,13 +5,7 @@ import Loader from "../../components/loader/Loader";
 import Imageupload from "../../hooks/Imageupload";
 import imageCompression from "browser-image-compression";
 
-const UploadImg = ({
-  file,
-  setUploadedImgState,
-  uploadsLength,
-  setUrlarray,
-  urlarray,
-}) => {
+const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
   const [pro, setpro] = useState(0);
 
   const options = {
@@ -28,10 +22,9 @@ const UploadImg = ({
     handleImageUpload();
     return () => {
       setUploadedImgState(false);
-      setpro(0);
-      setUrlarray("");
     };
   }, [file]);
+
   async function handleImageUpload() {
     const compressedFile = await imageCompression(file, options);
     Imageupload(compressedFile, setUrlarray, setpro);
