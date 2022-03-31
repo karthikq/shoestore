@@ -140,6 +140,7 @@
     color: #000000;
     padding: 0;
     width: 102% !important;
+    border-bottom: 3px solid #ff2e6200 !important;
     &:focus {
       width: 104%;
       border-bottom: 3px solid #ff2e62fd;
@@ -147,12 +148,13 @@
     input {
       background: transparent !important;
       padding: 0;
+      border-bottom: 3px solid #ff2e6200 !important;
     }
   }
   .css-1s2u09g-control {
     background: transparent;
 
-    padding: 0.5rem 0.5rem 0.4rem;
+    padding: 0.5rem 0.5rem 0.5rem;
     border: 2px solid #3b3b3b65;
     border-bottom: 3px solid #ff2e6265;
     &:hover {

@@ -58,6 +58,9 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
     if (!uploadedImg) {
       return toast.error("Imagefile is required");
     }
+    if (!userData.p_category.length === 0) {
+      return toast.error("Please select a category");
+    }
     if (userData.p_price <= 0) {
       return toast.error("Price cannot be less than zero");
     }
