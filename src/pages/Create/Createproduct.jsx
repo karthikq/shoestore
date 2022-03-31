@@ -6,13 +6,16 @@ import toast, { Toaster } from "react-hot-toast";
 import { connect } from "react-redux";
 import "./createp.styles.scss";
 
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
-import validator from "validator";
+
 import UploadImg from "./UploadImg";
 import { createProduct, getcsrfToken } from "../../components/actions";
-
+const animatedComponents = makeAnimated();
 const Createproduct = ({ createProduct, getcsrfToken }) => {
   const navigate = useNavigate();
 
@@ -20,17 +23,15 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
   const [uploadedImgState, setUploadedImgState] = useState(false);
 
   const [uploads, setUploads] = useState([]);
-  const [uploadedUrl, setUploadedUrl] = useState("");
-  const [urlarray, setUrlarray] = useState("");
 
-  const images = [];
+  const [urlarray, setUrlarray] = useState("");
 
   const [userData, setUserData] = useState({
     p_name: "",
     p_img: [],
     p_desp: "",
     p_price: "",
-    p_category: "",
+    p_category: "casual",
   });
 
   const handleUploadedImg = (e) => {
@@ -78,7 +79,6 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
     //   sliderdiv.style.left = `${-100}%`;
     // }, 5000);
   };
-  console.log(uploads);
 
   useEffect(() => {
     if (urlarray.length > 0 && urlarray.length === uploads.length) {
@@ -89,9 +89,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
       createProduct(userData, urlarray, navigate);
     }
   }, [urlarray]);
-  useEffect(() => {
-    getcsrfToken();
-  }, []);
+
   // function loop() {
   //   // return uploads.forEach((item) => {
   //   //   return <UploadImg file={item} />;
@@ -100,6 +98,25 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
   //     return <UploadImg file={uploads[index]} />;
   //   }
   // }
+
+  const options = [
+    { value: "All", label: "All", color: "#00B8D9" },
+    { value: "casual", label: "Casula", color: "#00B8D9" },
+    { value: "Running", label: "Running", color: "#0052CC" },
+    { value: "Sports", label: "Sports", color: "#5243AA" },
+    {
+      value: "Boat shoes",
+      label: "Boat shoes",
+      color: "#FF5630",
+      isFixed: true,
+    },
+    { value: "Flip flop", label: "Flip flop", color: "#FF8B00" },
+    { value: "Loafers", label: "Loafers", color: "#FFC400" },
+    { value: "Boots", label: "Boots", color: "#36B37E" },
+    { value: "Formal shoes", label: "Formal shoes", color: "#00875A" },
+    { value: "Sandals", label: "Sandals", color: "#253858" },
+  ];
+
   return (
     <motion.div className="create-p_container">
       <div className="create-p_contents">
@@ -185,11 +202,12 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                 }
               />
               <label className="other-label">choose a category</label>
-              <select
-                name="category"
-                onChange={(e) =>
-                  setUserData({ ...userData, p_category: e.target.value })
-                }>
+              {/* <select
+                name="category"    onChange={(e) =>
+                  setUserData({ ...userData, p_category: [...userData.p_category,e.target.value] })
+                }
+                value={userData.p_category}
+               >
                 <option value="sneakers">sneakers</option>
                 <option value="casual">casual</option>
                 <option value="rnning">Running</option>
@@ -200,7 +218,20 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                 <option value="boots">Boots</option>
                 <option value="formalshoes">Formal shoes</option>
                 <option value="sandals">Sandals</option>
-              </select>
+              </select> */}
+              <Select
+                className="select-input"
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={options}
+                onChange={(e) => {
+                  setUserData({
+                    ...userData,
+                    p_category: e.map((item) => item.value),
+                  });
+                }}
+              />
               <label className="other-label">
                 product despscription (optional)
               </label>

@@ -109,7 +109,7 @@
   }
   input,
   textarea,
-  select {
+  .select-input {
     font-family: "Montserrat", sans-serif;
     color: rgba(248, 248, 248, 0.973);
 
@@ -126,13 +126,49 @@
     transition: all 0.2s ease-in-out;
     outline: 0;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.829);
+    color: rgba(255, 255, 255, 0.918);
     &:focus {
       width: 99%;
       border-bottom: 3px solid #ff2e62fd;
     }
     &::placeholder {
       color: rgba(255, 255, 255, 0.986);
+    }
+  }
+  .select-input {
+    background: transparent !important;
+    color: #000000;
+    padding: 0;
+    width: 102% !important;
+    &:focus {
+      width: 104%;
+      border-bottom: 3px solid #ff2e62fd;
+    }
+    input {
+      background: transparent !important;
+      padding: 0;
+    }
+  }
+  .css-1s2u09g-control {
+    background: transparent;
+
+    padding: 0.5rem 0.5rem 0.4rem;
+    border: 2px solid #3b3b3b65;
+    border-bottom: 3px solid #ff2e6265;
+    &:hover {
+      border: 2px solid #3b3b3b65;
+      border-bottom: 3px solid #ff2e62fd;
+    }
+  }
+  .css-1rhbuit-multiValue {
+    background-color: #ff2e63;
+
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    .css-12jo7m5 {
+      font-size: 0.85rem;
+      color: white !important;
     }
   }
   select {
@@ -146,12 +182,13 @@
     }
   }
   .other-label {
-    color: rgba(255, 255, 255, 0.945);
+    color: rgba(255, 255, 255, 0.979);
     align-self: flex-start;
-    font-weight: lighter;
+
     letter-spacing: 0.7px;
-    font-size: 1.08rem;
-    margin: 1.2rem 0 0.1rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin: 1rem 0 0.1rem;
   }
   .file-label {
     position: relative;
