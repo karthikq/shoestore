@@ -258,7 +258,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
           className: "",
           style: {
             border: "1px solid #713200",
-            padding: "16px",
+            padding: "10px 12px",
             color: "#713200",
           },
           iconTheme: {
