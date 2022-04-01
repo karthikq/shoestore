@@ -183,7 +183,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                   />
                 </div>
               )}
-              <label className="other-label">product name</label>
+              <label className="other-label">Product name</label>
               <input
                 type="text"
                 required
@@ -194,7 +194,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                   setUserData({ ...userData, p_name: e.target.value })
                 }
               />
-              <label className="other-label">price</label>
+              <label className="other-label">Price</label>
               <input
                 type="number"
                 required
@@ -204,7 +204,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                   setUserData({ ...userData, p_price: e.target.value })
                 }
               />
-              <label className="other-label">choose a category</label>
+              <label className="other-label">Choose a category</label>
               {/* <select
                 name="category"    onChange={(e) =>
                   setUserData({ ...userData, p_category: [...userData.p_category,e.target.value] })
@@ -236,7 +236,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                 }}
               />
               <label className="other-label">
-                product despscription (optional)
+                Product despscription (optional)
               </label>
               <textarea
                 name="p_desp"

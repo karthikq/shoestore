@@ -1,34 +1,32 @@
 /** @format */
 
 import { productsArray } from "../Products";
-const intialState = [
-  {
-    p_id: 1,
-    p_name: "Colorful sneaker",
-    p_img: [],
-    p_desp: "",
-    rating: 4,
-    viewCount: 1,
-    keywords: ["all", "sneakers"],
-  },
-];
+import {
+  CREATE_PRODUCT,
+  FETCH_PRODUCTS,
+  GET_PRODUCT,
+  UPDATE_VIEW,
+} from "./constants";
+const intialState = [{}];
 export const productsReducer = (state = intialState, action) => {
   switch (action.type) {
-    case "FETCH_PRODUCTS":
-      return state;
+    case FETCH_PRODUCTS:
+      return [...state, action.payload];
 
     case "SEL_PRODUCTS":
       return;
-    case "FETCH_SEL_PRODUCT":
+
+    case GET_PRODUCT:
       return action.payload;
 
-    case "UPDATE_VIEW_COUNT":
+    case UPDATE_VIEW:
       return state.map((item) =>
         item.p_id === action.payload.p_id
           ? { ...item, viewCount: item.viewCount + 1 }
           : item
       );
-    case "CREATE_PRODUCT":
+
+    case CREATE_PRODUCT:
       return [...state, action.payload];
     default:
       return state;

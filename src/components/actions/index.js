@@ -2,6 +2,11 @@
 import axios from "axios";
 import { backendApi } from "../api/api";
 import { productsArray } from "../Products";
+import {
+  CREATE_PRODUCT,
+  GET_PRODUCT,
+  UPDATE_VIEW,
+} from "../reducers/constants";
 
 export const fetchProducts = () => async (dispatch) => {
   try {
@@ -38,21 +43,22 @@ export const fetchselProduct = () => async (dispatch) => {
   });
 
   dispatch({
-    type: "FETCH_SEL_PRODUCT",
+    type: GET_PRODUCT,
     payload: data,
   });
 };
 
 export const updateViewCount = (product) => async (dispatch) => {
   dispatch({
-    type: "UPDATE_VIEW_COUNT",
+    type: UPDATE_VIEW,
     payload: product,
   });
 };
+
 export const getcsrfToken = () => async (dispatch) => {
   const { data } = await backendApi.get("/getcsrftoken");
-  console.log(data);
-  backendApi.defaults.headers.post["x-csrf-token"] = data.CSRFToken;
+
+  return data;
 };
 
 export const createProduct =
@@ -60,13 +66,13 @@ export const createProduct =
     productDetails.p_img = urlarray;
 
     try {
-      const resp = await backendApi.post("/product/create", productDetails);
+      await backendApi.post("/product/create", productDetails);
     } catch (error) {
       console.log(error);
     }
-    // await dispatch({
-    //   type: "CREATE_PRODUCT",
-    //   payload: productDetails,
-    // });
-    // navigate("/");
+    await dispatch({
+      type: CREATE_PRODUCT,
+      payload: productDetails,
+    });
+    navigate("/");
   };

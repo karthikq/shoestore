@@ -5,15 +5,18 @@ import "./home.styles.scss";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { fetchProducts, singleProduct } from "../../components/actions";
+import { getProducts } from "../../redux/product";
 
 const Home = ({ products, fetchProducts, singleProduct }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
     singleProduct(5);
+    getProducts();
   }, []);
 
   return (
