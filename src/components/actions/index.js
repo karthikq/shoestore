@@ -39,7 +39,9 @@ export const singleProduct = (p_id) => async (dispatch, getState) => {
 };
 export const fetchselProduct = () => async (dispatch, getState) => {
   const products = sessionStorage.getItem("data").split(",");
+
   await dispatch(fetchProducts());
+
   const data = getState().Products.filter((item) => {
     return products.find((i) => (item.keywords.includes(i) ? item : ""));
   });

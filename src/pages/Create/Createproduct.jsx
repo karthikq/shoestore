@@ -103,21 +103,21 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
   // }
 
   const options = [
-    { value: "All", label: "All", color: "#00B8D9" },
-    { value: "casual", label: "Casula", color: "#00B8D9" },
-    { value: "Running", label: "Running", color: "#0052CC" },
-    { value: "Sports", label: "Sports", color: "#5243AA" },
+    { value: "all", label: "All", color: "#00B8D9" },
+    { value: "casual", label: "Casual", color: "#00B8D9" },
+    { value: "running", label: "Running", color: "#0052CC" },
+    { value: "sports", label: "Sports", color: "#5243AA" },
     {
-      value: "Boat shoes",
+      value: "boatshoes",
       label: "Boat shoes",
       color: "#FF5630",
       isFixed: true,
     },
-    { value: "Flip flop", label: "Flip flop", color: "#FF8B00" },
-    { value: "Loafers", label: "Loafers", color: "#FFC400" },
-    { value: "Boots", label: "Boots", color: "#36B37E" },
-    { value: "Formal shoes", label: "Formal shoes", color: "#00875A" },
-    { value: "Sandals", label: "Sandals", color: "#253858" },
+    { value: "flipflop", label: "Flip flop", color: "#FF8B00" },
+    { value: "loafers", label: "Loafers", color: "#FFC400" },
+    { value: "boots", label: "Boots", color: "#36B37E" },
+    { value: "formalshoes", label: "Formal shoes", color: "#00875A" },
+    { value: "sandals", label: "Sandals", color: "#253858" },
   ];
 
   return (
