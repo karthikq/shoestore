@@ -13,7 +13,7 @@ const Productbox = ({ item, updateViewCount }) => {
     <React.Fragment>
       <div className="product-box" onClick={() => updateViewCount(item)}>
         <div className="product-img">
-          <img src={item.imageUrl} alt={item.p_id} />
+          <img src={item.p_img[0]} alt={item.p_id} />
         </div>
 
         <div className="product-details">

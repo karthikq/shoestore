@@ -158,7 +158,6 @@ const Options = ({ fetchselProduct, navigationState }) => {
           </form>
         </div>
       </div>
-      <Toaster />
     </motion.div>
   );
 };

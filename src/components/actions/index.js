@@ -4,6 +4,7 @@ import { backendApi } from "../api/api";
 import { productsArray } from "../Products";
 import {
   CREATE_PRODUCT,
+  FETCH_PRODUCTS,
   GET_PRODUCT,
   UPDATE_VIEW,
 } from "../reducers/constants";
@@ -12,16 +13,16 @@ export const fetchProducts = () => async (dispatch) => {
   try {
     const { data } = await axios.get("http://localhost:5000/product/all");
 
-    // dispatch({
-    //   type: "FETCH_PRODUCTS",
-    //   payload: data,
-    // });
+    dispatch({
+      type: FETCH_PRODUCTS,
+      payload: data,
+    });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const singleProduct = (p_id) => async (dispatch) => {
+export const singleProduct = (p_id) => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(
       "http://localhost:5000/product/get/" + p_id
@@ -36,9 +37,10 @@ export const singleProduct = (p_id) => async (dispatch) => {
     console.log(error);
   }
 };
-export const fetchselProduct = () => async (dispatch) => {
+export const fetchselProduct = () => async (dispatch, getState) => {
   const products = sessionStorage.getItem("data").split(",");
-  const data = productsArray.filter((item) => {
+  await dispatch(fetchProducts());
+  const data = getState().Products.filter((item) => {
     return products.find((i) => (item.keywords.includes(i) ? item : ""));
   });
 

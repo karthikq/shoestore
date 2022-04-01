@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../../components/loader/Loader";
 import Imageupload from "../../hooks/Imageupload";
 import imageCompression from "browser-image-compression";
+import toast from "react-hot-toast";
 
 const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
   const [pro, setpro] = useState(0);
@@ -27,7 +28,11 @@ const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
 
   async function handleImageUpload() {
     const compressedFile = await imageCompression(file, options);
-    Imageupload(compressedFile, setUrlarray, setpro);
+    try {
+      Imageupload(compressedFile, setUrlarray, setpro);
+    } catch (error) {
+      toast.error("Please refresh the page and continue");
+    }
   }
   return (
     <div className="upload-container">

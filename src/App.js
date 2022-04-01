@@ -9,8 +9,11 @@ import { AnimatePresence } from "framer-motion";
 import Products from "./pages/products/Products";
 import { useEffect, useRef, useState } from "react";
 import Createproduct from "./pages/Create/Createproduct";
+import { fetchProducts } from "./components/actions";
+import { connect } from "react-redux";
+import { Toaster } from "react-hot-toast";
 
-function App() {
+function App({ fetchProducts }) {
   const location = useLocation();
   const [navigateState, setNavigateState] = useState(false);
   const navigate = useNavigate();
@@ -56,7 +59,9 @@ function App() {
       postitionofBar(bar);
     }
   }, [location.pathname]);
-
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   return (
     <div>
       <Navbar />
@@ -75,10 +80,25 @@ function App() {
           />
           <Route path="/product/list" element={<Products />} />
           <Route path="/create/product" element={<Createproduct />} />
-        </Routes>
+        </Routes>{" "}
       </AnimatePresence>
+      <Toaster
+        reverseOrder={false}
+        toastOptions={{
+          className: "",
+          style: {
+            border: "1px solid #713200",
+            padding: "10px 12px",
+            color: "#713200",
+          },
+          iconTheme: {
+            primary: "#713200",
+            secondary: "#FFFAEE",
+          },
+        }}
+      />
     </div>
   );
 }
 
-export default App;
+export default connect(null, { fetchProducts })(App);

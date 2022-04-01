@@ -7,11 +7,13 @@ import {
   GET_PRODUCT,
   UPDATE_VIEW,
 } from "./constants";
+
 const intialState = [{}];
+
 export const productsReducer = (state = intialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS:
-      return [...state, action.payload];
+      return action.payload.products;
 
     case "SEL_PRODUCTS":
       return;

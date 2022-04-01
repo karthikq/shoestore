@@ -27,7 +27,7 @@ function Imageupload(file, setUrl, setpro) {
       // perValue.innerHTML = progress + "%";
     },
     (error) => {
-      // Handle unsuccessful uploads
+      throw new Error("");
     },
     async () => {
       // Handle successful uploads on complete

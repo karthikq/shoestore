@@ -51,7 +51,7 @@ const Products = ({ fetchselProduct, products }) => {
         <div ref={productref} className="product-trending">
           {products.map(
             (item) =>
-              item.rating >= 4 && <Productbox item={item} key={item.p_id} />
+              item.rating >= 0 && <Productbox item={item} key={item.p_id} />
           )}
         </div>
       </div>

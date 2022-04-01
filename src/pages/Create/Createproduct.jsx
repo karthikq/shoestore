@@ -189,6 +189,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                 required
                 minLength={5}
                 name="p_name"
+                maxLength={12}
                 value={userData.p_name}
                 onChange={(e) =>
                   setUserData({ ...userData, p_name: e.target.value })
@@ -231,7 +232,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                 onChange={(e) => {
                   setUserData({
                     ...userData,
-                    p_category: e.map((item) => item.value),
+                    p_category: e.map((item) => item.value.toLowerCase()),
                   });
                 }}
               />
@@ -252,21 +253,6 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
           </motion.form>
         )}
       </div>
-      <Toaster
-        reverseOrder={false}
-        toastOptions={{
-          className: "",
-          style: {
-            border: "1px solid #713200",
-            padding: "10px 12px",
-            color: "#713200",
-          },
-          iconTheme: {
-            primary: "#713200",
-            secondary: "#FFFAEE",
-          },
-        }}
-      />
     </motion.div>
   );
 };
