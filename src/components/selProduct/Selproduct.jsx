@@ -10,13 +10,14 @@ import "./selproduct.styles.scss";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const Selproduct = ({ setselproductState }) => {
+const Selproduct = ({ setselproductState, selproductState }) => {
   const navigate = useNavigate();
+
   return (
     <motion.div
-      initial={{ y: "100%" }}
-      animate={{ y: 0 }}
-      exit={{ y: "100%" }}
+      initial={{ x: "100%" }}
+      animate={{ x: 0 }}
+      exit={{ x: "-100%" }}
       transition={{ duration: 0.8 }}
       className="selproduct-container"
       role={"presentation"}>
@@ -24,23 +25,17 @@ const Selproduct = ({ setselproductState }) => {
         <div className="selproduct-close">
           <AiOutlineClose
             className="selproduct-close_icon"
-            onClick={() => navigate("/product/list")}
+            onClick={() =>
+              setselproductState({ ...selproductState, state: false })
+            }
           />
         </div>
         <div className="selproduct-img">
-          <img
-            src="https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="err"
-          />
+          <img src={selproductState.data.p_img[0]} alt="err" />
         </div>
         <div className="selproduct-details">
-          <h2>Title</h2>
-          <span>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident
-            non error adipisci ab. Cum tempore, voluptatum ducimus, ut, nemo
-            magni rerum nobis atque ad reiciendis illum laudantium nihil modi
-            facilis.
-          </span>
+          <h2>{selproductState.data.p_name}</h2>
+          <span>{selproductState.data.p_desp}</span>
           <div className="selproduct-actions">
             <AiFillHeart className="selproduct-fav_icon" />
             <AiOutlineShoppingCart className="selproduct-cart_icon" />

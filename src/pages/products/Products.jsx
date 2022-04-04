@@ -73,11 +73,15 @@ const Products = ({ fetchselProduct, products }) => {
           <div className="product-trending"></div>
         </div>
       </motion.div>{" "}
-      {selproductState.state && (
-        <div>
-          <Selproduct setselproductState={setselproductState} />{" "}
-        </div>
-      )}
+      <AnimatePresence>
+        {" "}
+        {selproductState.state && (
+          <Selproduct
+            setselproductState={setselproductState}
+            selproductState={selproductState}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };
