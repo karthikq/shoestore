@@ -6,6 +6,7 @@
   min-height: 100vh;
   background-color: #f7f7f7;
   position: relative;
+  contain: strict;
 }
 .product-contents {
   width: 85%;

@@ -7,14 +7,22 @@ import { BsBag } from "react-icons/bs";
 import StarRatings from "react-star-ratings";
 import { connect } from "react-redux";
 import { updateViewCount } from "../../components/actions";
+import { useNavigate } from "react-router-dom";
 
-const Productbox = ({ item, updateViewCount, setselproductState }) => {
+const Productbox = ({
+  item,
+  updateViewCount,
+  setselproductState,
+  selproductState,
+}) => {
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <div
         className="product-box"
         onClick={() => {
-          setselproductState(true);
+          setselproductState({ ...selproductState, state: true, data: item });
           updateViewCount(item);
         }}>
         <div className="product-img">

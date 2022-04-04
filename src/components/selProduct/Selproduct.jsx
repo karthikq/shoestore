@@ -8,20 +8,23 @@ import {
 } from "react-icons/ai";
 import "./selproduct.styles.scss";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Selproduct = ({ setselproductState }) => {
+  const navigate = useNavigate();
   return (
     <motion.div
-      initial={{ y: 100 + "%" }}
+      initial={{ y: "100%" }}
       animate={{ y: 0 }}
-      exit={{ y: 100 + "%" }}
-      transition={{ duration: 0.6 }}
-      className="selproduct-container">
+      exit={{ y: "100%" }}
+      transition={{ duration: 0.8 }}
+      className="selproduct-container"
+      role={"presentation"}>
       <div className="selproduct-contents">
         <div className="selproduct-close">
           <AiOutlineClose
             className="selproduct-close_icon"
-            onClick={() => setselproductState(false)}
+            onClick={() => navigate("/product/list")}
           />
         </div>
         <div className="selproduct-img">

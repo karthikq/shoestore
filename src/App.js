@@ -12,6 +12,7 @@ import Createproduct from "./pages/Create/Createproduct";
 import { fetchProducts } from "./components/actions";
 import { connect } from "react-redux";
 import { Toaster } from "react-hot-toast";
+import Selproduct from "./components/selProduct/Selproduct";
 
 function App({ fetchProducts }) {
   const location = useLocation();
@@ -79,6 +80,7 @@ function App({ fetchProducts }) {
             }
           />
           <Route path="/product/list" element={<Products />} />
+          <Route path="/product/sel" element={<Selproduct />} />
           <Route path="/create/product" element={<Createproduct />} />
           <Route path="/create/product" element={<Createproduct />} />
         </Routes>{" "}
