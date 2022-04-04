@@ -8,10 +8,15 @@ import StarRatings from "react-star-ratings";
 import { connect } from "react-redux";
 import { updateViewCount } from "../../components/actions";
 
-const Productbox = ({ item, updateViewCount }) => {
+const Productbox = ({ item, updateViewCount, setselproductState }) => {
   return (
     <React.Fragment>
-      <div className="product-box" onClick={() => updateViewCount(item)}>
+      <div
+        className="product-box"
+        onClick={() => {
+          setselproductState(true);
+          updateViewCount(item);
+        }}>
         <div className="product-img">
           <img src={item.p_img[0]} alt={item.p_id} />
         </div>

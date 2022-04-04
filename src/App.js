@@ -80,6 +80,7 @@ function App({ fetchProducts }) {
           />
           <Route path="/product/list" element={<Products />} />
           <Route path="/create/product" element={<Createproduct />} />
+          <Route path="/create/product" element={<Createproduct />} />
         </Routes>{" "}
       </AnimatePresence>
       <Toaster

@@ -1,17 +1,19 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./product.styles.scss";
 import Productbox from "./Productbox";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { fetchselProduct } from "../../components/actions";
+import Selproduct from "../../components/selProduct/Selproduct";
 
 const Products = ({ fetchselProduct, products }) => {
   const productref = React.useRef();
+  const [selproductState, setselproductState] = useState(false);
 
   useEffect(() => {
     fetchselProduct();
@@ -51,7 +53,13 @@ const Products = ({ fetchselProduct, products }) => {
         <div ref={productref} className="product-trending">
           {products.map(
             (item) =>
-              item.rating >= 0 && <Productbox item={item} key={item.p_id} />
+              item.rating >= 0 && (
+                <Productbox
+                  item={item}
+                  key={item.p_id}
+                  setselproductState={setselproductState}
+                />
+              )
           )}
         </div>
       </div>
@@ -59,6 +67,11 @@ const Products = ({ fetchselProduct, products }) => {
         <h4>Latest</h4>
         <div className="product-trending"></div>
       </div>
+      <AnimatePresence>
+        {selproductState && (
+          <Selproduct setselproductState={setselproductState} />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
