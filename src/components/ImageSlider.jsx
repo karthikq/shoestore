@@ -10,7 +10,9 @@ import "swiper/css/navigation";
 const ImageSlider = ({ imagesArray, imgClass }) => {
   return (
     <React.Fragment>
-      {imagesArray.length >= 2 ? (
+      {!imagesArray ? (
+        <h2>Loading</h2>
+      ) : imagesArray.length >= 2 ? (
         <Swiper
           effect={"cards"}
           navigation={true}

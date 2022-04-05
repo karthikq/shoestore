@@ -23,9 +23,7 @@ export const productsReducer = (state = intialState, action) => {
 
     case UPDATE_VIEW:
       return state.map((item) =>
-        item.p_id === action.payload.p_id
-          ? { ...item, viewCount: item.viewCount + 1 }
-          : item
+        item.p_id === action.payload.p_id ? action.payload : item
       );
 
     case CREATE_PRODUCT:

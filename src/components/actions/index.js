@@ -1,7 +1,8 @@
 /** @format */
 import axios from "axios";
 import { backendApi } from "../api/api";
-import { productsArray } from "../Products";
+
+import toast from "react-hot-toast";
 import {
   CREATE_PRODUCT,
   FETCH_PRODUCTS,
@@ -53,10 +54,18 @@ export const fetchselProduct = () => async (dispatch, getState) => {
 };
 
 export const updateViewCount = (product) => async (dispatch) => {
-  dispatch({
-    type: UPDATE_VIEW,
-    payload: product,
-  });
+  try {
+    const { data } = await backendApi.patch("/product/update/view/" + product);
+    dispatch({
+      type: UPDATE_VIEW,
+      payload: data.updatedProduct,
+    });
+  } catch (error) {
+    console.log(error);
+    // if (error) {
+    //   toast.error("Product not found");
+    // }
+  }
 };
 
 export const getcsrfToken = () => async (dispatch) => {

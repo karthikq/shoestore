@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { connect } from "react-redux";
 import "./createp.styles.scss";
 

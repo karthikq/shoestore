@@ -23,7 +23,7 @@ const Productbox = ({
         className="product-box"
         onClick={() => {
           setselproductState({ ...selproductState, state: true, data: item });
-          updateViewCount(item);
+          updateViewCount(item.p_id);
         }}>
         <div className="product-img">
           <img src={item.p_img[0]} alt={item.p_id} />
@@ -31,7 +31,7 @@ const Productbox = ({
 
         <div className="product-details">
           <h3>{item.p_name}</h3>
-          <span>Price : {item.p_price}</span>
+          <span>Price : ₹{item.price}</span>
         </div>
         <div className="product-fav">
           <BiHeart className="product-fav_icon" />

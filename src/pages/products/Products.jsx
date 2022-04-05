@@ -21,7 +21,7 @@ const Products = ({ fetchselProduct, products }) => {
   useEffect(() => {
     fetchselProduct();
   }, [fetchselProduct]);
-  console.log(selproductState);
+
   return (
     <>
       <motion.div
@@ -74,7 +74,6 @@ const Products = ({ fetchselProduct, products }) => {
         </div>
       </motion.div>{" "}
       <AnimatePresence>
-        {" "}
         {selproductState.state && (
           <Selproduct
             setselproductState={setselproductState}

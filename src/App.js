@@ -51,6 +51,7 @@ function App({ fetchProducts }) {
       postitionofBar(bar);
     }
     if (path === "/categ/options") {
+      fetchProducts();
       postitionofBar(bar);
     }
     if (path === "/product/list") {
@@ -59,10 +60,10 @@ function App({ fetchProducts }) {
     if (path === "/create/product") {
       postitionofBar(bar);
     }
-  }, [location.pathname]);
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  }, [location.pathname, fetchProducts]);
+  // useEffect(() => {
+
+  // }, []);
   return (
     <div>
       <Navbar />
