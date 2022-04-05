@@ -55,11 +55,12 @@ export const fetchselProduct = () => async (dispatch, getState) => {
 
 export const updateViewCount = (product) => async (dispatch) => {
   try {
-    const { data } = await backendApi.patch("/product/update/view/" + product);
-    dispatch({
-      type: UPDATE_VIEW,
-      payload: data.updatedProduct,
-    });
+    const { data } = await backendApi.patch("/product/like/" + product);
+
+    // dispatch({
+    //   type: UPDATE_VIEW,
+    //   payload: data.updatedProduct,
+    // });
   } catch (error) {
     console.log(error);
     // if (error) {

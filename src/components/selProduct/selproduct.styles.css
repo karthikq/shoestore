@@ -1,0 +1,209 @@
+/** @format */
+:root {
+  --redcolor: "ff2e63";
+}
+
+.selproduct-container {
+  position: absolute;
+  width: 100%;
+  top: 0rem;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.selproduct-contents {
+  width: 85%;
+  height: 100%;
+  margin: 3rem 0;
+  background-color: rgba(254, 254, 254, 0.9960784314);
+  display: flex;
+  align-items: center;
+  gap: 0 4rem;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.068) 0px 0px 50px -12px;
+  border-radius: 10px;
+  position: relative;
+}
+.selproduct-contents .selproduct-close {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+.selproduct-contents .selproduct-close .selproduct-close_icon {
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: 0.4rem;
+  border: 2px solid rgba(211, 211, 211, 0);
+  border-radius: 50%;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.selproduct-contents .selproduct-close .selproduct-close_icon:hover {
+  border: 2px solid lightgray;
+  color: #ff2e63;
+}
+.selproduct-contents .selproduct-close .selproduct-close_icon:active {
+  transform: scale(0.9);
+}
+
+.selproduct-img {
+  padding-left: 4rem;
+  width: 500px;
+  height: 100%;
+  position: relative;
+}
+.selproduct-img .selproduct-main_img {
+  width: 100%;
+  height: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.selproduct-details {
+  width: 50%;
+  margin-top: 3.8rem;
+}
+.selproduct-details h2 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-family: "Newsreader", serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+.selproduct-details span {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.selproduct-actions {
+  margin-top: 1.1rem;
+  display: flex;
+  align-self: flex-end;
+  gap: 0 0.9rem;
+}
+.selproduct-actions .selproduct-fav_icon,
+.selproduct-actions .selproduct-cart_icon,
+.selproduct-actions .selproduct-like_icon {
+  font-size: 1.4rem;
+  color: #e02957;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  border-radius: 50%;
+  border: 2px solid rgba(211, 211, 211, 0);
+}
+.selproduct-actions .selproduct-fav_icon:active,
+.selproduct-actions .selproduct-cart_icon:active,
+.selproduct-actions .selproduct-like_icon:active {
+  transform: scale(0.9);
+}
+.selproduct-actions .selproduct-fav_icon:hover,
+.selproduct-actions .selproduct-cart_icon:hover,
+.selproduct-actions .selproduct-like_icon:hover {
+  border: 2px solid lightgrey;
+}
+.selproduct-actions .selproduct-cart_icon {
+  padding-right: 0.4rem;
+}
+
+.selproduct-usage {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(128, 128, 128);
+  width: 100%;
+  margin-top: 1.4rem;
+}
+.selproduct-usage h3 {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+.selproduct-usage .selproduct-likes {
+  width: 80%;
+  min-height: 240px;
+  overflow-y: auto;
+  background-color: rgb(253, 253, 253);
+  padding: 1rem;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  padding-bottom: 0.8rem;
+  padding-right: 4rem;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.selproduct-usage .selproduct-likes::-webkit-scrollbar {
+  width: 5px;
+}
+.selproduct-usage .selproduct-likes::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.selproduct-usage .selproduct-likes::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.selproduct-usage .selproduct-likes::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.selproduct-usage .selproduct-likes_user {
+  min-width: 150px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+  margin: 0 0 1rem;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.034);
+  border: 3px solid rgba(211, 211, 211, 0.123);
+  border-radius: 10px;
+  padding: 0.4rem 0.8rem;
+}
+.selproduct-usage .selproduct-likes_user:hover {
+  border: 3px solid rgba(247, 7, 7, 0.116);
+}
+.selproduct-usage .selproduct-likes_user img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+.selproduct-usage .selproduct-likes_user span {
+  color: black;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transform-origin: left;
+}
+.selproduct-usage .selproduct-likes_user span:hover {
+  color: red;
+}
+.selproduct-usage .selproduct-likes_user span:active {
+  transform: scale(0.9);
+}
+
+.sel-product_rating {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0 0.8rem;
+}
+
+.sel-product-views_container {
+  margin: 0.9rem 0 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.4;
+  gap: 0 0.2rem;
+}
+.sel-product-views_container span {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.sel-product_views {
+  padding: 0.4rem;
+  font-size: 1.35rem;
+}/*# sourceMappingURL=selproduct.styles.css.map */
