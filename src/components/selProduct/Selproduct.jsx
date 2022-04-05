@@ -6,6 +6,7 @@ import {
   AiOutlineClose,
   AiOutlineEye,
   AiOutlineShoppingCart,
+  AiTwotoneLike,
 } from "react-icons/ai";
 import "./selproduct.styles.scss";
 import { motion } from "framer-motion";
@@ -14,7 +15,7 @@ import { BiLike } from "react-icons/bi";
 import { IconContext } from "react-icons/lib";
 import ImageSlider from "../ImageSlider";
 import { useDispatch } from "react-redux";
-import { updateViewCount } from "../actions";
+import { updateLike, updateViewCount } from "../actions";
 
 const Selproduct = ({ setselproductState, selproductState }) => {
   const [newRating, setNewRating] = useState();
@@ -66,7 +67,19 @@ const Selproduct = ({ setselproductState, selproductState }) => {
                 <span>{newRating}</span>
               </div>
               <div className="selproduct-actions">
-                <BiLike className="selproduct-like_icon" />
+                {selproductState.data.likes?.find(
+                  (user) =>
+                    user.userId._id?.toString() === "62458189d13953b35ae86970"
+                ) ? (
+                  <AiTwotoneLike className="selproduct-like_icon" />
+                ) : (
+                  <BiLike
+                    className="selproduct-like_icon"
+                    onClick={() => {
+                      dispatch(updateLike(selproductState.data.p_id));
+                    }}
+                  />
+                )}
                 <AiFillHeart className="selproduct-fav_icon" />
                 <AiOutlineShoppingCart className="selproduct-cart_icon" />{" "}
               </div>

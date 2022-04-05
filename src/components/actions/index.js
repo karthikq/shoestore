@@ -7,6 +7,7 @@ import {
   CREATE_PRODUCT,
   FETCH_PRODUCTS,
   GET_PRODUCT,
+  LIKE_PRODUCT,
   UPDATE_VIEW,
 } from "../reducers/constants";
 
@@ -55,12 +56,13 @@ export const fetchselProduct = () => async (dispatch, getState) => {
 
 export const updateViewCount = (product) => async (dispatch) => {
   try {
-    const { data } = await backendApi.patch("/product/like/" + product);
+    const { data } = await backendApi.patch("/product/update/view/" + product);
 
-    // dispatch({
-    //   type: UPDATE_VIEW,
-    //   payload: data.updatedProduct,
-    // });
+    dispatch({
+      type: UPDATE_VIEW,
+      payload: data.updatedProduct,
+    });
+    console.log(data);
   } catch (error) {
     console.log(error);
     // if (error) {
@@ -69,6 +71,22 @@ export const updateViewCount = (product) => async (dispatch) => {
   }
 };
 
+export const updateLike = (product) => async (dispatch) => {
+  try {
+    const { data } = await backendApi.patch("/product/like/" + product);
+
+    dispatch({
+      type: UPDATE_VIEW,
+      payload: data.updatedProduct,
+    });
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+    // if (error) {
+    //   toast.error("Product not found");
+    // }
+  }
+};
 export const getcsrfToken = () => async (dispatch) => {
   const { data } = await backendApi.get("/getcsrftoken");
 

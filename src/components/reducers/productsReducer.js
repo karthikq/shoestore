@@ -5,6 +5,7 @@ import {
   CREATE_PRODUCT,
   FETCH_PRODUCTS,
   GET_PRODUCT,
+  LIKE_PRODUCT,
   UPDATE_VIEW,
 } from "./constants";
 
