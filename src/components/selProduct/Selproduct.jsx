@@ -30,9 +30,12 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
     setNewRating(newrating);
   };
   const { id } = useParams();
+
   useEffect(() => {
     dispatch(singleProduct(id));
   }, [id]);
+
+  const totalLikes = _.sum(selproduct.likes?.map((item) => item.count));
 
   return (
     <React.Fragment>
@@ -72,25 +75,28 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
               <span>{newRating}</span>
             </div>
             <div className="selproduct-actions">
-              {selproduct.likes?.find(
-                (user) =>
-                  user.userId._id?.toString() === "624d6bac98087cf929ee867a"
-              ) ? (
-                <AiTwotoneLike
-                  className="selproduct-like_icon"
-                  onClick={() => {
-                    dispatch(updateLike(selproduct.p_id));
-                  }}
-                />
-              ) : (
-                <BiLike
-                  className="selproduct-like_icon"
-                  onClick={() => {
-                    dispatch(updateLike(selproduct.p_id));
-                  }}
-                />
-              )}
-              <AiFillHeart className="selproduct-fav_icon" />
+              <div className="selproduct-like_div">
+                {selproduct.likes?.find(
+                  (user) =>
+                    user.userId._id?.toString() === "624d6bac98087cf929ee867a"
+                ) ? (
+                  <AiTwotoneLike
+                    className="selproduct-like_icon"
+                    onClick={() => {
+                      dispatch(updateLike(selproduct.p_id));
+                    }}
+                  />
+                ) : (
+                  <BiLike
+                    className="selproduct-like_icon"
+                    onClick={() => {
+                      dispatch(updateLike(selproduct.p_id));
+                    }}
+                  />
+                )}
+                <span> {totalLikes}</span>
+              </div>
+              <AiFillHeart className="selproduct-fav_icon" />{" "}
               <AiOutlineShoppingCart className="selproduct-cart_icon" />{" "}
             </div>
             <div className="sel-product-views_container">
@@ -101,7 +107,11 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
               <h3> {selproduct.likes?.length > 0 && "Likes"}</h3>
               <div className="selproduct-likes">
                 {selproduct.likes?.map(({ userId }) => (
-                  <LikedUser avatar="" name={userId.username} />
+                  <LikedUser
+                    avatar=""
+                    name={userId.username}
+                    key={userId._id}
+                  />
                 ))}
               </div>
             </div>
