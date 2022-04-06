@@ -55,17 +55,14 @@ const Products = ({ fetchselProduct, products }) => {
             </div>
           </div>
           <div ref={productref} className="product-trending">
-            {products.map(
-              (item) =>
-                item.rating >= 0 && (
-                  <Productbox
-                    item={item}
-                    key={item.p_id}
-                    setselproductState={setselproductState}
-                    selproductState={selproductState}
-                  />
-                )
-            )}
+            {products.map((item) => (
+              <Productbox
+                item={item}
+                key={item.p_id}
+                setselproductState={setselproductState}
+                selproductState={selproductState}
+              />
+            ))}
           </div>
         </div>
         <div className="product-contents">

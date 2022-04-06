@@ -85,26 +85,14 @@ export const updateLike = (product) => async (dispatch) => {
     // }
   }
 };
-// export const removelike = (product) => async (dispatch) => {
-//   console.log(product);
-//   try {
-//     const { data } = await backendApi.patch("/product/like/" + product);
-
-//     if (data.status === 400) {
-//       toast.error("You have already liked the post");
-//     } else {
-//       dispatch({
-//         type: UPDATE_VIEW,
-//         payload: data.updatedProduct,
-//       });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     // if (error) {
-//     //   toast.error("Product not found");
-//     // }
-//   }
-// };
+export const addRating = (product, count) => async (dispatch) => {
+  console.log("S");
+  try {
+    const { data } = await backendApi.patch(
+      "/product/rate/" + product + "/" + count
+    );
+  } catch (error) {}
+};
 
 export const getcsrfToken = () => async (dispatch) => {
   const { data } = await backendApi.get("/getcsrftoken");

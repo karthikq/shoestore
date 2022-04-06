@@ -41,13 +41,13 @@ const Productbox = ({
           <BsBag />
         </div>
         <div className="star-rating">
-          <StarRatings
+          {/* <StarRatings
             rating={item.rating}
             starRatedColor="#FFDD44"
             numberOfStars={5}
             starDimension="20px"
             starSpacing="1px"
-          />
+          /> */}
         </div>
       </div>
     </React.Fragment>

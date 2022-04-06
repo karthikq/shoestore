@@ -15,7 +15,12 @@ import { BiLike } from "react-icons/bi";
 import _ from "lodash";
 import ImageSlider from "../ImageSlider";
 import { connect, useDispatch } from "react-redux";
-import { singleProduct, updateLike, updateViewCount } from "../actions";
+import {
+  addRating,
+  singleProduct,
+  updateLike,
+  updateViewCount,
+} from "../actions";
 import { useNavigate, useParams } from "react-router-dom";
 import LikedUser from "../LikedUsers/LikedUser";
 
@@ -28,6 +33,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
 
   const changeproductRating = (newrating, name) => {
     setNewRating(newrating);
+    dispatch(addRating(selproduct.p_id, newRating));
   };
   const { id } = useParams();
 
@@ -61,7 +67,8 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
             />
           </div>
           <div className="selproduct-details">
-            <h2>{selproduct.p_name}</h2> <span>{selproduct.p_desp}</span>
+            <h2>{selproduct.p_name}</h2>{" "}
+            <span className="p_desp">{selproduct.p_desp}</span>
             <div className="sel-product_rating">
               <StarRatings
                 rating={newRating}
