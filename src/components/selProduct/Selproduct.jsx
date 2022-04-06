@@ -71,7 +71,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
             <span className="p_desp">{selproduct.p_desp}</span>
             <div className="sel-product_rating">
               <StarRatings
-                rating={newRating}
+                // rating={Math.floor(selproduct.totalRating)}
                 starRatedColor="#e02957"
                 numberOfStars={5}
                 starDimension="20px"
@@ -79,7 +79,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                 name="rating"
                 changeRating={changeproductRating}
               />
-              <span>{newRating}</span>
+              <span>{selproduct.totalRating?.toFixed(2)}</span>
             </div>
             <div className="selproduct-actions">
               <div className="selproduct-like_div">

@@ -86,12 +86,17 @@ export const updateLike = (product) => async (dispatch) => {
   }
 };
 export const addRating = (product, count) => async (dispatch) => {
-  console.log("S");
   try {
     const { data } = await backendApi.patch(
       "/product/rate/" + product + "/" + count
     );
-  } catch (error) {}
+    dispatch({
+      type: UPDATE_VIEW,
+      payload: data.updatedProduct,
+    });
+  } catch (error) {
+    toast.error("There was an error while exexuting please refresh page");
+  }
 };
 
 export const getcsrfToken = () => async (dispatch) => {
