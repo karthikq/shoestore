@@ -145,7 +145,7 @@ const Options = ({ fetchselProduct, navigationState }) => {
               }
               type="submit">
               {btnState ? (
-                <div class="lds-ring">
+                <div className="lds-ring">
                   <div></div>
                   <div></div>
                   <div></div>

@@ -6,6 +6,7 @@ import {
   FETCH_PRODUCTS,
   GET_PRODUCT,
   LIKE_PRODUCT,
+  SINGLE_PRODUCT,
   UPDATE_VIEW,
 } from "./constants";
 
@@ -29,6 +30,9 @@ export const productsReducer = (state = intialState, action) => {
 
     case CREATE_PRODUCT:
       return [...state, action.payload];
+
+    case SINGLE_PRODUCT:
+      return [action.payload];
     default:
       return state;
   }

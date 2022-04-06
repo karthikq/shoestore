@@ -24,6 +24,7 @@ const Productbox = ({
         onClick={() => {
           setselproductState({ ...selproductState, state: true, data: item });
           updateViewCount(item.p_id);
+          navigate("/product/" + item.p_id);
         }}>
         <div className="product-img">
           <img src={item.p_img[0]} alt={item.p_id} />

@@ -8,6 +8,7 @@ import {
   FETCH_PRODUCTS,
   GET_PRODUCT,
   LIKE_PRODUCT,
+  SINGLE_PRODUCT,
   UPDATE_VIEW,
 } from "../reducers/constants";
 
@@ -26,17 +27,15 @@ export const fetchProducts = () => async (dispatch) => {
 
 export const singleProduct = (p_id) => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get(
-      "http://localhost:5000/product/get/" + p_id
-    );
-    console.log(data);
+    const { data } = await backendApi.get("/product/get/" + p_id);
 
     dispatch({
-      type: "SINGLE_PRODUCT",
-      payload: data,
+      type: SINGLE_PRODUCT,
+      payload: data.productData,
     });
   } catch (error) {
     console.log(error);
+    toast.error("product not found");
   }
 };
 export const fetchselProduct = () => async (dispatch, getState) => {
@@ -79,14 +78,34 @@ export const updateLike = (product) => async (dispatch) => {
       type: UPDATE_VIEW,
       payload: data.updatedProduct,
     });
-    console.log(data);
   } catch (error) {
-    console.log(error);
+    toast.error("You have already liked the post");
     // if (error) {
     //   toast.error("Product not found");
     // }
   }
 };
+// export const removelike = (product) => async (dispatch) => {
+//   console.log(product);
+//   try {
+//     const { data } = await backendApi.patch("/product/like/" + product);
+
+//     if (data.status === 400) {
+//       toast.error("You have already liked the post");
+//     } else {
+//       dispatch({
+//         type: UPDATE_VIEW,
+//         payload: data.updatedProduct,
+//       });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     // if (error) {
+//     //   toast.error("Product not found");
+//     // }
+//   }
+// };
+
 export const getcsrfToken = () => async (dispatch) => {
   const { data } = await backendApi.get("/getcsrftoken");
 

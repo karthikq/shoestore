@@ -15,8 +15,8 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
 
   useEffect(() => {
     fetchProducts();
-    singleProduct(5);
-    getProducts();
+    // singleProduct(5);
+    // getProducts();
   }, []);
 
   return (
