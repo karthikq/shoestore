@@ -90,10 +90,15 @@ export const addRating = (product, count) => async (dispatch) => {
     const { data } = await backendApi.patch(
       "/product/rate/" + product + "/" + count
     );
-    dispatch({
-      type: UPDATE_VIEW,
-      payload: data.updatedProduct,
-    });
+
+    if (data.status === 400) {
+      toast.error("You have alreafy rated the product");
+    } else {
+      dispatch({
+        type: UPDATE_VIEW,
+        payload: data.updatedProduct,
+      });
+    }
   } catch (error) {
     toast.error("There was an error while exexuting please refresh page");
   }
