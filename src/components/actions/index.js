@@ -100,6 +100,7 @@ export const addRating = (product, count) => async (dispatch) => {
       });
     }
   } catch (error) {
+    console.log(error);
     toast.error("There was an error while exexuting please refresh page");
   }
 };
