@@ -85,7 +85,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                   starRatedColor="#e02957"
                   numberOfStars={5}
                   starDimension="20px"
-                  starSpacing="2px"
+                  starSpacing="1px"
                   name="rating"
                   changeRating={addUserRating ? changeproductRating : false}
                 />
