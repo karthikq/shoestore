@@ -26,15 +26,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import LikedUser from "../LikedUsers/LikedUser";
 
 const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
-  const [newRating, setNewRating] = useState();
+  const [addUserRating, setAddUserRating] = useState(false);
+
   // const [selProduct, setSelproduct] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const changeproductRating = (newrating, name) => {
-    setNewRating(newrating);
-    dispatch(addRating(selproduct.p_id, parseInt(newrating)));
+  const changeproductRating = async (newrating, name) => {
+    await dispatch(addRating(selproduct.p_id, parseInt(newrating)));
+    setAddUserRating(false);
   };
   const { id } = useParams();
 
@@ -71,33 +72,45 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
             <h2>{selproduct.p_name}</h2>{" "}
             <span className="p_desp">{selproduct.p_desp}</span>
             <div className="sel-product_rating">
-              <StarRatings
-                rating={Math.floor(
-                  selproduct.totalRating && selproduct.totalRating
-                )}
-                starRatedColor="#e02957"
-                numberOfStars={5}
-                starDimension="20px"
-                starSpacing="1px"
-                name="rating"
-                changeRating={changeproductRating}
-              />
+              {selproduct && (
+                <StarRatings
+                  rating={
+                    addUserRating
+                      ? 0
+                      : Math.floor(
+                          selproduct.totalRating ? selproduct.totalRating : 0
+                        )
+                  }
+                  starRatedColor="#e02957"
+                  numberOfStars={5}
+                  starDimension="20px"
+                  starSpacing="1px"
+                  name="rating"
+                  changeRating={addUserRating ? changeproductRating : false}
+                />
+              )}
               <span>{selproduct.totalRating?.toFixed(2)}</span>
               {selproduct.rating?.find(
-                (user) => user.user._id === "624d6bac98087cf929ee867a"
+                (user) => user.user._id === "62458189d13953b35ae86970"
               ) ? (
-                <p onClick={() => dispatch(removeRating(selproduct.p_id))}>
+                <p
+                  onClick={() => {
+                    setAddUserRating(true);
+                    dispatch(removeRating(selproduct.p_id));
+                  }}>
                   change rating
                 </p>
               ) : (
-                ""
+                !addUserRating && (
+                  <p onClick={() => setAddUserRating(true)}>Add rating</p>
+                )
               )}
             </div>
             <div className="selproduct-actions">
               <div className="selproduct-like_div">
                 {selproduct.likes?.find(
                   (user) =>
-                    user.userId._id?.toString() === "624d6bac98087cf929ee867a"
+                    user.userId._id?.toString() === "62458189d13953b35ae86970"
                 ) ? (
                   <AiTwotoneLike
                     className="selproduct-like_icon"
