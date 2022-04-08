@@ -202,9 +202,23 @@
 }
 .sel-product_rating {
   margin-top: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  span {
+    margin-left: 0.8rem;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+  p {
+    font-size: 0.8rem;
+    font-weight: 400;
+    cursor: pointer;
+    width: 6rem;
+    margin: 0.5rem 0 0;
+
+    &:hover {
+      color: #ff2e63;
+    }
+  }
 }
 .sel-product-views_container {
   margin: 0.9rem 0 0;

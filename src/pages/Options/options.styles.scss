@@ -2,14 +2,14 @@
 
 .options-container {
   width: 100%;
-  height: auto;
+  height: 100%;
   background-color: #16171a;
   font-family: "Montserrat", sans-serif;
 }
 .options-contents {
   width: 100%;
-  height: auto;
-  padding: 1% 0 0;
+  min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,6 +166,6 @@
 }
 @media screen and (max-width: 1550px) {
   .options-contents {
-    height: 45rem;
+    padding: 5% 0;
   }
 }

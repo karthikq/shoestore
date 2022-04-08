@@ -17,6 +17,7 @@ import ImageSlider from "../ImageSlider";
 import { connect, useDispatch } from "react-redux";
 import {
   addRating,
+  removeRating,
   singleProduct,
   updateLike,
   updateViewCount,
@@ -33,7 +34,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
 
   const changeproductRating = (newrating, name) => {
     setNewRating(newrating);
-    dispatch(addRating(selproduct.p_id, newRating));
+    dispatch(addRating(selproduct.p_id, parseInt(newrating)));
   };
   const { id } = useParams();
 
@@ -71,7 +72,9 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
             <span className="p_desp">{selproduct.p_desp}</span>
             <div className="sel-product_rating">
               <StarRatings
-                // rating={Math.floor(selproduct.totalRating)}
+                rating={Math.floor(
+                  selproduct.totalRating && selproduct.totalRating
+                )}
                 starRatedColor="#e02957"
                 numberOfStars={5}
                 starDimension="20px"
@@ -80,6 +83,15 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                 changeRating={changeproductRating}
               />
               <span>{selproduct.totalRating?.toFixed(2)}</span>
+              {selproduct.rating?.find(
+                (user) => user.user._id === "624d6bac98087cf929ee867a"
+              ) ? (
+                <p onClick={() => dispatch(removeRating(selproduct.p_id))}>
+                  change rating
+                </p>
+              ) : (
+                ""
+              )}
             </div>
             <div className="selproduct-actions">
               <div className="selproduct-like_div">

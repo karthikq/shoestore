@@ -11,6 +11,7 @@ import {
   SINGLE_PRODUCT,
   UPDATE_VIEW,
 } from "../reducers/constants";
+import { async } from "@firebase/util";
 
 export const fetchProducts = () => async (dispatch) => {
   try {
@@ -88,11 +89,11 @@ export const updateLike = (product) => async (dispatch) => {
 export const addRating = (product, count) => async (dispatch) => {
   try {
     const { data } = await backendApi.patch(
-      "/product/rate/" + product + "/" + count
+      "/product/rate/" + product + "?count=" + count
     );
 
     if (data.status === 400) {
-      toast.error("You have alreafy rated the product");
+      toast.error("You have already rated the product");
     } else {
       dispatch({
         type: UPDATE_VIEW,
@@ -103,6 +104,23 @@ export const addRating = (product, count) => async (dispatch) => {
     console.log(error);
     toast.error("There was an error while exexuting please refresh page");
   }
+};
+
+export const removeRating = (product) => async (dispatch) => {
+  console.log(product);
+  try {
+    const { data } = await backendApi.patch(
+      "/product/remove/rating/" + product
+    );
+    console.log(data);
+    if (data.status === 404) {
+      toast.error("Product not found");
+    }
+    dispatch({
+      type: UPDATE_VIEW,
+      payload: data.updatedProduct,
+    });
+  } catch (error) {}
 };
 
 export const getcsrfToken = () => async (dispatch) => {
