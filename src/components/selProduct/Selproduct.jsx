@@ -15,6 +15,7 @@ import { BiLike } from "react-icons/bi";
 import _ from "lodash";
 import ImageSlider from "../ImageSlider";
 import { connect, useDispatch } from "react-redux";
+
 import {
   addRating,
   removeRating,
@@ -54,7 +55,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
         transition={{ duration: 0.8 }}
         className="selproduct-container"
         role={"presentation"}>
-        <div className="selproduct-contents">
+        <motion.div layout="position" className="selproduct-contents">
           <div className="selproduct-close">
             <AiOutlineClose
               className="selproduct-close_icon"
@@ -144,11 +145,18 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                     name={userId.username}
                     key={userId._id}
                   />
+                ))}{" "}
+                {selproduct.likes?.map(({ userId }) => (
+                  <LikedUser
+                    avatar=""
+                    name={userId.username}
+                    key={userId._id}
+                  />
                 ))}
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </React.Fragment>
   );
