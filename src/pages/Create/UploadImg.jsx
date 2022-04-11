@@ -10,7 +10,7 @@ const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
   const [pro, setpro] = useState(0);
 
   const options = {
-    maxSizeMB: 1,
+    maxSizeMB: 0.5,
     maxWidthOrHeight: 720,
     useWebWorker: true,
   };

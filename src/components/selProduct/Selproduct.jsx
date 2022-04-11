@@ -25,6 +25,7 @@ import {
 } from "../actions";
 import { useNavigate, useParams } from "react-router-dom";
 import LikedUser from "../LikedUsers/LikedUser";
+import { userAddtofav } from "../actions/User";
 
 const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
   const [addUserRating, setAddUserRating] = useState(false);
@@ -129,7 +130,10 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                 )}
                 <span> {totalLikes}</span>
               </div>
-              <AiFillHeart className="selproduct-fav_icon" />{" "}
+              <AiFillHeart
+                className="selproduct-fav_icon"
+                onClick={() => dispatch(userAddtofav(selproduct._id))}
+              />{" "}
               <AiOutlineShoppingCart className="selproduct-cart_icon" />{" "}
             </div>
             <div className="sel-product-views_container">
@@ -146,13 +150,6 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                     key={userId._id}
                   />
                 ))}{" "}
-                {selproduct.likes?.map(({ userId }) => (
-                  <LikedUser
-                    avatar=""
-                    name={userId.username}
-                    key={userId._id}
-                  />
-                ))}
               </div>
             </div>
           </div>

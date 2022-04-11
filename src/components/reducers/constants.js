@@ -7,3 +7,7 @@ export const GET_PRODUCT = "GET_PRODUCT";
 export const UPDATE_VIEW = "UPDATE_VIEW";
 export const LIKE_PRODUCT = "LIKE_PRODUCT";
 export const SINGLE_PRODUCT = "SINGLE_PRODUCT";
+export const IS_AUTH = "IS_AUTH";
+export const IS_NOT_AUTH = "IS_NOT_AUTH";
+export const FETCH_USER = "FETCH_USER";
+export const UPDATE_USER = "UPDATE_USER";

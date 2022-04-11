@@ -8,13 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { fetchProducts, singleProduct } from "../../components/actions";
 import { getProducts } from "../../redux/product";
+import { fetchUserDetails } from "../../components/actions/User";
 
-const Home = ({ products, fetchProducts, singleProduct }) => {
+const Home = ({ products, fetchProducts, singleProduct, fetchUserDetails }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
+    fetchUserDetails();
     // singleProduct(5);
     // getProducts();
   }, []);
@@ -47,8 +49,13 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
     </motion.div>
   );
 };
+
 const mapStatetoProps = (state) => {
   return { products: state.Products };
 };
 
-export default connect(mapStatetoProps, { fetchProducts, singleProduct })(Home);
+export default connect(mapStatetoProps, {
+  fetchProducts,
+  singleProduct,
+  fetchUserDetails,
+})(Home);

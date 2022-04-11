@@ -6,4 +6,5 @@ import { productsReducer } from "./productsReducer";
 
 export const Reducers = combineReducers({
   Products: productsReducer,
+  User: AuthReducer,
 });
