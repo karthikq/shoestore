@@ -13,8 +13,9 @@ import { fetchProducts } from "./components/actions";
 import { connect } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import Selproduct from "./components/selProduct/Selproduct";
+import { fetchUserDetails } from "./components/actions/User";
 
-function App({ fetchProducts }) {
+function App({ fetchProducts, fetchUserDetails }) {
   const location = useLocation();
   const [navigateState, setNavigateState] = useState(false);
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function App({ fetchProducts }) {
     }
   }
   useEffect(() => {
+    fetchUserDetails();
     const path = location.pathname;
 
     let bar = document.querySelector(".animate-bar");
@@ -60,7 +62,7 @@ function App({ fetchProducts }) {
     if (path === "/create/product") {
       postitionofBar(bar);
     }
-  }, [location.pathname, fetchProducts]);
+  }, [location.pathname]);
   // useEffect(() => {
 
   // }, []);
@@ -105,4 +107,4 @@ function App({ fetchProducts }) {
   );
 }
 
-export default connect(null, { fetchProducts })(App);
+export default connect(null, { fetchProducts, fetchUserDetails })(App);

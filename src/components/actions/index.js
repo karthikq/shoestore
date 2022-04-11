@@ -120,7 +120,9 @@ export const removeRating = (product) => async (dispatch) => {
       type: UPDATE_VIEW,
       payload: data.updatedProduct,
     });
-  } catch (error) {}
+  } catch (error) {
+    toast.error("Please refresh page")
+  }
 };
 
 export const getcsrfToken = () => async (dispatch) => {

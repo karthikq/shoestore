@@ -27,7 +27,9 @@ const Productbox = ({
           navigate("/product/" + item.p_id);
         }}>
         <div className="product-img">
-          <img src={item.p_img[0]} alt={item.p_id} />
+          {item.p_img?.length >= 0 && (
+            <img src={item.p_img[0]} alt={item.p_id} />
+          )}
         </div>
 
         <div className="product-details">

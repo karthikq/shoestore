@@ -16,7 +16,7 @@ const Home = ({ products, fetchProducts, singleProduct, fetchUserDetails }) => {
 
   useEffect(() => {
     fetchProducts();
-    fetchUserDetails();
+
     // singleProduct(5);
     // getProducts();
   }, []);

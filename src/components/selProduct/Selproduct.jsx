@@ -5,6 +5,7 @@ import {
   AiFillHeart,
   AiOutlineClose,
   AiOutlineEye,
+  AiOutlineHeart,
   AiOutlineShoppingCart,
   AiTwotoneLike,
 } from "react-icons/ai";
@@ -27,7 +28,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import LikedUser from "../LikedUsers/LikedUser";
 import { userAddtofav } from "../actions/User";
 
-const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
+const Selproduct = ({
+  setselproductState,
+  selproductState,
+  selproduct,
+  user,
+}) => {
   const [addUserRating, setAddUserRating] = useState(false);
 
   // const [selProduct, setSelproduct] = useState();
@@ -93,7 +99,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
               )}
               <span>{selproduct.totalRating?.toFixed(2)}</span>
               {selproduct.rating?.find(
-                (user) => user.user._id === "62458189d13953b35ae86970"
+                (user) => user.user._id === "6254000bdbb530e877e52559"
               ) ? (
                 <p
                   onClick={() => {
@@ -112,7 +118,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
               <div className="selproduct-like_div">
                 {selproduct.likes?.find(
                   (user) =>
-                    user.userId._id?.toString() === "62458189d13953b35ae86970"
+                    user.userId._id?.toString() === "6254000bdbb530e877e52559"
                 ) ? (
                   <AiTwotoneLike
                     className="selproduct-like_icon"
@@ -130,11 +136,21 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                 )}
                 <span> {totalLikes}</span>
               </div>
-              <AiFillHeart
-                className="selproduct-fav_icon"
-                onClick={() => dispatch(userAddtofav(selproduct._id))}
-              />{" "}
-              <AiOutlineShoppingCart className="selproduct-cart_icon" />{" "}
+              {user &&
+              user.favProducts?.find(
+                (item) => item.product === selproduct._id
+              ) ? (
+                <AiFillHeart
+                  className="selproduct-fav_icon"
+                  onClick={() => dispatch(userAddtofav(selproduct._id, false))}
+                />
+              ) : (
+                <AiOutlineHeart
+                  className="selproduct-cart_icon"
+                  onClick={() => dispatch(userAddtofav(selproduct._id, true))}
+                />
+              )}{" "}
+              <AiOutlineShoppingCart className="selproduct-cart_icon" />
             </div>
             <div className="sel-product-views_container">
               <AiOutlineEye className="sel-product_views" />
@@ -149,7 +165,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
                     name={userId.username}
                     key={userId._id}
                   />
-                ))}{" "}
+                ))}
               </div>
             </div>
           </div>
@@ -162,6 +178,7 @@ const Selproduct = ({ setselproductState, selproductState, selproduct }) => {
 const mapStatetoProps = (state) => {
   return {
     selproduct: state.Products[0],
+    user: state.User.userDetails,
   };
 };
 
