@@ -88,16 +88,22 @@ export const updateLike = (product) => async (dispatch) => {
 };
 export const addRating = (product, count) => async (dispatch) => {
   try {
+    const toastToken = toast.loading("Adding rating to the product");
+
     const { data } = await backendApi.patch(
       "/product/rate/" + product + "?count=" + count
     );
 
     if (data.status === 400) {
+      toast.dismiss();
       toast.error("You have already rated the product");
     } else {
-      dispatch({
+      await dispatch({
         type: UPDATE_VIEW,
         payload: data.updatedProduct,
+      });
+      toast.success("You rated the product " + count + " star", {
+        id: toastToken,
       });
     }
   } catch (error) {
@@ -107,21 +113,24 @@ export const addRating = (product, count) => async (dispatch) => {
 };
 
 export const removeRating = (product) => async (dispatch) => {
-  console.log(product);
   try {
+    const toastToken = toast.loading("Removing the product rating");
     const { data } = await backendApi.patch(
       "/product/remove/rating/" + product
     );
-    console.log(data);
+
     if (data.status === 404) {
       toast.error("Product not found");
     }
-    dispatch({
+    await dispatch({
       type: UPDATE_VIEW,
       payload: data.updatedProduct,
     });
+    toast.success("You removed the product rating", {
+      id: toastToken,
+    });
   } catch (error) {
-    toast.error("Please refresh page")
+    toast.error("Please refresh page");
   }
 };
 

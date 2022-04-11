@@ -55,122 +55,130 @@ const Selproduct = ({
 
   return (
     <React.Fragment>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.8 }}
-        className="selproduct-container"
-        role={"presentation"}>
-        <motion.div layout="position" className="selproduct-contents">
-          <div className="selproduct-close">
-            <AiOutlineClose
-              className="selproduct-close_icon"
-              onClick={() => navigate("/product/list")}
-            />
-          </div>
-          <div className="selproduct-img">
-            {/* <img src={selproductState.data.p_img[0]} alt="err" /> */}
-            <ImageSlider
-              imagesArray={selproduct.p_img}
-              imgClass="selproduct-main_img"
-            />
-          </div>
-          <div className="selproduct-details">
-            <h2>{selproduct.p_name}</h2>{" "}
-            <span className="p_desp">{selproduct.p_desp}</span>
-            <div className="sel-product_rating">
-              {selproduct && (
-                <StarRatings
-                  rating={
-                    addUserRating
-                      ? 0
-                      : Math.floor(
-                          selproduct.totalRating ? selproduct.totalRating : 0
-                        )
-                  }
-                  starRatedColor="#e02957"
-                  numberOfStars={5}
-                  starDimension="20px"
-                  starSpacing="1px"
-                  name="rating"
-                  changeRating={addUserRating ? changeproductRating : false}
-                />
-              )}
-              <span>{selproduct.totalRating?.toFixed(2)}</span>
-              {selproduct.rating?.find(
-                (user) => user.user._id === "6254000bdbb530e877e52559"
-              ) ? (
-                <p
-                  onClick={() => {
-                    setAddUserRating(true);
-                    dispatch(removeRating(selproduct.p_id));
-                  }}>
-                  change rating
-                </p>
-              ) : (
-                !addUserRating && (
-                  <p onClick={() => setAddUserRating(true)}>Add rating</p>
-                )
-              )}
+      {selproduct && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="selproduct-container"
+          role={"presentation"}>
+          <motion.div layout="position" className="selproduct-contents">
+            <div className="selproduct-close">
+              <AiOutlineClose
+                className="selproduct-close_icon"
+                onClick={() => navigate("/product/list")}
+              />
             </div>
-            <div className="selproduct-actions">
-              <div className="selproduct-like_div">
-                {selproduct.likes?.find(
-                  (user) =>
-                    user.userId._id?.toString() === "6254000bdbb530e877e52559"
-                ) ? (
-                  <AiTwotoneLike
-                    className="selproduct-like_icon"
-                    onClick={() => {
-                      dispatch(updateLike(selproduct.p_id));
-                    }}
-                  />
-                ) : (
-                  <BiLike
-                    className="selproduct-like_icon"
-                    onClick={() => {
-                      dispatch(updateLike(selproduct.p_id));
-                    }}
+            <div className="selproduct-img">
+              {/* <img src={selproductState.data.p_img[0]} alt="err" /> */}
+              <ImageSlider
+                imagesArray={selproduct.p_img}
+                imgClass="selproduct-main_img"
+              />
+            </div>
+            <div className="selproduct-details">
+              <h2>{selproduct.p_name}</h2>{" "}
+              <span className="p_desp">{selproduct.p_desp}</span>
+              <div className="sel-product_rating">
+                {selproduct && (
+                  <StarRatings
+                    rating={
+                      addUserRating
+                        ? 0
+                        : Math.floor(
+                            selproduct.totalRating ? selproduct.totalRating : 0
+                          )
+                    }
+                    starRatedColor="#e02957"
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="1px"
+                    name="rating"
+                    changeRating={addUserRating ? changeproductRating : false}
                   />
                 )}
-                <span> {totalLikes}</span>
+                <span>{selproduct.totalRating?.toFixed(2)}</span>
+                {selproduct.rating?.find(
+                  (user) => user.user._id === "6254000bdbb530e877e52559"
+                ) ? (
+                  <p
+                    onClick={() => {
+                      setAddUserRating(true);
+                      dispatch(removeRating(selproduct.p_id));
+                    }}>
+                    change rating
+                  </p>
+                ) : (
+                  !addUserRating && (
+                    <p onClick={() => setAddUserRating(true)}>Add rating</p>
+                  )
+                )}
               </div>
-              {user &&
-              user.favProducts?.find(
-                (item) => item.product === selproduct._id
-              ) ? (
-                <AiFillHeart
-                  className="selproduct-fav_icon"
-                  onClick={() => dispatch(userAddtofav(selproduct._id, false))}
-                />
-              ) : (
-                <AiOutlineHeart
-                  className="selproduct-cart_icon"
-                  onClick={() => dispatch(userAddtofav(selproduct._id, true))}
-                />
-              )}{" "}
-              <AiOutlineShoppingCart className="selproduct-cart_icon" />
-            </div>
-            <div className="sel-product-views_container">
-              <AiOutlineEye className="sel-product_views" />
-              <span>{selproduct.viewCount}</span>
-            </div>
-            <div className="selproduct-usage">
-              <h3> {selproduct.likes?.length > 0 && "Likes"}</h3>
-              <div className="selproduct-likes">
-                {selproduct.likes?.map(({ userId }) => (
-                  <LikedUser
-                    avatar=""
-                    name={userId.username}
-                    key={userId._id}
+              <div className="selproduct-actions">
+                <div className="selproduct-like_div">
+                  {selproduct.likes?.find(
+                    (user) =>
+                      user.userId?._id?.toString() ===
+                      "6254000bdbb530e877e52559"
+                  ) ? (
+                    <AiTwotoneLike
+                      className="selproduct-like_icon"
+                      onClick={() => {
+                        dispatch(updateLike(selproduct.p_id));
+                      }}
+                    />
+                  ) : (
+                    <BiLike
+                      className="selproduct-like_icon"
+                      onClick={() => {
+                        dispatch(updateLike(selproduct.p_id));
+                      }}
+                    />
+                  )}
+                  <span> {totalLikes}</span>
+                </div>
+                {user &&
+                user.favProducts?.find(
+                  (item) => item.product === selproduct._id
+                ) ? (
+                  <AiFillHeart
+                    className="selproduct-fav_icon"
+                    onClick={() =>
+                      dispatch(userAddtofav(selproduct._id, false))
+                    }
                   />
-                ))}
+                ) : (
+                  <AiOutlineHeart
+                    className="selproduct-cart_icon"
+                    onClick={() => dispatch(userAddtofav(selproduct._id, true))}
+                  />
+                )}{" "}
+                <AiOutlineShoppingCart className="selproduct-cart_icon" />
+              </div>
+              <div className="sel-product-views_container">
+                <AiOutlineEye className="sel-product_views" />
+                <span>{selproduct.viewCount}</span>
+              </div>
+              <div className="selproduct-usage">
+                <h3> {selproduct.likes?.length > 0 && "Likes"}</h3>
+                <div className="selproduct-likes">
+                  {selproduct.likes?.map(
+                    ({ userId }) =>
+                      userId && (
+                        <LikedUser
+                          avatar=""
+                          name={userId.username}
+                          key={userId._id}
+                        />
+                      )
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </React.Fragment>
   );
 };
