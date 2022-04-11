@@ -27,6 +27,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import LikedUser from "../LikedUsers/LikedUser";
 import { userAddtofav } from "../actions/User";
+import ReactConfitte from "../ReactConfitte";
 
 const Selproduct = ({
   setselproductState,
@@ -35,6 +36,7 @@ const Selproduct = ({
   user,
 }) => {
   const [addUserRating, setAddUserRating] = useState(false);
+  const [confettiState, setconfettiState] = useState(false);
 
   // const [selProduct, setSelproduct] = useState();
 
@@ -44,6 +46,10 @@ const Selproduct = ({
   const changeproductRating = async (newrating, name) => {
     await dispatch(addRating(selproduct.p_id, parseInt(newrating)));
     setAddUserRating(false);
+    setconfettiState(true);
+    setTimeout(() => {
+      setconfettiState(false);
+    }, [4000]);
   };
   const { id } = useParams();
 
@@ -55,6 +61,7 @@ const Selproduct = ({
 
   return (
     <React.Fragment>
+      <ReactConfitte state={confettiState} setState={setconfettiState} />
       {selproduct && (
         <motion.div
           initial={{ opacity: 0 }}

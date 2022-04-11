@@ -13,7 +13,9 @@
   background-color: rgba(31, 24, 24, 0.918);
   padding-bottom: 2rem;
 }
-
+canvas {
+  transition: all 0.5s ease;
+}
 .selproduct-contents {
   width: 85%;
   min-height: 70vh;
