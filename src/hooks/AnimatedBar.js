@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import queryString from "query-string";
 
 const AnimatedBar = (fetchProducts, fetchUserDetails) => {
   const location = useLocation();
@@ -47,13 +46,7 @@ const AnimatedBar = (fetchProducts, fetchUserDetails) => {
     }
   }, [location.pathname]);
 
-  const parsed = queryString.parse(location.search);
-
-  if (parsed.loginState) {
-    return parsed.loginState === "true" ? true : false;
-  } else {
-    return;
-  }
+  return;
 };
 
 export default AnimatedBar;

@@ -1,16 +1,10 @@
 /** @format */
 
 import axios from "axios";
+import { backendUrl } from "./Backendurl";
 
-const url = () => {
-  if (process.env.NODE_ENV === "production") {
-    return "https://murmuring-reef-49332.herokuapp.com";
-  } else {
-    return "http://localhost:5000";
-  }
-};
 export const backendApi = axios.create({
-  baseURL: url(),
+  baseURL: backendUrl(),
   headers: {
     "Content-type": "application/json",
   },

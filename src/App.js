@@ -16,20 +16,35 @@ import Selproduct from "./components/selProduct/Selproduct";
 import { fetchUserDetails } from "./components/actions/User";
 import Login from "./pages/auth/Login";
 import AnimatedBar from "./hooks/AnimatedBar";
+import queryString from "query-string";
 
 function App({ fetchProducts, fetchUserDetails }) {
-  const authState = AnimatedBar(fetchProducts, fetchUserDetails);
+  AnimatedBar(fetchProducts, fetchUserDetails);
+  const [authState, setAuthState] = useState(false);
 
   const location = useLocation();
   const [navigateState, setNavigateState] = useState(false);
 
   const navigate = useNavigate();
-  console.log(authState);
+
+  useEffect(() => {
+    const { loginState } = queryString.parse(location.search);
+    if (loginState === "false") {
+      setAuthState(true);
+    } else {
+      setAuthState(false);
+    }
+  }, [location]);
+  useEffect(() => {
+    window.history.pushState({}, "home", "/");
+    setAuthState(false);
+  }, []);
+
   return (
     <div>
       <Navbar />
       <div className="animate-bar"></div>
-      <Login state={authState} />
+      <Login state={authState} setState={setAuthState} />
       <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
