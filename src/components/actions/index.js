@@ -15,7 +15,7 @@ import { async } from "@firebase/util";
 
 export const fetchProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios.get("http://localhost:5000/product/all");
+    const { data } = await backendApi.get("/product/all");
 
     dispatch({
       type: FETCH_PRODUCTS,
