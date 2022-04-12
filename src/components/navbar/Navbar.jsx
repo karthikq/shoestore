@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiHome, BiLogIn } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import { AiOutlineHeart, AiOutlineSetting } from "react-icons/ai";
@@ -8,12 +8,16 @@ import { AiOutlineHeart, AiOutlineSetting } from "react-icons/ai";
 import "./Navbar.styles.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { authObject } from "../../context/authContext";
 
 const Navbar = ({ auth }) => {
   const [navState, setNavState] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const navRef = useRef();
+
+  const { state, setState } = useContext(authObject);
+
   // setTimeout(() => {
   //   const home = document.querySelector(".home-container");
   //   if (navState) {
@@ -83,7 +87,11 @@ const Navbar = ({ auth }) => {
             <li onClick={() => handleNavigation("/create/product")}>
               <AiOutlineSetting className="navbar-icon" /> Create
             </li>
-            <li onClick={() => handleNavigation("/?loginState=" + auth)}>
+            <li
+              onClick={() => {
+                handleNavigation("/");
+                setState(true);
+              }}>
               <BiLogIn className="navbar-icon" />
               login
             </li>

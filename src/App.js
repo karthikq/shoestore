@@ -7,7 +7,7 @@ import Options from "./pages/Options/Options";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Products from "./pages/products/Products";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Createproduct from "./pages/Create/Createproduct";
 import { fetchProducts } from "./components/actions";
 import { connect } from "react-redux";
@@ -17,34 +17,41 @@ import { fetchUserDetails } from "./components/actions/User";
 import Login from "./pages/auth/Login";
 import AnimatedBar from "./hooks/AnimatedBar";
 import queryString from "query-string";
+import { authObject } from "./context/authContext";
 
 function App({ fetchProducts, fetchUserDetails }) {
   AnimatedBar(fetchProducts, fetchUserDetails);
   const [authState, setAuthState] = useState(false);
+
+  const { state, setState } = useContext(authObject);
 
   const location = useLocation();
   const [navigateState, setNavigateState] = useState(false);
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const { loginState } = queryString.parse(location.search);
+  //   if (loginState === "false") {
+  //     setAuthState(true);
+  //   } else {
+  //     setAuthState(false);
+  //   }
+  // }, [location]);
   useEffect(() => {
-    const { loginState } = queryString.parse(location.search);
-    if (loginState === "false") {
-      setAuthState(true);
-    } else {
-      setAuthState(false);
-    }
-  }, [location]);
-  useEffect(() => {
-    window.history.pushState({}, "home", "/");
-    setAuthState(false);
+    const { token } = queryString.parse(location.search);
+    localStorage.setItem("authToken", token);
+
+    setTimeout(() => {
+      window.history.pushState({}, "home", "/");
+    }, 1000);
   }, []);
 
   return (
     <div>
       <Navbar />
       <div className="animate-bar"></div>
-      <Login state={authState} setState={setAuthState} />
+      <Login state={state} setState={setState} />
       <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />

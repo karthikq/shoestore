@@ -8,15 +8,15 @@ import { backendUrl } from "../../components/api/Backendurl";
 const Login = ({ state, setState }) => {
   const loginRef = useRef();
   const loginRef2 = useRef();
+  const userAuthState = useSelector((state) => state.User.auth);
 
   useEffect(() => {
     if (loginRef.current) {
       loginRef.current.addEventListener("click", (e) => {
         if (!e.target) return;
         if (e.target.contains(loginRef2.current)) {
-          setState(false);
+          return setState(false);
           window.history.pushState({}, "home", "/");
-          return;
         }
       });
     }
@@ -26,7 +26,7 @@ const Login = ({ state, setState }) => {
 
   return (
     <React.Fragment>
-      {state && (
+      {state && !userAuthState && (
         <motion.div
           ref={loginRef}
           initial={{ opacity: 0 }}
@@ -41,7 +41,7 @@ const Login = ({ state, setState }) => {
             transition={{ duration: 0.7 }}
             className="login-contents">
             <div className="login-list">
-              <h4>Login with</h4>
+              <h4>Continue with</h4>
               <div className="login-items">
                 <a href={`${url}/auth/google/login`}>
                   <img src="https://i.ibb.co/c81tWLc/google.png" alt="google" />
