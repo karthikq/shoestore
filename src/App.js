@@ -14,62 +14,22 @@ import { connect } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import Selproduct from "./components/selProduct/Selproduct";
 import { fetchUserDetails } from "./components/actions/User";
+import Login from "./pages/auth/Login";
+import AnimatedBar from "./hooks/AnimatedBar";
 
 function App({ fetchProducts, fetchUserDetails }) {
+  const authState = AnimatedBar(fetchProducts, fetchUserDetails);
+
   const location = useLocation();
   const [navigateState, setNavigateState] = useState(false);
+
   const navigate = useNavigate();
-  const ref = useRef();
-  // window.addEventListener("popstate", (e) => {
-  //   setTimeout(() => {
-  //     document.querySelector(".animate-bar").style.left = `${100}%`;
-  //   }, 1800);
-  // });
-  function postitionofBar(bar) {
-    const position = document
-      .querySelector(".animate-bar")
-      .style.left.split("%")[0];
-
-    if (position === "-100") {
-      bar.style.left = `${100}%`;
-    }
-    if (position === "100") {
-      bar.style.left = `${-100}%`;
-    }
-    if (position === "0") {
-      bar.style.left = `${-100}%`;
-    }
-    if (!position) {
-      bar.style.left = `${-100}%`;
-    }
-  }
-  useEffect(() => {
-    fetchUserDetails();
-    const path = location.pathname;
-
-    let bar = document.querySelector(".animate-bar");
-
-    if (path === "/") {
-      postitionofBar(bar);
-    }
-    if (path === "/categ/options") {
-      fetchProducts();
-      postitionofBar(bar);
-    }
-    if (path === "/product/list") {
-      postitionofBar(bar);
-    }
-    if (path === "/create/product") {
-      postitionofBar(bar);
-    }
-  }, [location.pathname]);
-  // useEffect(() => {
-
-  // }, []);
+  console.log(authState);
   return (
     <div>
       <Navbar />
-      <div ref={ref} className="animate-bar"></div>
+      <div className="animate-bar"></div>
+      <Login state={authState} />
       <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
@@ -86,6 +46,8 @@ function App({ fetchProducts, fetchUserDetails }) {
           <Route path="/product/:id" element={<Selproduct />} />
           <Route path="/create/product" element={<Createproduct />} />
           <Route path="/create/product" element={<Createproduct />} />
+
+          {/* <Route path="/user/login" element={<Login />} /> */}
         </Routes>{" "}
       </AnimatePresence>
       <Toaster

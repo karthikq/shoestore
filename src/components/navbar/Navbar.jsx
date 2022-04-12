@@ -7,8 +7,9 @@ import { AiOutlineHeart, AiOutlineSetting } from "react-icons/ai";
 
 import "./Navbar.styles.scss";
 import { useLocation, useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Navbar = () => {
+const Navbar = ({ auth }) => {
   const [navState, setNavState] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,6 +44,7 @@ const Navbar = () => {
 
   document.addEventListener("click", (e) => {
     if (!e.target) return;
+    if (!navRef.current) return;
     if (!navRef.current.contains(e.target)) {
       setNavState(false);
     }
@@ -81,7 +83,7 @@ const Navbar = () => {
             <li onClick={() => handleNavigation("/create/product")}>
               <AiOutlineSetting className="navbar-icon" /> Create
             </li>
-            <li onClick={() => handleNavigation("/")}>
+            <li onClick={() => handleNavigation("/?loginState=" + auth)}>
               <BiLogIn className="navbar-icon" />
               login
             </li>
@@ -92,4 +94,9 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStatetoProps = (state) => {
+  return {
+    auth: state.User.auth,
+  };
+};
+export default connect(mapStatetoProps)(Navbar);

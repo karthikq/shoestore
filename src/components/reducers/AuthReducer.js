@@ -4,7 +4,7 @@ import { FETCH_USER, IS_AUTH, IS_NOT_AUTH, UPDATE_USER } from "./constants";
 
 /** @format */
 const initialState = {
-  auth: true,
+  auth: false,
   userDetails: {},
 };
 
