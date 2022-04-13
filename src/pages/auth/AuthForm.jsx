@@ -11,6 +11,13 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
   const loginRef = useRef();
   const loginRef2 = useRef();
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    confirmPassowrd: "",
+    firstname: "",
+    lastname: "",
+  });
 
   //   useEffect(() => {
   //     if (loginRef.current) {
@@ -26,6 +33,11 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
 
   let url = backendUrl();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userData);
+  };
+
   return (
     <React.Fragment>
       <motion.div
@@ -39,10 +51,10 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
         </video>
         <motion.div
           ref={loginRef2}
-          // initial={{ opacity: 0, y: "100%" }}
-          // animate={{ opacity: 1, y: 0 }}
-          // exit={{ opacity: 0, y: "100%" }}
-          // transition={{ duration: 0.7 }}
+          initial={{ opacity: 0, x: "-100%" }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: "-100%" }}
+          transition={{ duration: 0.7 }}
           className="login-contents">
           <div className="login-list">
             <h4>{values.header}</h4>
@@ -64,40 +76,82 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
               </div>
             </div>
             <div className="login-items">
-              <div className="login-item_header">
-                <input
-                  type="text"
-                  placeholder="First name"
-                  className="login-item_header-input"
-                />
-                <input
-                  type="text"
-                  placeholder="First name"
-                  className="login-item_header-input"
-                />
-              </div>
-              <div className="login_input-box">
-                <input
-                  type="text"
-                  placeholder="Email"
-                  className="login_input"
-                />
-              </div>
-              <div className="login_input-box">
-                <input
-                  type="text"
-                  placeholder="Password"
-                  className="login_input"
-                />
-              </div>{" "}
-              <div className="login-actions">
-                <Link to={values.path}>
-                  <button className="login_action-btn"> {values.text} </button>
-                </Link>
-                <Link to={values.path}>
+              <form onSubmit={handleSubmit}>
+                {!loginState && (
+                  <div className="login-item_header">
+                    <input
+                      type="text"
+                      placeholder="First name"
+                      className="login-item_header-input"
+                      name="firstname"
+                      required
+                      minLength={3}
+                      onChange={(e) =>
+                        setUserData({ ...userData, firstname: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      placeholder="Last name"
+                      name="lastname"
+                      className="login-item_header-input"
+                      onChange={(e) =>
+                        setUserData({ ...userData, lastname: e.target.value })
+                      }
+                    />
+                  </div>
+                )}
+                <div className="login_input-box">
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    className="login_input"
+                    onChange={(e) =>
+                      setUserData({ ...userData, email: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="login_input-box">
+                  <input
+                    type="text"
+                    placeholder="Password"
+                    name="password"
+                    className="login_input"
+                    onChange={(e) =>
+                      setUserData({ ...userData, password: e.target.value })
+                    }
+                  />
+                </div>
+                {!loginState && (
+                  <div className="login_input-box">
+                    <input
+                      type="text"
+                      name="confirmPassword"
+                      placeholder="Confirm password"
+                      className="login_input"
+                      onChange={(e) =>
+                        setUserData({
+                          ...userData,
+                          confirmPassword: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                )}
+
+                {loginState && (
+                  <div className="login-forgot_pass">
+                    <span>
+                      <Link to="/user/reset/password">Forgot password?</Link>
+                    </span>{" "}
+                  </div>
+                )}
+
+                <div className="login-actions">
                   <button className="login_action-btn"> {values.name}</button>
-                </Link>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </motion.div>
