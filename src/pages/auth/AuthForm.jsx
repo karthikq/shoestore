@@ -14,7 +14,7 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
-    confirmPassowrd: "",
+    confirmPassword: "",
     firstname: "",
     lastname: "",
   });
@@ -35,7 +35,11 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+    if (loginState) {
+      handleAuth(userData);
+    } else {
+      handleAuth(userData);
+    }
   };
 
   return (
@@ -105,6 +109,7 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
                   <input
                     type="text"
                     name="email"
+                    required
                     placeholder="Email"
                     className="login_input"
                     onChange={(e) =>
