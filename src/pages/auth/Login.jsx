@@ -1,11 +1,11 @@
 /** @format */
 
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+
 import "./login.styles.scss";
-import { motion } from "framer-motion";
+
 import { backendUrl } from "../../components/api/Backendurl";
-import { Link } from "react-router-dom";
+
 import AuthForm from "./AuthForm";
 const Login = ({ state, setState }) => {
   // useEffect(() => {
@@ -22,8 +22,6 @@ const Login = ({ state, setState }) => {
   const handleLogin = (data) => {
     console.log(data);
   };
-
-  let url = backendUrl();
 
   return (
     <React.Fragment>
