@@ -89,8 +89,7 @@ const Navbar = ({ auth }) => {
             </li>
             <li
               onClick={() => {
-                handleNavigation("/");
-                setState(true);
+                handleNavigation("/user/login");
               }}>
               <BiLogIn className="navbar-icon" />
               login

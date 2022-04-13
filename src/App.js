@@ -18,6 +18,7 @@ import Login from "./pages/auth/Login";
 import AnimatedBar from "./hooks/AnimatedBar";
 import queryString from "query-string";
 import { authObject } from "./context/authContext";
+import Register from "./pages/auth/Register";
 
 function App({ fetchProducts, fetchUserDetails }) {
   AnimatedBar(fetchProducts, fetchUserDetails);
@@ -40,18 +41,20 @@ function App({ fetchProducts, fetchUserDetails }) {
   // }, [location]);
   useEffect(() => {
     const { token } = queryString.parse(location.search);
-    localStorage.setItem("authToken", token);
 
-    setTimeout(() => {
-      window.history.pushState({}, "home", "/");
-    }, 1000);
+    if (token) {
+      localStorage.setItem("authToken", token);
+      setTimeout(() => {
+        window.history.pushState({}, "home", "/");
+      }, 1000);
+    }
   }, []);
 
   return (
     <div>
       <Navbar />
       <div className="animate-bar"></div>
-      <Login state={state} setState={setState} />
+      {/* <Login state={state} setState={setState} /> */}
       <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
@@ -69,7 +72,8 @@ function App({ fetchProducts, fetchUserDetails }) {
           <Route path="/create/product" element={<Createproduct />} />
           <Route path="/create/product" element={<Createproduct />} />
 
-          {/* <Route path="/user/login" element={<Login />} /> */}
+          <Route path="/user/login" element={<Login />} />
+          <Route path="/user/register" element={<Register />} />
         </Routes>{" "}
       </AnimatePresence>
       <Toaster
