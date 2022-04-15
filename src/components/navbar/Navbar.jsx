@@ -16,7 +16,7 @@ import { IoLogOutOutline } from "react-icons/io";
 import { authObject } from "../../context/authContext";
 import { LogoutUser } from "../actions/auth/auth";
 
-const Navbar = ({ auth, LogoutUser }) => {
+const Navbar = ({ auth, LogoutUser, user }) => {
   const [navState, setNavState] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -75,8 +75,8 @@ const Navbar = ({ auth, LogoutUser }) => {
         </div>
         <div className="nav-items">
           <div className="nav-profile">
-            <img src="" alt="" />
-            <span>Username</span>
+            <img src={user.profileUrl} alt="error" />
+            <span>{user.firstname}</span>
           </div>
           <ul>
             <li onClick={() => handleNavigation("/")}>
@@ -122,6 +122,7 @@ const Navbar = ({ auth, LogoutUser }) => {
 const mapStatetoProps = (state) => {
   return {
     auth: state.User.auth,
+    user: state.User.userDetails,
   };
 };
 

@@ -13,6 +13,7 @@ export const fetchUserDetails = () => async (dispatch, getState) => {
       payload: data.userData,
     });
   } catch (error) {
+    console.log(error.response);
     if (error.response) {
       dispatch({
         type: IS_NOT_AUTH,

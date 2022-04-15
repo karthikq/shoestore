@@ -44,6 +44,7 @@ function App({ fetchProducts, fetchUserDetails }) {
 
     if (token) {
       localStorage.setItem("authToken", token);
+
       setTimeout(() => {
         window.history.pushState({}, "home", "/");
       }, 1000);
