@@ -12,8 +12,8 @@
   position: relative;
   background: linear-gradient(
     90.03deg,
-    #000000ec 50%,
-    rgba(9, 9, 9, 0) 140.82%
+    #000000f8 50%,
+    rgba(9, 9, 9, 0.11) 140.82%
   );
   .login-video_player {
     position: absolute;
@@ -33,7 +33,7 @@
   align-items: center;
 }
 .login-list {
-  width: 86%;
+  width: 88%;
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
   h4 {
@@ -121,13 +121,39 @@
       color: #a5a5a5;
     }
     &:focus {
-      border: 2px solid rgba(255, 255, 255, 0.39);
+      border: 2px solid rgba(255, 255, 255, 0.363);
     }
   }
   .login_input {
     width: 98%;
     padding-right: 0;
     display: block;
+  }
+  .login-input_error {
+    border: 2px solid rgb(216, 13, 13);
+
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .error-span {
+    display: block;
+    margin: 0.2rem 0;
+    color: #f14c40;
+    position: relative;
+    top: 0.7rem;
+    left: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0 0.3rem;
+    font-size: 0.9rem;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1b1d27 inset !important;
+  }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: #ffffff !important;
   }
 }
 .login-forgot_pass {
@@ -168,6 +194,16 @@
     }
     &:active {
       transform: scale(0.9);
+    }
+  }
+  .login-btn-active {
+    background-color: #fc2057;
+    cursor: not-allowed;
+    &:disabled {
+      opacity: 0.3;
+    }
+    &:active {
+      transform: scale(1);
     }
   }
 }

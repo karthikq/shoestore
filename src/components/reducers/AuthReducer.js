@@ -1,6 +1,12 @@
 /** @format */
 
-import { FETCH_USER, IS_AUTH, IS_NOT_AUTH, UPDATE_USER } from "./constants";
+import {
+  FETCH_USER,
+  IS_AUTH,
+  IS_NOT_AUTH,
+  REGISTER_USER,
+  UPDATE_USER,
+} from "./constants";
 
 /** @format */
 const initialState = {
@@ -13,14 +19,16 @@ export const AuthReducer = (state = initialState, action) => {
     case IS_AUTH:
       return { ...state, auth: true };
     case IS_NOT_AUTH:
-      return { ...state, auth: false };
+      return { ...state, auth: false, userDetails: {} };
 
     case FETCH_USER:
-      return { ...state, userDetails: action.payload };
+      return { ...state, auth: true, userDetails: action.payload };
 
     case UPDATE_USER:
       return { ...state, userDetails: action.payload };
 
+    case REGISTER_USER:
+      return { ...state, auth: true, userDetails: action.payload };
     default:
       return state;
   }

@@ -2,18 +2,22 @@
 
 import toast from "react-hot-toast";
 import { backendApi } from "../../api/api";
-import { FETCH_USER, UPDATE_USER } from "../../reducers/constants";
+import { FETCH_USER, IS_NOT_AUTH, UPDATE_USER } from "../../reducers/constants";
 
-export const fetchUserDetails = () => async (dispatch) => {
+export const fetchUserDetails = () => async (dispatch, getState) => {
   try {
     const { data } = await backendApi.get("/user/userdetails");
 
     dispatch({
       type: FETCH_USER,
-      payload: data,
+      payload: data.userData,
     });
   } catch (error) {
-    toast.error("please refresh and try again");
+    if (error.response) {
+      dispatch({
+        type: IS_NOT_AUTH,
+      });
+    }
   }
 };
 export const userAddtofav = (prodId, state) => async (dispatch, getState) => {

@@ -1,16 +1,27 @@
 /** @format */
 
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useRef, useState } from "react";
+import { connect } from "react-redux";
 import "./login.styles.scss";
 import { motion } from "framer-motion";
 import { backendUrl } from "../../components/api/Backendurl";
 
 import { Link, useNavigate } from "react-router-dom";
-const AuthForm = ({ loginState, handleAuth, values }) => {
+import { LoginUser, ResiterUser } from "../../components/actions/auth/auth";
+import toast from "react-hot-toast";
+import { MdErrorOutline } from "react-icons/md";
+import Button from "../../components/button/Button";
+const AuthForm = ({
+  loginState,
+  handleAuth,
+  values,
+  LoginUser,
+  ResiterUser,
+}) => {
   const loginRef = useRef();
   const loginRef2 = useRef();
   const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -18,6 +29,9 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
     firstname: "",
     lastname: "",
   });
+  const [authErrors, setAuthErrors] = useState([]);
+  const [err, setErr] = useState("");
+  const [btnState, setBtnState] = useState(false);
 
   //   useEffect(() => {
   //     if (loginRef.current) {
@@ -32,14 +46,31 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
   //   }, [setState, state]);
 
   let url = backendUrl();
+  const handleErrors = (errors) => {
+    if (errors.length > 0) {
+      setAuthErrors(errors);
+    } else {
+      setAuthErrors(errors);
+    }
+    setBtnState(false);
+  };
 
-  const handleSubmit = (e) => {
+  const fetchErrorExists = (name) => {
+    const data = authErrors?.find((err) => {
+      return err.param === name;
+    });
+    return data?.msg;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (loginState) {
       handleAuth(userData);
+      LoginUser(userData);
     } else {
-      handleAuth(userData);
+      await ResiterUser(userData, handleErrors, handleAuth);
     }
+    setBtnState(true);
   };
 
   return (
@@ -86,7 +117,11 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
                     <input
                       type="text"
                       placeholder="First name"
-                      className="login-item_header-input"
+                      className={
+                        authErrors.find((err) => err.param === "firstname")
+                          ? "login-item_header-input login-input_error"
+                          : "login-item_header-input"
+                      }
                       name="firstname"
                       required
                       minLength={3}
@@ -94,11 +129,16 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
                         setUserData({ ...userData, firstname: e.target.value })
                       }
                     />
+
                     <input
                       type="text"
                       placeholder="Last name"
                       name="lastname"
-                      className="login-item_header-input"
+                      className={
+                        authErrors.find((err) => err.param === "lastname")
+                          ? "login-item_header-input login-input_error"
+                          : "login-item_header-input"
+                      }
                       onChange={(e) =>
                         setUserData({ ...userData, lastname: e.target.value })
                       }
@@ -111,22 +151,51 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
                     name="email"
                     required
                     placeholder="Email"
-                    className="login_input"
+                    className={
+                      authErrors.find((err) => err.param === "email")
+                        ? "login_input login-input_error"
+                        : "login_input"
+                    }
                     onChange={(e) =>
                       setUserData({ ...userData, email: e.target.value })
                     }
-                  />
+                  />{" "}
+                  {fetchErrorExists("email") ? (
+                    <span className="error-span">
+                      <MdErrorOutline />
+                      {fetchErrorExists("email")}
+                    </span>
+                  ) : (
+                    ""
+                  )}
                 </div>
+
                 <div className="login_input-box">
                   <input
                     type="text"
                     placeholder="Password"
                     name="password"
-                    className="login_input"
+                    className={
+                      authErrors.find(
+                        (err) =>
+                          err.param === "password" ||
+                          err.param === "confirmPassword"
+                      )
+                        ? "login_input login-input_error"
+                        : "login_input"
+                    }
                     onChange={(e) =>
                       setUserData({ ...userData, password: e.target.value })
                     }
                   />
+                  {fetchErrorExists("password") ? (
+                    <span className="error-span">
+                      <MdErrorOutline />
+                      {fetchErrorExists("password")}
+                    </span>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 {!loginState && (
                   <div className="login_input-box">
@@ -134,17 +203,30 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
                       type="text"
                       name="confirmPassword"
                       placeholder="Confirm password"
-                      className="login_input"
+                      className={
+                        authErrors.find(
+                          (err) => err.param === "confirmPassword"
+                        )
+                          ? "login_input login-input_error"
+                          : "login_input"
+                      }
                       onChange={(e) =>
                         setUserData({
                           ...userData,
                           confirmPassword: e.target.value,
                         })
                       }
-                    />
+                    />{" "}
+                    {fetchErrorExists("confirmPassword") ? (
+                      <span className="error-span">
+                        <MdErrorOutline />
+                        {fetchErrorExists("confirmPassword")}
+                      </span>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 )}
-
                 {loginState && (
                   <div className="login-forgot_pass">
                     <span>
@@ -152,9 +234,16 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
                     </span>{" "}
                   </div>
                 )}
-
                 <div className="login-actions">
-                  <button className="login_action-btn"> {values.name}</button>
+                  <button
+                    className={
+                      btnState
+                        ? "login_action-btn login-btn-active"
+                        : "login_action-btn"
+                    }
+                    disabled={btnState}>
+                    <Button name={values.name} state={btnState} />
+                  </button>
                 </div>
               </form>
             </div>
@@ -165,4 +254,4 @@ const AuthForm = ({ loginState, handleAuth, values }) => {
   );
 };
 
-export default AuthForm;
+export default connect(null, { LoginUser, ResiterUser })(AuthForm);

@@ -11,3 +11,4 @@ export const IS_AUTH = "IS_AUTH";
 export const IS_NOT_AUTH = "IS_NOT_AUTH";
 export const FETCH_USER = "FETCH_USER";
 export const UPDATE_USER = "UPDATE_USER";
+export const REGISTER_USER = "REGISTER_USER";

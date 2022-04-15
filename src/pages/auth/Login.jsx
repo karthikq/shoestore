@@ -7,6 +7,8 @@ import "./login.styles.scss";
 import { backendUrl } from "../../components/api/Backendurl";
 
 import AuthForm from "./AuthForm";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Login = ({ state, setState }) => {
   // useEffect(() => {
   //   if (loginRef.current) {
@@ -19,9 +21,16 @@ const Login = ({ state, setState }) => {
   //     });
   //   }
   // }, [setState, state]);
-  const handleLogin = (data) => {
-    console.log(data);
+  const navigate = useNavigate();
+  const authState = useSelector((state) => state.User.auth);
+  const handleLogin = () => {
+    if (authState) {
+      navigate("/");
+    }
   };
+  useEffect(() => {
+    handleLogin();
+  }, []);
 
   return (
     <React.Fragment>

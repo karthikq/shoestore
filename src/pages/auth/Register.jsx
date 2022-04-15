@@ -1,12 +1,22 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import AuthForm from "./AuthForm";
 
 const Register = () => {
-  const handleRegister = (data) => {
-    console.log(data);
+  const state = useSelector((state) => state.User.auth);
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    if (state) {
+      navigate("/");
+    }
   };
+  useEffect(() => {
+    handleRegister();
+  }, []);
   return (
     <React.Fragment>
       <AuthForm

@@ -3,14 +3,20 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiHome, BiLogIn } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
-import { AiOutlineHeart, AiOutlineSetting } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiOutlineLogout,
+  AiOutlineSetting,
+} from "react-icons/ai";
 
 import "./Navbar.styles.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { IoLogOutOutline } from "react-icons/io";
 import { authObject } from "../../context/authContext";
+import { LogoutUser } from "../actions/auth/auth";
 
-const Navbar = ({ auth }) => {
+const Navbar = ({ auth, LogoutUser }) => {
   const [navState, setNavState] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -87,13 +93,23 @@ const Navbar = ({ auth }) => {
             <li onClick={() => handleNavigation("/create/product")}>
               <AiOutlineSetting className="navbar-icon" /> Create
             </li>
-            <li
-              onClick={() => {
-                handleNavigation("/user/login");
-              }}>
-              <BiLogIn className="navbar-icon" />
-              login
-            </li>
+            {auth ? (
+              <li
+                onClick={() => {
+                  handleNavigation("/");
+                  LogoutUser(navigate);
+                }}>
+                <AiOutlineLogout className="navbar-icon" /> Logout
+              </li>
+            ) : (
+              <li
+                onClick={() => {
+                  handleNavigation("/user/login");
+                }}>
+                <BiLogIn className="navbar-icon" />
+                login
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -106,4 +122,5 @@ const mapStatetoProps = (state) => {
     auth: state.User.auth,
   };
 };
-export default connect(mapStatetoProps)(Navbar);
+
+export default connect(mapStatetoProps, { LogoutUser })(Navbar);
