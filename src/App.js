@@ -21,7 +21,7 @@ import { authObject } from "./context/authContext";
 import Register from "./pages/auth/Register";
 
 function App({ fetchProducts, fetchUserDetails }) {
-  AnimatedBar(fetchProducts, fetchUserDetails);
+  AnimatedBar(fetchProducts);
   const [authState, setAuthState] = useState(false);
 
   const { state, setState } = useContext(authObject);
@@ -47,6 +47,10 @@ function App({ fetchProducts, fetchUserDetails }) {
       setTimeout(() => {
         window.history.pushState({}, "home", "/");
       }, 1000);
+    }
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      fetchUserDetails();
     }
   }, []);
 

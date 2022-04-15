@@ -9,14 +9,8 @@ const Register = () => {
   const state = useSelector((state) => state.User.auth);
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (state) {
-      navigate("/");
-    }
-  };
-  useEffect(() => {
-    handleRegister();
-  }, []);
+  const handleRegister = () => {};
+
   return (
     <React.Fragment>
       <AuthForm

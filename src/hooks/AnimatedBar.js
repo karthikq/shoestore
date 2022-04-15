@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const AnimatedBar = (fetchProducts, fetchUserDetails) => {
+const AnimatedBar = (fetchProducts) => {
   const location = useLocation();
   const [authState, setAuthState] = useState(null);
 
@@ -26,7 +26,6 @@ const AnimatedBar = (fetchProducts, fetchUserDetails) => {
     }
   }
   useEffect(() => {
-    fetchUserDetails();
     const path = location.pathname;
 
     let bar = document.querySelector(".animate-bar");

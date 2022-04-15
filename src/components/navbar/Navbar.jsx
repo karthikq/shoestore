@@ -90,14 +90,16 @@ const Navbar = ({ auth, LogoutUser }) => {
               <AiOutlineHeart className="navbar-icon" />
               Favourites
             </li>
-            <li onClick={() => handleNavigation("/create/product")}>
-              <AiOutlineSetting className="navbar-icon" /> Create
-            </li>
+            {auth && (
+              <li onClick={() => handleNavigation("/create/product")}>
+                <AiOutlineSetting className="navbar-icon" /> Create
+              </li>
+            )}
             {auth ? (
               <li
-                onClick={() => {
+                onClick={async () => {
+                  await LogoutUser(navigate);
                   handleNavigation("/");
-                  LogoutUser(navigate);
                 }}>
                 <AiOutlineLogout className="navbar-icon" /> Logout
               </li>

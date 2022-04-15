@@ -49,10 +49,11 @@ const AuthForm = ({
   const handleErrors = (errors) => {
     if (errors.length > 0) {
       setAuthErrors(errors);
+      setBtnState(false);
     } else {
       setAuthErrors(errors);
+      setBtnState(false);
     }
-    setBtnState(false);
   };
 
   const fetchErrorExists = (name) => {
@@ -62,13 +63,13 @@ const AuthForm = ({
     return data?.msg;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (loginState) {
       handleAuth(userData);
       LoginUser(userData);
     } else {
-      await ResiterUser(userData, handleErrors, handleAuth);
+      ResiterUser(userData, handleErrors, navigate);
     }
     setBtnState(true);
   };

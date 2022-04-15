@@ -3,13 +3,11 @@
 import axios from "axios";
 import { backendUrl } from "./Backendurl";
 
-const token = localStorage.getItem("authToken");
-
 export const backendApi = axios.create({
   baseURL: backendUrl(),
 
   headers: {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
     "Content-type": "application/json",
   },
 });

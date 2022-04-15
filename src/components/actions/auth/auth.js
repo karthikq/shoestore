@@ -16,7 +16,7 @@ export const LoginUser = (userData) => async (dispatch) => {
   }
 };
 export const ResiterUser =
-  (userData, handleErrors, handleRegister) => async (dispatch) => {
+  (userData, handleErrors, navigate) => async (dispatch) => {
     try {
       const { data } = await backendApi.post("/auth/user/signup", userData);
 
@@ -26,10 +26,11 @@ export const ResiterUser =
         payload: data.userData,
       });
       handleErrors([]);
-      handleRegister();
+      navigate("/");
     } catch (error) {
+      console.log(error);
       const errors = error.response;
-      if (errors.status === 422) {
+      if (errors) {
         handleErrors(errors.data.errors);
       } else {
         toast.error("Something went wrong please refresh page and try again");
@@ -44,7 +45,7 @@ export const LogoutUser = (navigate) => async (dispatch) => {
     await dispatch({
       type: IS_NOT_AUTH,
     });
-    toast.success("User successfully loggedout", {
+    toast.success("User successfully logged out", {
       id: toastToken,
     });
     navigate("/");
