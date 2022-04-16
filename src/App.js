@@ -81,7 +81,7 @@ function App({ fetchProducts, fetchUserDetails }) {
             }
           />
           <Route path="/product/list" element={<Products />} />
-          <Route path="/product/:id" element={<Selproduct />} />
+          <Route path="/single/product/:id" element={<Selproduct />} />
 
           <Route
             path="/create/product"

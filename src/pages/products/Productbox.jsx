@@ -6,7 +6,7 @@ import { BiHeart } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
 import StarRatings from "react-star-ratings";
 import { connect } from "react-redux";
-import { updateViewCount } from "../../components/actions";
+import { singleProduct, updateViewCount } from "../../components/actions";
 import { useNavigate } from "react-router-dom";
 
 const Productbox = ({
@@ -21,10 +21,9 @@ const Productbox = ({
     <React.Fragment>
       <div
         className="product-box"
-        onClick={() => {
-          setselproductState({ ...selproductState, state: true, data: item });
-          updateViewCount(item.p_id);
-          navigate("/product/" + item.p_id);
+        onClick={async () => {
+          await updateViewCount(item.p_id);
+          navigate("/single/product/" + item.p_id);
         }}>
         <div className="product-img">
           {item.p_img?.length >= 0 && (

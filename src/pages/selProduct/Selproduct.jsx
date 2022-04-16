@@ -33,7 +33,7 @@ const Selproduct = ({
   setselproductState,
   selproductState,
   selproduct,
-  user,
+  userData,
 }) => {
   const [addUserRating, setAddUserRating] = useState(false);
   const [confettiState, setconfettiState] = useState(false);
@@ -102,12 +102,12 @@ const Selproduct = ({
                     starDimension="20px"
                     starSpacing="1px"
                     name="rating"
-                    changeRating={addUserRating ? changeproductRating : false}
+                    changeRating={addUserRating && changeproductRating}
                   />
                 )}
                 <span>{selproduct.totalRating?.toFixed(2)}</span>
                 {selproduct.rating?.find(
-                  (user) => user?.user._id === user._id
+                  (user) => user?.user?._id === userData._id
                 ) ? (
                   <p
                     onClick={() => {
@@ -125,7 +125,7 @@ const Selproduct = ({
               <div className="selproduct-actions">
                 <div className="selproduct-like_div">
                   {selproduct?.likes?.find(
-                    (user) => user.userId._id === user._id
+                    (user) => user.userId?._id === userData._id
                   ) ? (
                     <AiTwotoneLike
                       className="selproduct-like_icon"
@@ -143,8 +143,8 @@ const Selproduct = ({
                   )}
                   <span> {totalLikes}</span>
                 </div>
-                {user &&
-                user.favProducts?.find(
+                {userData &&
+                userData.favProducts?.find(
                   (item) => item.product === selproduct._id
                 ) ? (
                   <AiFillHeart
@@ -191,7 +191,7 @@ const Selproduct = ({
 const mapStatetoProps = (state) => {
   return {
     selproduct: state.Products[0],
-    user: state.User.userDetails,
+    userData: state.User.userDetails,
   };
 };
 
