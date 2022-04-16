@@ -2,12 +2,12 @@
 
 .nav-container {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .nav-contents {
   width: 18rem;
   background: linear-gradient(90deg, rgb(8, 8, 8), rgb(15, 15, 15));
-  height: 60rem;
+  height: 100vh;
 
   position: fixed;
   left: -20rem;
@@ -69,26 +69,27 @@
 }
 .nav-items {
   color: white;
-  height: 100%;
+
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  padding-top: 1.8rem;
+  gap: 3rem 0;
   ul {
     padding-left: 0rem;
-    margin-left: 1.5rem;
-    font-family: "Montserrat", sans-serif;
+    margin-left: 1.2rem;
+    font-family: "Poppins", sans-serif;
     li {
       list-style-type: none;
-      font-size: 1.45rem;
-      letter-spacing: 0.8px;
+      font-size: 1.5rem;
+      letter-spacing: 0.2px;
       font-weight: 500;
-      margin: 0.8rem 0;
+      margin: 0.2rem 0;
 
       color: rgb(255, 255, 255);
-      padding: 0.7rem 1.5rem;
+      padding: 0.6rem 1.5rem;
       padding-left: 0.8rem;
       cursor: pointer;
       transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -129,15 +130,16 @@
 .nav-profile {
   width: 80%;
   height: 50px;
-
-  position: absolute;
-  left: 1.5rem;
-  top: 7rem;
+  margin-left: 1.4rem;
+  margin-bottom: 0.5rem;
+  // position: absolute;
+  // left: 1.5rem;
+  // top: 7rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0 1rem;
-  font-family: "Montserrat", sans-serif;
+  gap: 0 0.5rem;
+  font-family: "Poppins", sans-serif;
   img {
     width: 50px;
     height: 50px;
@@ -145,13 +147,15 @@
     background-color: aliceblue;
   }
   span {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
+    opacity: 1;
     letter-spacing: 0.8px;
     font-weight: 300;
+    text-transform: capitalize;
   }
 }
-@media screen and (max-width: 1550px) {
-  .nav-contents {
-    height: 45rem;
-  }
-}
+// @media screen and (max-width: 1550px) {
+//   .nav-contents {
+//     height: 45rem;
+//   }
+// }

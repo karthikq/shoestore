@@ -19,6 +19,7 @@ import AnimatedBar from "./hooks/AnimatedBar";
 import queryString from "query-string";
 import { authObject } from "./context/authContext";
 import Register from "./pages/auth/Register";
+import ProtectedRotue from "./components/Routes/ProtectedRotue";
 
 function App({ fetchProducts, fetchUserDetails }) {
   AnimatedBar(fetchProducts);
@@ -47,9 +48,16 @@ function App({ fetchProducts, fetchUserDetails }) {
 
       setTimeout(() => {
         window.history.pushState({}, "home", "/");
-      }, 1000);
+      }, 2000);
+      window.onload = function () {
+        if (!window.location.hash) {
+          window.location = window.location + "#loaded";
+          window.location.reload();
+        }
+      };
     }
     const authToken = localStorage.getItem("authToken");
+
     if (authToken) {
       fetchUserDetails();
     }
@@ -74,9 +82,14 @@ function App({ fetchProducts, fetchUserDetails }) {
           />
           <Route path="/product/list" element={<Products />} />
           <Route path="/product/:id" element={<Selproduct />} />
-          <Route path="/create/product" element={<Createproduct />} />
-          <Route path="/create/product" element={<Createproduct />} />
 
+          <Route
+            component={
+              <ProtectedRotue
+                component={<Createproduct path="/create/product" />}
+              />
+            }
+          />
           <Route path="/user/login" element={<Login />} />
           <Route path="/user/register" element={<Register />} />
         </Routes>{" "}

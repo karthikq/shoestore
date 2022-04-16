@@ -3,13 +3,13 @@
 .create-p_container {
   width: 100%;
   min-height: 100vh;
-  background-color: rgb(32, 29, 29);
+  background-color: rgb(41, 36, 36);
   background-color: #000000;
-  opacity: 0.8;
+
   background-image: repeating-radial-gradient(
       circle at 0 0,
       transparent 0,
-      #0a0a0a 600px
+      #111010 600px
     ),
     repeating-linear-gradient(#1f1e1e55, #131212);
 }
@@ -54,13 +54,13 @@
   flex-direction: column;
   align-items: center;
   .create-p_span {
-    color: rgb(219, 219, 219);
+    color: rgb(146, 146, 146);
     display: block;
     align-self: flex-start;
     position: relative;
     right: 0.5rem;
     margin-top: 0.6rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
   .create-p_form-contents {
     width: 100%;
@@ -110,7 +110,7 @@
   input,
   textarea,
   .select-input {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: rgba(248, 248, 248, 0.973);
 
     width: 100%;
@@ -184,18 +184,21 @@
     }
   }
   .other-label {
-    color: rgba(255, 255, 255, 0.897);
+    color: rgb(255, 255, 255);
     align-self: flex-start;
 
-    font-size: 1.1rem;
-    font-weight: 400;
+    font-size: 1.05rem;
+    font-weight: 500;
     margin: 0.8rem 0 0.1rem;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0.3px;
   }
   .file-label {
+    font-family: "Poppins", sans-serif;
     position: relative;
     right: 0.55rem;
     margin-top: 0.8rem;
-    color: rgba(243, 243, 243, 0.979);
+    color: rgb(243, 243, 243);
     padding: 0.2rem 1rem 0.4rem;
     border-radius: 10px;
     border: 3px solid #ff2e6283;
@@ -203,8 +206,11 @@
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;
     transform-origin: center;
+    font-weight: 400;
+    letter-spacing: 0.3px;
     &:hover {
       border: 3px solid #ff2e62fd;
+      background-color: #1b1516;
     }
   }
   .create-p_btn {

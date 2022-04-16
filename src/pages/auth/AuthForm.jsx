@@ -66,8 +66,12 @@ const AuthForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loginState) {
-      handleAuth(userData);
-      LoginUser(userData);
+      const data = {
+        email: userData.email,
+        password: userData.password,
+      };
+      // handleAuth(userData, handleErrors, navigate);
+      LoginUser(data, handleErrors, navigate);
     } else {
       ResiterUser(userData, handleErrors, navigate);
     }
@@ -176,6 +180,7 @@ const AuthForm = ({
                     type="text"
                     placeholder="Password"
                     name="password"
+                    required
                     className={
                       authErrors.find(
                         (err) =>

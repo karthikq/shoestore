@@ -155,9 +155,9 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
             className="create-p_form">
             <motion.div layout className="create-p_form-contents">
               <label htmlFor="upload_img" className="file-label">
-                Select Image
+                Select Image files
               </label>
-              {uploads.length === 2 && (
+              {uploads.length !== 3 && (
                 <span className="create-p_span">
                   You can select upto 3 images
                 </span>
@@ -195,7 +195,12 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
                   setUserData({ ...userData, p_name: e.target.value })
                 }
               />
-              <label className="other-label">Price</label>
+              <label className="other-label">
+                Price{" "}
+                <span style={{ fontSize: "1rem", fontWeight: "300" }}>
+                  (₹Rs)
+                </span>{" "}
+              </label>
               <input
                 type="number"
                 required

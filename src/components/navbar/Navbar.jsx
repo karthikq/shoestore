@@ -66,18 +66,21 @@ const Navbar = ({ auth, LogoutUser, user }) => {
         className={
           navState ? "nav-contents nav-contents-active" : "nav-contents"
         }>
-        <div
-          className={navState ? "nav-icon nav-icon-active" : "nav-icon"}
-          onClick={() => setNavState(!navState)}>
-          <span className="navspan"></span>
-          <span className="navspan"></span>
-          <span className="navspan"></span>
-        </div>
         <div className="nav-items">
-          <div className="nav-profile">
-            <img src={user.profileUrl} alt="error" />
-            <span>{user.firstname}</span>
+          {" "}
+          <div
+            className={navState ? "nav-icon nav-icon-active" : "nav-icon"}
+            onClick={() => setNavState(!navState)}>
+            <span className="navspan"></span>
+            <span className="navspan"></span>
+            <span className="navspan"></span>
           </div>
+          {auth && (
+            <div className="nav-profile">
+              <img src={user.profileUrl} alt="error" />
+              <span>{user.firstname}</span>
+            </div>
+          )}
           <ul>
             <li onClick={() => handleNavigation("/")}>
               <BiHome className="navbar-icon" />
@@ -109,7 +112,7 @@ const Navbar = ({ auth, LogoutUser, user }) => {
                   handleNavigation("/user/login");
                 }}>
                 <BiLogIn className="navbar-icon" />
-                login
+                Login
               </li>
             )}
           </ul>

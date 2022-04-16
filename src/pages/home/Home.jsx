@@ -8,14 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { fetchProducts, singleProduct } from "../../components/actions";
 import { getProducts } from "../../redux/product";
-import { fetchUserDetails } from "../../components/actions/User";
 
-const Home = ({ products, fetchProducts, singleProduct, fetchUserDetails }) => {
+const Home = ({ products, fetchProducts, singleProduct }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchProducts();
+    // fetchProducts();
   }, []);
 
   return (
@@ -54,5 +53,4 @@ const mapStatetoProps = (state) => {
 export default connect(mapStatetoProps, {
   fetchProducts,
   singleProduct,
-  fetchUserDetails,
 })(Home);

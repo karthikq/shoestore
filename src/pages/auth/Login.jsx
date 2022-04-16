@@ -23,6 +23,7 @@ const Login = ({ state, setState }) => {
   // }, [setState, state]);
   const navigate = useNavigate();
   const authState = useSelector((state) => state.User.auth);
+
   const handleLogin = () => {
     if (authState) {
       navigate("/");
