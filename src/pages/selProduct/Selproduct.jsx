@@ -145,7 +145,7 @@ const Selproduct = ({
                 </div>
                 {userData &&
                 userData.favProducts?.find(
-                  (item) => item.product === selproduct._id
+                  (item) => item.product._id || item.product === selproduct._id
                 ) ? (
                   <AiFillHeart
                     className="selproduct-fav_icon"
