@@ -26,7 +26,7 @@ import {
 } from "../../components/actions";
 import { useNavigate, useParams } from "react-router-dom";
 import LikedUser from "../../components/LikedUsers/LikedUser";
-import { userAddtofav } from "../../components/actions/User";
+import { addtocart, userAddtofav } from "../../components/actions/User";
 import ReactConfitte from "../../components/ReactConfitte";
 
 const Selproduct = ({
@@ -159,7 +159,10 @@ const Selproduct = ({
                     onClick={() => dispatch(userAddtofav(selproduct._id, true))}
                   />
                 )}{" "}
-                <AiOutlineShoppingCart className="selproduct-cart_icon" />
+                <AiOutlineShoppingCart
+                  className="selproduct-cart_icon"
+                  onClick={() => dispatch(addtocart(selproduct._id))}
+                />
               </div>
               <div className="sel-product-views_container">
                 <AiOutlineEye className="sel-product_views" />

@@ -212,3 +212,10 @@
     padding: 3rem 0;
   }
 }
+@media screen and (max-width: 720px) {
+  .login-items {
+    margin-top: 2.2rem;
+
+    width: 95%;
+  }
+}

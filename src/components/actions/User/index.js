@@ -50,3 +50,21 @@ export const userAddtofav = (prodId, state) => async (dispatch, getState) => {
     toast.error("Error please refresh the page");
   }
 };
+
+export const addtocart = (prodId) => async (dispatch) => {
+  try {
+    console.log(prodId);
+    const toastToken = toast.loading("Adding product to cart");
+    const { data } = await backendApi.patch("/user/add/cart/" + prodId);
+
+    await dispatch({
+      type: UPDATE_USER,
+      payload: data.userData,
+    });
+    toast.success("Product added to cart", {
+      id: toastToken,
+    });
+  } catch (error) {
+    console.log(error.response);
+  }
+};
