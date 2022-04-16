@@ -9,7 +9,6 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
 import { connect } from "react-redux";
 import { fetchselProduct } from "../../components/actions";
-import Selproduct from "../../components/selProduct/Selproduct";
 
 const Products = ({ fetchselProduct, products }) => {
   const productref = React.useRef();

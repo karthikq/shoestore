@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import StarRatings from "react-star-ratings";
 import { BiLike } from "react-icons/bi";
 import _ from "lodash";
-import ImageSlider from "../ImageSlider";
+import ImageSlider from "../../components/ImageSlider";
 import { connect, useDispatch } from "react-redux";
 
 import {
@@ -23,11 +23,11 @@ import {
   singleProduct,
   updateLike,
   updateViewCount,
-} from "../actions";
+} from "../../components/actions";
 import { useNavigate, useParams } from "react-router-dom";
-import LikedUser from "../LikedUsers/LikedUser";
-import { userAddtofav } from "../actions/User";
-import ReactConfitte from "../ReactConfitte";
+import LikedUser from "../../components/LikedUsers/LikedUser";
+import { userAddtofav } from "../../components/actions/User";
+import ReactConfitte from "../../components/ReactConfitte";
 
 const Selproduct = ({
   setselproductState,
@@ -107,7 +107,7 @@ const Selproduct = ({
                 )}
                 <span>{selproduct.totalRating?.toFixed(2)}</span>
                 {selproduct.rating?.find(
-                  (user) => user.user._id === "6254000bdbb530e877e52559"
+                  (user) => user?.user._id === user._id
                 ) ? (
                   <p
                     onClick={() => {
@@ -124,10 +124,8 @@ const Selproduct = ({
               </div>
               <div className="selproduct-actions">
                 <div className="selproduct-like_div">
-                  {selproduct.likes?.find(
-                    (user) =>
-                      user.userId?._id?.toString() ===
-                      "6254000bdbb530e877e52559"
+                  {selproduct?.likes?.find(
+                    (user) => user.userId._id === user._id
                   ) ? (
                     <AiTwotoneLike
                       className="selproduct-like_icon"
