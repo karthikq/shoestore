@@ -10,7 +10,7 @@ import Products from "./pages/products/Products";
 import { useContext, useEffect, useRef, useState } from "react";
 import Createproduct from "./pages/Create/Createproduct";
 import { fetchProducts } from "./components/actions";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import Selproduct from "./components/selProduct/Selproduct";
 import { fetchUserDetails } from "./components/actions/User";
@@ -22,8 +22,8 @@ import Register from "./pages/auth/Register";
 import ProtectedRotue from "./components/Routes/ProtectedRotue";
 
 function App({ fetchProducts, fetchUserDetails }) {
+  const authState = useSelector((state) => state.User.auth);
   AnimatedBar(fetchProducts);
-  const [authState, setAuthState] = useState(false);
 
   const { state, setState } = useContext(authObject);
 
@@ -84,14 +84,29 @@ function App({ fetchProducts, fetchUserDetails }) {
           <Route path="/product/:id" element={<Selproduct />} />
 
           <Route
-            component={
-              <ProtectedRotue
-                component={<Createproduct path="/create/product" />}
-              />
+            path="/create/product"
+            element={
+              <ProtectedRotue isAllowed={authState}>
+                <Createproduct />
+              </ProtectedRotue>
             }
           />
-          <Route path="/user/login" element={<Login />} />
-          <Route path="/user/register" element={<Register />} />
+          <Route
+            path="/user/login"
+            element={
+              <ProtectedRotue isAllowed={!authState}>
+                <Login />
+              </ProtectedRotue>
+            }
+          />
+          <Route
+            path="/user/register"
+            element={
+              <ProtectedRotue isAllowed={!authState}>
+                <Register />
+              </ProtectedRotue>
+            }
+          />
         </Routes>{" "}
       </AnimatePresence>
       <Toaster
