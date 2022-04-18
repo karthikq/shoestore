@@ -155,8 +155,12 @@
     color: #56575e;
   }
 }
-// @media screen and (max-width: 1550px) {
-//   .nav-contents {
-//     height: 45rem;
-//   }
-// }
+@media screen and (max-width: 560px) {
+  .nav-contents {
+    width: 16rem;
+  }
+  .nav-items {
+    margin-top: 1.8rem;
+    gap: 0.8rem 0;
+  }
+}

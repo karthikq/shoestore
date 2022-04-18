@@ -11,7 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     z-index: -1;
 
     video {
@@ -80,7 +80,7 @@
 
     margin-top: 1.5rem;
     span {
-      font-weight: 500;
+      font-weight: 300;
     }
   }
 }
@@ -104,7 +104,39 @@
     transform: scale(0.9);
   }
 }
-@media screen and (max-width: 1550px) {
+@media screen and (max-width: 720px) {
+  .home-container {
+    &::before {
+      background: linear-gradient(
+        90deg,
+        rgb(0, 0, 0),
+        rgba(0, 0, 0, 0.671),
+        rgba(22, 22, 22, 0.199)
+      );
+    }
+  }
   .home-contents {
+    padding-left: 0.4rem;
+    h1 {
+      width: 100%;
+      font-size: 3.4rem;
+    }
+  }
+}
+@media screen and (max-width: 540px) {
+  .home-container {
+    &::before {
+      background: linear-gradient(
+        90deg,
+        rgb(0, 0, 0),
+        rgba(0, 0, 0, 0.671),
+        rgba(22, 22, 22, 0.199)
+      );
+    }
+  }
+  .home-contents {
+    h1 {
+      font-size: 3rem;
+    }
   }
 }
