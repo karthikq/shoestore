@@ -46,7 +46,7 @@ const Selproduct = ({
   const changeproductRating = async (newrating, name) => {
     await dispatch(addRating(selproduct.p_id, parseInt(newrating)));
     setAddUserRating(false);
-    setconfettiState(true);
+    newrating === 5 && setconfettiState(true);
     setTimeout(() => {
       setconfettiState(false);
     }, [4000]);
@@ -145,7 +145,7 @@ const Selproduct = ({
                 </div>
                 {userData &&
                 userData.favProducts?.find(
-                  (item) => item.product._id || item.product === selproduct._id
+                  (item) => item.product._id === selproduct._id
                 ) ? (
                   <AiFillHeart
                     className="selproduct-fav_icon"

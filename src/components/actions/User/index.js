@@ -27,21 +27,21 @@ export const userAddtofav = (prodId, state) => async (dispatch, getState) => {
     let user = getState().User.userDetails;
 
     if (state) {
-      message = `Adding item to ${user.username} favourties`;
+      message = `Adding item to ${user.firstname}'s favourties`;
     } else {
-      message = `Removing item from ${user.username} favourties`;
+      message = `Removing item from ${user.firstname}'s favourties`;
     }
     const toastToken = toast.loading(message);
     const { data } = await backendApi.patch("/user/add/fav/" + prodId);
-
+    console.log(data);
     await dispatch({
       type: UPDATE_USER,
       payload: data.userData,
     });
     if (state) {
-      message = `Item added to  ${user.username} favourites`;
+      message = `Item added to  ${user.firstname}'s favourites`;
     } else {
-      message = `Item removed from  ${user.username} favourites`;
+      message = `Item removed from  ${user.firstname}'s favourites`;
     }
     toast.success(message, {
       id: toastToken,
@@ -51,17 +51,23 @@ export const userAddtofav = (prodId, state) => async (dispatch, getState) => {
   }
 };
 
-export const addtocart = (prodId) => async (dispatch) => {
+export const addtocart = (prodId) => async (dispatch, getState) => {
+  let message;
+  let user = getState().User.userDetails;
   try {
-    console.log(prodId);
-    const toastToken = toast.loading("Adding product to cart");
+    message = `Adding item to ${user.firstname}'s Cart`;
+
+    const toastToken = toast.loading(message);
     const { data } = await backendApi.patch("/user/add/cart/" + prodId);
 
     await dispatch({
       type: UPDATE_USER,
       payload: data.userData,
     });
-    toast.success("Product added to cart", {
+
+    message = `Item added to ${user.firstname}'s Cart`;
+
+    toast.success(message, {
       id: toastToken,
     });
   } catch (error) {

@@ -114,9 +114,9 @@ function App({ fetchProducts, fetchUserDetails }) {
         toastOptions={{
           className: "",
           style: {
-            border: "1px solid #713200",
+            border: "1px solid #1C1616",
             padding: "10px 12px",
-            color: "#713200",
+            color: "#1C1616",
           },
           iconTheme: {
             primary: "#713200",
